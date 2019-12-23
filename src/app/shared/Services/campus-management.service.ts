@@ -10,48 +10,48 @@ export class Campus {
 	Code: number;
 }
 
-let campuses: Campus[] = [
-	{
-		ID: 1,
-		Name: "Anahim",
-		Code: 6655455,
-	},
-	{
-		ID: 2,
-		Name: "New Port",
-		Code: 454486,
-	},
-	{
-		ID: 3,
-		Name: "Diamond Bar",
-		Code: 785152,
-	},
-	{
-		ID: 4,
-		Name: "Placentia",
-		Code: 56565656,
-	},
-	{
-		ID: 5,
-		Name: "Brea County",
-		Code: 7458123,
-	},
-	{
-		ID: 6,
-		Name: "Brea County",
-		Code: 7458123,
-	},
-	{
-		ID: 7,
-		Name: "Brea County",
-		Code: 7458123,
-	},
-	{
-		ID: 8,
-		Name: "Brea County",
-		Code: 7458123,
-	},
-]
+// let campuses: Campus[] = [
+// 	{
+// 		ID: 1,
+// 		Name: "Anahim",
+// 		Code: 6655455,
+// 	},
+// 	{
+// 		ID: 2,
+// 		Name: "New Port",
+// 		Code: 454486,
+// 	},
+// 	{
+// 		ID: 3,
+// 		Name: "Diamond Bar",
+// 		Code: 785152,
+// 	},
+// 	{
+// 		ID: 4,
+// 		Name: "Placentia",
+// 		Code: 56565656,
+// 	},
+// 	{
+// 		ID: 5,
+// 		Name: "Brea County",
+// 		Code: 7458123,
+// 	},
+// 	{
+// 		ID: 6,
+// 		Name: "Brea County",
+// 		Code: 7458123,
+// 	},
+// 	{
+// 		ID: 7,
+// 		Name: "Brea County",
+// 		Code: 7458123,
+// 	},
+// 	{
+// 		ID: 8,
+// 		Name: "Brea County",
+// 		Code: 7458123,
+// 	},
+// ]
 
 @Injectable({
 	providedIn: 'root',
@@ -61,9 +61,9 @@ export class CampusManagementService {
 
 	constructor(private http: HttpClient) { }
 
-	getCampuses() {
-		return campuses;
-	}
+	// getCampuses() {
+	// 	return campuses;
+	// }
 
 	getCampus(): Observable<any[]> {
 		return this.http.get<any>('/campus')
@@ -80,7 +80,7 @@ export class CampusManagementService {
 
 	postCampus(campusModel: Campusmodel): Observable<any> {
 		const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-		return this.http.post<Campusmodel>('/fundsource', campusModel, httpOptions)
+		return this.http.post<Campusmodel>('/campus', campusModel, httpOptions)
 			.pipe(
 				map((res: Campusmodel) => {
 					return res;
