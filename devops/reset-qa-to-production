@@ -1,0 +1,5 @@
+# FORCE CLONE current branch: production to branch: qa
+
+git checkout production
+git pull --rebase
+git push origin production:qa --force

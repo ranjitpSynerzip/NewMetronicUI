@@ -1,0 +1,38 @@
+<div id="data-grid-demo">
+    <dx-button id="gridDeleteSelected"
+		[height]="34"
+		icon="trash"
+        [disabled]="!selectedItemKeys.length"
+        (onClick)="deleteRecords()">
+	</dx-button>
+
+    <dx-data-grid
+        id="gridContainer"
+        [dataSource]="campus"
+        [showBorders]="true"
+		(onSelectionChanged)="selectionChanged($event)">
+
+	
+
+        <dxo-paging [enabled]="false"></dxo-paging>
+        <dxo-editing
+            mode="cell"
+			[allowUpdating]="true"
+			[allowAdding]="true">
+        </dxo-editing>
+		<dxo-selection mode="multiple"></dxo-selection>
+        <dxi-column dataField="Name" [allowEditing]="false" caption="Test" cellTemplate="cellTemplate"></dxi-column>
+        <dxi-column dataField="Name" caption="Name"></dxi-column>
+        <dxi-column dataField="Code" caption="Code"></dxi-column>
+        <dxo-row-dragging
+		[allowReordering]="true"
+		[onReorder]="onReorder"
+		[showDragIcons]="showDragIcons"
+    ></dxo-row-dragging>
+    
+
+    <div *dxTemplate="let cell of 'cellTemplate'">
+        <span class="kt-header__topbar-icon" id="kt_quick_panel_toggler_btn"> {{cell.text}} </span>
+    </div>
+    </dx-data-grid>
+</div>

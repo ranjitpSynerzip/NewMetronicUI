@@ -1,0 +1,100 @@
+image: teracy/angular-cli
+
+pipelines:
+  branches:
+    development:
+      - step:
+          name: "Build and test"   
+          script:
+            - export BRANCH=development
+            - . increment-version-and-tag.sh
+            - cp VERSION src/assets/VERSION.txt
+            - apt-get update && apt-get install --yes zip
+            - npm install # Time consuming, had to add after typescript module missing error, should be able to be sped up
+            - npm install --save-dev @angular-devkit/build-angular
+            - yarn add html-loader --dev
+            - export API_URL="https://dev-newprompt-backend.azurewebsites.net"
+            - export VERSION_PATH="assets/VERSION"
+            - ng build --prod="true"
+            - cd dist/metronic/
+            - zip -r ../../example-$BITBUCKET_BUILD_NUMBER.zip .
+          artifacts: 
+            - example-*.zip
+      - step:
+          name: "Deploy to Development"
+          deployment: development
+          script:
+            - AZURE_APP_NAME="dev-newprompt"
+            - AZURE_RESOURCE_GROUP="RG-NP-DEV"
+            - pipe: microsoft/azure-web-apps-deploy:1.0.3
+              variables:
+                AZURE_APP_ID: $AZURE_APP_ID
+                AZURE_PASSWORD: $AZURE_PASSWORD
+                AZURE_TENANT_ID: $AZURE_TENANT_ID
+                AZURE_RESOURCE_GROUP: $AZURE_RESOURCE_GROUP
+                AZURE_APP_NAME: $AZURE_APP_NAME
+                ZIP_FILE: 'example-$BITBUCKET_BUILD_NUMBER.zip'
+                
+              
+    qa:
+      - step:
+          name: "Build and test"   
+          script:
+            - export BRANCH=qa
+            - . increment-version-and-tag.sh
+            - cp VERSION src/assets/VERSION.txt
+            - apt-get update && apt-get install --yes zip
+            - npm install # Time consuming, had to add after typescript module missing error, should be able to be sped up
+            - npm install --save-dev @angular-devkit/build-angular
+            - yarn add html-loader --dev
+            - export API_URL="https://qa-newprompt-backend.azurewebsites.net"
+            - ng build --prod="true"
+            - cd dist/metronic/
+            - zip -r ../../example-$BITBUCKET_BUILD_NUMBER.zip .
+          artifacts: 
+            - example-*.zip
+      - step:
+          name: "Deploy to QA"
+          deployment: qa
+          script:
+            - AZURE_APP_NAME="qa-newprompt"
+            - AZURE_RESOURCE_GROUP="RG-NP-DEV"
+            - pipe: microsoft/azure-web-apps-deploy:1.0.3
+              variables:
+                AZURE_APP_ID: $AZURE_APP_ID
+                AZURE_PASSWORD: $AZURE_PASSWORD
+                AZURE_TENANT_ID: $AZURE_TENANT_ID
+                AZURE_RESOURCE_GROUP: $AZURE_RESOURCE_GROUP
+                AZURE_APP_NAME: $AZURE_APP_NAME
+                ZIP_FILE: 'example-$BITBUCKET_BUILD_NUMBER.zip'
+    production:
+      - step:
+          name: "Build and test"   
+          script:
+            - export BRANCH=production
+            - . increment-version-and-tag.sh
+            - cp VERSION src/assets/VERSION.txt
+            - apt-get update && apt-get install --yes zip
+            - npm install
+            - npm install --save-dev @angular-devkit/build-angular
+            - yarn add html-loader --dev
+            - export API_URL="https://prod-newprompt-backend.azurewebsites.net"
+            - ng build --prod="true"
+            - cd dist/metronic/
+            - zip -r ../../example-$BITBUCKET_BUILD_NUMBER.zip .
+          artifacts: 
+            - example-*.zip
+      - step:
+          name: "Deploy to Production"
+          deployment: production
+          script:
+            - AZURE_APP_NAME="prod-newprompt"
+            - AZURE_RESOURCE_GROUP="MAAS-PROD"
+            - pipe: microsoft/azure-web-apps-deploy:1.0.3
+              variables:
+                AZURE_APP_ID: $AZURE_APP_ID
+                AZURE_PASSWORD: $AZURE_PASSWORD
+                AZURE_TENANT_ID: $AZURE_TENANT_ID
+                AZURE_RESOURCE_GROUP: $AZURE_RESOURCE_GROUP
+                AZURE_APP_NAME: $AZURE_APP_NAME
+                ZIP_FILE: 'example-$BITBUCKET_BUILD_NUMBER.zip'

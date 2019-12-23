@@ -1,0 +1,6 @@
+<div class="kt-header__topbar-item">
+	<span class="kt-header__topbar-icon" [ngClass]="type ? 'kt-header__topbar-icon--'+type : ''">
+		<i *ngIf="!useSVG" [ngClass]="icon"></i>
+		<span class="kt-svg-icon" *ngIf="useSVG" [inlineSVG]="icon"></span>
+	</span>
+</div>

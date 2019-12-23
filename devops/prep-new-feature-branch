@@ -1,0 +1,11 @@
+# GITBASH Script
+echo "Get production branch in preparation for starting a feature branch"
+
+echo "Getting latest branch: production:"
+git checkout production
+
+echo "Force rebasing to prep for feature branch creation:"
+git pull --rebase
+
+echo "To create a new feature branch:"
+echo "git branch feature/your-feature-name"

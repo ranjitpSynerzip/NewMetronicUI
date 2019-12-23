@@ -1,0 +1,60 @@
+<dx-data-grid id="gridContainer"
+    [dataSource]="dataSource"
+    [remoteOperations]="false"
+    [allowColumnReordering]="true"
+    [rowAlternationEnabled]="true"
+    [showBorders]="true"
+    (onContentReady)="contentReady($event)">
+
+    <dxo-paging [pageSize]="10"></dxo-paging>
+    <dxo-pager
+        [showPageSizeSelector]="true"
+        [allowedPageSizes]="[10, 25, 50, 100]"
+    ></dxo-pager>
+    <dxo-search-panel
+        [visible]="true"
+        [highlightCaseSensitive]="true"
+    ></dxo-search-panel>
+    <dxo-group-panel
+        [visible]="true"
+    ></dxo-group-panel>
+    <dxo-grouping
+        [autoExpandAll]="false"
+    ></dxo-grouping>
+
+
+	<dxi-column dataField="Budget" [groupIndex]="0"></dxi-column>
+	<dxi-column dataField="costCodeCategoryDescription" caption="Cost Code Category Description"  dataType="string" [groupIndex]="0"></dxi-column>
+	<dxi-column dataField="costCodeWithCategory" caption="Cost Code With Category"  dataType="string" alignment="center"></dxi-column>
+	<dxi-column dataField="costCodeDescription" caption="Cost Code Description"  dataType="string"></dxi-column>
+	<dxi-column dataField="abbreviation" caption="Abbreviation"  dataType="string"></dxi-column>
+	<dxi-column dataField="isBudgetLocked" caption="Budget Locked"  dataType="boolean"></dxi-column>
+	<dxi-column dataField="originalBudgetAmount" caption="Original Budget Amount" dataType="number"></dxi-column>
+	<dxi-column dataField="modifiedBudgetAmount" caption="Modified Budget Amount" dataType="number"></dxi-column>
+
+
+
+    <!-- <div *dxTemplate="let d of 'discountCellTemplate'">
+          <div class="chart-cell">
+            <dx-bullet
+            [showTarget]="false"
+            [showZeroLevel]="true"
+            [startScaleValue]="0"
+            [endScaleValue]="100"
+            [value]="d.value * 100">
+            <dxo-size [width]="150" [height]="35"></dxo-size>
+            <dxo-tooltip
+                [enabled]="true"
+                [paddingTopBottom]="2"
+                [customizeTooltip]="customizeTooltip">
+                <dxo-font [size]="18"></dxo-font>
+            </dxo-tooltip>
+            <dxo-margin
+                [top]="5"
+                [bottom]="0"
+                [left]="5"
+            ></dxo-margin>
+        </dx-bullet>
+          </div>
+      </div> -->
+</dx-data-grid>
