@@ -27,7 +27,7 @@ export class AuthService {
 
     login(loginModel: any): Observable<any> {
         localStorage.setItem('loginModel', JSON.stringify(loginModel));
-        let apiURL = '/Authenticate';
+        let apiURL = 'https://dev-newprompt-backend.azurewebsites.net/Authenticate';
         return this.http.post<any>(apiURL + '/', loginModel, httpOptions)
         .pipe(
             map((res: any) => {

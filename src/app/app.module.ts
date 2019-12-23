@@ -148,12 +148,12 @@ export function hljsLanguages(): HighlightLanguage[] {
 		HttpUtilsService,
 		TypesUtilsService,
 		LayoutUtilsService,
-		InterceptService,
-		{
-			provide: HTTP_INTERCEPTORS,
-			useClass: InterceptService,
-			multi: true
-		},
+		// InterceptService,
+		// {
+		// 	// provide: HTTP_INTERCEPTORS,
+		// 	// useClass: InterceptService,
+		// 	// multi: true
+		// },
 	],
 
 	bootstrap: [AppComponent]

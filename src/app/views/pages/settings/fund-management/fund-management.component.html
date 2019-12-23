@@ -20,13 +20,13 @@
 	</dxo-editing>
 	<dxo-selection mode="multiple"></dxo-selection>
 
-	<dxi-column dataField="name" caption="Name">
+	<dxi-column dataField="fundName" caption="Name">
 	</dxi-column>
-	<dxi-column  [allowEditing]="false" dataType="date" caption="created Date">
+	<dxi-column  [allowEditing]="false" dataType="date"  dataField="fundAamount" caption="fundAamount">
 	</dxi-column>
-	<dxi-column dataField="fundAccessLevel" caption="Fund Access Level">
+	<dxi-column dataField="createdDate" caption="createdDate">
 	</dxi-column>
-	<dxi-column dataField="createdByUserId" caption="Code">
+	<dxi-column dataField="fundCode" caption="Code">
 	</dxi-column>
 
 	<div *dxTemplate="let series of 'fundSeries'" class="masterdetail">
@@ -39,36 +39,15 @@
 			<dxo-editing mode="cell" [allowUpdating]="true" [allowAdding]="true">
 			</dxo-editing>
 			<dxo-selection mode="multiple"></dxo-selection>
-			<dxi-column dataField="name" caption="Name">
+			<dxi-column dataField="seriesName" caption="Name">
 			</dxi-column>
 			<dxi-column dataField="startDate" caption="Start Date" dataType="date">
 			</dxi-column>
 			<dxi-column dataField="endDate" caption="End Date" dataType="date">
 			</dxi-column>
-			<dxi-column dataField="acctCode" caption="Code">
+			<dxi-column dataField="accountCode" caption="Code">
 			</dxi-column>
 		</dx-data-grid>
 	</div>
-	<!--
-    <dxo-summary>
-        <dxi-total-item
-            column="Freight"
-            summaryType="sum">
-            <dxo-value-format
-                type="decimal"
-                [precision]="2"
-            ></dxo-value-format>
-        </dxi-total-item>
-        <dxi-group-item
-            column="Freight"
-            summaryType="sum">
-            <dxo-value-format
-                type="decimal"
-                [precision]="2"
-            ></dxo-value-format>
-        </dxi-group-item>
-        <dxi-group-item
-            summaryType="count">
-        </dxi-group-item>
-    </dxo-summary> -->
+
 </dx-data-grid>
