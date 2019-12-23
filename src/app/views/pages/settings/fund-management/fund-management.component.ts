@@ -47,6 +47,7 @@ export class FundManagementComponent implements OnInit {
     this.refreshgrid();
     this.userInfo = JSON.parse(localStorage.getItem("user"));
     this.userObj.fullname = this.userInfo.displayName;
+    this.userObj.id =this.userInfo.id;
   
   }
 
@@ -74,7 +75,7 @@ export class FundManagementComponent implements OnInit {
   getMasterDetailGridDataSource(id: number): any {
     return {
       store: AspNetData.createStore({
-        loadUrl: this.url + '/fundSeries/' + id,
+        loadUrl: this.url + '/Series/' + id,
       })
     };
     
@@ -114,10 +115,10 @@ export class FundManagementComponent implements OnInit {
   OnRowInserting(e) {
 
     this.fundSourceObj = e.data;
-    this.fundSourceObj.name = e.data.name;
-    this.fundSourceObj.createdByUserId = 18;
+    this.fundSourceObj.fundName = e.data.name;
+    this.fundSourceObj.createdBy = 18;
     this.fundSourceObj.isDeleted = false;
-    this.fundSourceObj.displayName = e.data.displayName;
+    // this.fundSourceObj. = e.data.displayName;
     this.fundSourceObj.createdDate = e.data.createdDate;
 
     this.service.postfundsource(this.fundSourceObj).subscribe(success => {
@@ -132,8 +133,8 @@ export class FundManagementComponent implements OnInit {
 
     this.updatefundSourceObj = e.key;
     this.updatefundSourceObj = e.oldData;
-    this.updatefundSourceObj.name = e.newData.name ? e.newData.name : e.oldData.name;
-    this.updatefundSourceObj.fundAccessLevel = e.newData.fundAccessLevel ? e.newData.fundAccessLevel : e.oldData.fundAccessLevel;
+    this.updatefundSourceObj.fundName = e.newData.fundName ? e.newData.fundName : e.oldData.fundName;
+    this.updatefundSourceObj.fundCode = e.newData.fundCode ? e.newData.fundCode : e.oldData.fundCode;
 
     this.service.putfundsource(this.updatefundSourceObj, e.key.id).subscribe(success => {
       console.log('fund Source Updated', true);
@@ -147,18 +148,19 @@ export class FundManagementComponent implements OnInit {
   OnRowInsertingFundSeries(e) {
   
 
-    this.fundSeriseObj.name = e.data.name;
-    this.fundSeriseObj.isActive = true;
-    this.fundSeriseObj.startDate = e.data.startDate;
-    this.fundSeriseObj.endDate = e.data.endDate;
+    this.fundSeriseObj.seriesName = e.data.seriesName;
+    this.fundSeriseObj.districtId = 2;
+    this.fundSeriseObj.fundId = e.data.fundId;
+    this.fundSeriseObj.seriesAamount = e.data.seriesAamount;
+    this.fundSeriseObj.seriesCamount =  e.data.seriesCamount;
+    this.fundSeriseObj.acctCode =  e.data.acctCode;
+    this.fundSeriseObj.startDate =  e.data.startDate;
+    this.fundSeriseObj.endDate =  e.data.endDate;
+    this.fundSeriseObj.createdBy = 18;
     this.fundSeriseObj.createdDate = new Date();
-    this.fundSeriseObj.createdByUserId = 18;
-    this.fundSeriseObj.fundSourceId = this.fundSourceid;
-    this.fundSeriseObj.seriesAAmount = 0;
-    this.fundSeriseObj.seriesCAmount = 0;
-    this.fundSeriseObj.acctCode = e.data.acctCode;
+    this.fundSeriseObj.modifiedBy =  e.data.modifiedBy;
+    this.fundSeriseObj.modifiedDate =  e.data.modifiedDate;
     this.fundSeriseObj.isDeleted = false;
-
     this.service.postfundSeries(this.fundSeriseObj).subscribe(success => {
       console.log('fund Series Added', true);
     },
@@ -171,16 +173,18 @@ export class FundManagementComponent implements OnInit {
   onRowUpdatingFundSeries(e) {
     console.log('onRowUpdatingFundSeries', e.data);
     this.updatefundSeriseObj = e.oldData;
-    this.updatefundSeriseObj.name = e.newData.name ? e.newData.name : e.oldData.name;
-    this.updatefundSeriseObj.isActive = e.newData.isActive ? e.newData.isActive : e.oldData.isActive;
-    this.updatefundSeriseObj.startDate = e.newData.startDate ? e.newData.startDate : e.oldData.startDate;
+    this.updatefundSeriseObj.seriesName = e.newData.seriesName ? e.newData.seriesName : e.oldData.seriesName;
+    this.updatefundSeriseObj.districtId = e.newData.districtId ? e.newData.districtId : e.oldData.districtId;
+    this.updatefundSeriseObj.fundId = e.newData.fundId ? e.newData.fundId : e.oldData.fundId;
+    this.updatefundSeriseObj.seriesAamount = e.newData.seriesAamount ? e.newData.seriesAamount : e.oldData.seriesAamount;
+    this.updatefundSeriseObj.seriesCamount = e.newData.seriesCamount ? e.newData.seriesCamount : e.oldData.seriesCamount;
+    this.updatefundSeriseObj.acctCode = e.newData.acctCode ?  e.newData.acctCode : e.oldData.acctCode;
+    this.updatefundSeriseObj.startDate = e.newData.startDate ?  e.newData.startDate : e.oldData.startDate;
     this.updatefundSeriseObj.endDate = e.newData.endDate ? e.newData.endDate : e.oldData.endDate;
-    this.updatefundSeriseObj.createdDate = e.newData.createdDate ? new Date() : e.oldData.createdDate;
-    this.updatefundSeriseObj.createdByUserId = e.newData.createdByUserId ? e.newData.createdByUserId : e.oldData.createdByUserId;
-    this.updatefundSeriseObj.fundSourceId = e.newData.fundSourceId ? e.newData.fundSourceId : e.oldData.fundSourceId;
-    this.updatefundSeriseObj.seriesAAmount = e.newData.seriesAAmount ? e.newData.seriesAAmount : e.oldData.seriesAAmount;
-    this.updatefundSeriseObj.seriesCAmount = e.newData.seriesCAmount ? e.newData.seriesCAmount : e.oldData.seriesCAmount;
-    this.updatefundSeriseObj.acctCode = e.newData.acctCode ? e.newData.acctCode : e.oldData.acctCode;
+    this.updatefundSeriseObj.createdBy = e.newData.createdBy ? e.newData.createdBy : e.oldData.createdBy;
+    this.updatefundSeriseObj.createdDate = e.newData.createdDate ? e.newData.createdDate : e.oldData.createdDate;
+    this.updatefundSeriseObj.modifiedBy = this.userObj.id;
+    this.updatefundSeriseObj.modifiedDate =  new Date();
     this.updatefundSeriseObj.isDeleted = false;
 
     this.service.putfundSeries(this.updatefundSeriseObj, e.key.id).subscribe(success => {
@@ -209,8 +213,8 @@ export class FundManagementComponent implements OnInit {
 
 
   loadfundSerise() {
-    let server = this.dataSource.find(x => x.id === this.fundSourceid);
-    return this.fundSeriseDataSource = server.fundSeries;
+    let server = this.dataSource.find(x => x.fundId === this.fundSourceid);
+    return this.fundSeriseDataSource = server.series;
   }
 
 

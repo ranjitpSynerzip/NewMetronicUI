@@ -1,21 +1,24 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { FundsourceModel } from '../models/fund-source.model';
 import { FundSeriesModel } from '../models/fund-series.model';
 import { FundAmountModel } from '../models/fund-amount.model';
 import { catchError, map } from 'rxjs/operators';
-// import { _throw } from 'rxjs/observable/throw';
+
 
 export class Funds {
-	public id: number;
-	public name: string;
-	public displayName: string;
-	public fundAccessLevel: number;
-	public createdDate: string;
-	public createdByUserId: number;
+	public fundId: number;
+	public fundName: string;
+	public districtId: number;
+	public fundAamount: number;
+	public fundCamount: number;
+	public fundCode: number;
+	public createdBy: string;
+	public modifiedBy: string;
+	public modifiedDate: Date;
 	public isDeleted: boolean;
-	public fundSeries?: FundSeriesModel[];
+	public series?: FundSeriesModel[];
 }
 
 @Injectable({
@@ -23,27 +26,26 @@ export class Funds {
 })
 export class FundManagementService {
 	fundSource: any[] = [];
+	baseUrl = 'http://172.25.29.38:88/api';
 
 	constructor(private http: HttpClient) { }
 
 	getfundsource(): Observable<Funds[]> {
-		return this.http.get<Funds[]>('/fundsource');
-		//.catch(this.errorHandler);
+		return this.http.get<Funds[]>(this.baseUrl + '/Funds');
 	}
 
 	getfundsourceById(id: number): Observable<any> {
-		return this.http.get<any>('/fundsource' + '/' + id)
-		//.catch(this.errorHandler);
+		return this.http.get<any>(this.baseUrl + '/Funds/' + id)
 	}
 
 	putfundsource(fundsourceModle: Funds, id: number): Observable<any> {
 		const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-		return this.http.put<any>('/fundsource/' + id, fundsourceModle, httpOptions);
+		return this.http.put<any>(this.baseUrl + '/Funds/' + id, fundsourceModle, httpOptions);
 	}
 
 	postfundsource(fundsourceModel: FundsourceModel): Observable<any> {
 		const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-		return this.http.post<FundsourceModel>('/fundsource', fundsourceModel, httpOptions)
+		return this.http.post<FundsourceModel>(this.baseUrl + '/Funds', fundsourceModel, httpOptions)
 			.pipe(
 				map((res: FundsourceModel) => {
 					return res;
@@ -56,64 +58,64 @@ export class FundManagementService {
 
 	deletefundsource(id: number): Observable<any> {
 		const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-		return this.http.delete<any>('/fundsource' + '/' + id, httpOptions);
+		return this.http.delete<any>(this.baseUrl + '/Funds' + '/' + id, httpOptions);
 	}
 
 
 
 
 	getfundSeries(): Observable<any[]> {
-		return this.http.get<any>('/fundSeries')
+		return this.http.get<any>(this.baseUrl + '/Series')
 		//.catchError(this.errorHandler, '');
 	}
 
 	getfundSeriesById(id: number): Observable<any> {
-		return this.http.get<any>('/fundSeries' + '/' + id)
+		return this.http.get<any>(this.baseUrl + '/Series/' + id)
 		//.catch(this.errorHandler);
 	}
 
 	putfundSeries(fundSeriesModel: FundSeriesModel, id: number): Observable<any> {
 		const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-		return this.http.put<any>('/fundSeries' + '/' + id, fundSeriesModel, httpOptions);
+		return this.http.put<any>(this.baseUrl + '/Series/' + id, fundSeriesModel, httpOptions);
 	}
 
 	postfundSeries(fundSeriesModel: FundSeriesModel): Observable<any> {
 		const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-		return this.http.post<any>('/fundSeries', fundSeriesModel, httpOptions)
+		return this.http.post<any>(this.baseUrl + '/Series', fundSeriesModel, httpOptions)
 		//.catch(this.errorHandler);
 	}
 
 	deletefundSeries(id: number): Observable<any> {
 		const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-		return this.http.delete<any>('/fundSeries' + '/' + id, httpOptions);
+		return this.http.delete<any>(this.baseUrl + '/Series' + '/' + id, httpOptions);
 	}
 
 
 
 	getfundAmount(): Observable<any[]> {
-		return this.http.get<any>('/fundAmount')
+		return this.http.get<any>(this.baseUrl + '/SeriesDetails')
 		//.catch(this.errorHandler);
 	}
 
 	getfundAmountById(id: number): Observable<any> {
-		return this.http.get<any>('/fundAmount' + '/' + id)
+		return this.http.get<any>(this.baseUrl + '/SeriesDetails/' + id)
 		//.catch(this.errorHandler);
 	}
 
 	putfundAmount(fundAmountModel: FundAmountModel, id: number): Observable<any> {
 		const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-		return this.http.put<any>('/fundAmount' + '/' + id, fundAmountModel, httpOptions);
+		return this.http.put<any>(this.baseUrl + '/SeriesDetails/' + id, fundAmountModel, httpOptions);
 	}
 
 	postfundAmount(fundAmountModel: FundAmountModel): Observable<any> {
 		const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-		return this.http.post<any>('/fundAmount', fundAmountModel, httpOptions)
+		return this.http.post<any>(this.baseUrl + '/SeriesDetails', fundAmountModel, httpOptions)
 		//.catch(this.errorHandler);
 	}
 
 	deletefundAmount(id: number): Observable<any> {
 		const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-		return this.http.delete<any>('/fundAmount' + '/' + id, httpOptions);
+		return this.http.delete<any>(this.baseUrl + '/SeriesDetails/' + id, httpOptions);
 	}
 
 	// errorHandler(error: Response) {

@@ -1,15 +1,17 @@
 export class FundSeriesModel {
-  public id: number;
-  public name: string;
-  public isActive: boolean;
+  public seriesId: number;
+  public seriesName: string;
+  public districtId: number;
+  public fundId: number;
+  public seriesAamount: number;
+  public seriesCamount: number;
+  public acctCode: string;
   public startDate: Date;
   public endDate: Date;
+  public createdBy: number;
   public createdDate: Date;
-  public createdByUserId: number;
-  public fundSourceId: number;
-  public seriesAAmount: number;
-  public seriesCAmount: number;
-  public acctCode: string;
+  public modifiedBy: number;
+  public modifiedDate: Date;
   public isDeleted: boolean;
 }
 
