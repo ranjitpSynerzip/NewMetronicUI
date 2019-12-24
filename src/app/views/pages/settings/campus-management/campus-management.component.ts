@@ -44,9 +44,9 @@ export class CampusManagementComponent implements OnInit{
 
    }
    ngOnInit() {
-    // this.service.getCampus().subscribe(
-	// 	data => (this.dataSource = data)
-	//   );
+    this.service.getCampus().subscribe(
+		data => (this.dataSource = data)
+	  );
   }
 
 //    onReorder(e) {
