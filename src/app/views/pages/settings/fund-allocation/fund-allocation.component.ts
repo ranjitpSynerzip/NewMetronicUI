@@ -10,43 +10,31 @@ import { FundAllocationService } from '../../../../shared/Services/fund-allocati
 export class FundAllocationComponent implements OnInit {
 
  pivotGridDataSource: any;
-    showTotalsPrior = false;
+    showTotalsPrior = true;
     rowsDataFieldArea = false;
     treeHeaderLayout = true;
 
   constructor(service: FundAllocationService) {
     this.pivotGridDataSource = {
       fields: [{
-        caption: "Region",
-        dataField: "region",
-        expanded: true,
+        caption: "Campus",
+        dataField: "campus",
         area: "row"
       }, {
-        caption: "Country",
-        dataField: "country",
-        expanded: true,
-        area: "row"
-      }, {
-        caption: "City",
-        dataField: "city",
-        area: "row"
-      }, {
-        dataField: "date",
-        dataType: "date",
+        caption: "Source",
+        dataField: "fund",
+        dataType: "string",
+        area: "column"
+      },
+      {
+        caption: "Serise",
+        dataField: "serise",
+        dataType: "string",
         area: "column"
       }, {
-        caption: "Sales",
         dataField: "amount",
         dataType: "number",
-        summaryType: "sum",
         format: "currency",
-        area: "data"
-      }, {
-        caption: "Percent",
-        dataField: "amount",
-        dataType: "number",
-        summaryType: "sum",
-        summaryDisplayMode: "percentOfRowGrandTotal",
         area: "data"
       }],
       store: service.getSales()

@@ -30,11 +30,11 @@
 	</dxi-column>
 
 	<div *dxTemplate="let series of 'fundSeries'" class="masterdetail">
-
-		<dx-data-grid [dataSource]="fundSeriseDataSource" showBorders="true"
+		<dx-data-grid [dataSource]="getMasterDetailGridDataSource(series.key.fundId)" showBorders="true"
 		(onSelectionChanged)="selectionChanged($event)"
 		(onRowInserting)="OnRowInsertingFundSeries($event)"
 		(onRowUpdating)="onRowUpdatingFundSeries($event)"
+		[remoteOperations]="true"
 		class="masterdetail">
 			<dxo-editing mode="cell" [allowUpdating]="true" [allowAdding]="true">
 			</dxo-editing>

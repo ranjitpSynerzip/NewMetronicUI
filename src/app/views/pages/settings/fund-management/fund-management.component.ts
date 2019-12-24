@@ -37,18 +37,14 @@ export class FundManagementComponent implements OnInit {
  
 
   constructor(private httpClient: HttpClient, private service: FundManagementService) {
-
   }
-
-
 
 
   ngOnInit() {
     this.refreshgrid();
     this.userInfo = JSON.parse(localStorage.getItem("user"));
     this.userObj.fullname = this.userInfo.displayName;
-    this.userObj.id =this.userInfo.id;
-  
+    this.userObj.id = this.userInfo.id;
   }
 
   refreshgrid() {
@@ -73,12 +69,12 @@ export class FundManagementComponent implements OnInit {
 
 
   getMasterDetailGridDataSource(id: number): any {
+    console.log('getMasterDetailGridDataSource', id);
     return {
       store: AspNetData.createStore({
-        loadUrl: this.url + '/Series/' + id,
+        loadUrl: 'http://172.25.29.38:88/api/Series/fundid/' + id,
       })
     };
-    
   }
 
   selectionChanged(data: any) {
@@ -109,11 +105,10 @@ export class FundManagementComponent implements OnInit {
 
     this.dataGrid.instance.refresh();
     this.refreshgrid();
-    this.loadfundSerise();
+    //this.loadfundSerise();
   }
 
   OnRowInserting(e) {
-
     this.fundSourceObj = e.data;
     this.fundSourceObj.fundName = e.data.name;
     this.fundSourceObj.createdBy = 18;
@@ -130,7 +125,6 @@ export class FundManagementComponent implements OnInit {
   }
 
   onRowUpdating(e) {
-
     this.updatefundSourceObj = e.key;
     this.updatefundSourceObj = e.oldData;
     this.updatefundSourceObj.fundName = e.newData.fundName ? e.newData.fundName : e.oldData.fundName;
@@ -146,21 +140,20 @@ export class FundManagementComponent implements OnInit {
 
 
   OnRowInsertingFundSeries(e) {
-  
-
     this.fundSeriseObj.seriesName = e.data.seriesName;
     this.fundSeriseObj.districtId = 2;
-    this.fundSeriseObj.fundId = e.data.fundId;
-    this.fundSeriseObj.seriesAamount = e.data.seriesAamount;
-    this.fundSeriseObj.seriesCamount =  e.data.seriesCamount;
-    this.fundSeriseObj.acctCode =  e.data.acctCode;
+    this.fundSeriseObj.fundId =  this.fundSourceid ;
+    this.fundSeriseObj.seriesAamount = 0;
+    this.fundSeriseObj.seriesCamount =  0;
+    this.fundSeriseObj.accountCode =  e.data.accountCode;
     this.fundSeriseObj.startDate =  e.data.startDate;
     this.fundSeriseObj.endDate =  e.data.endDate;
     this.fundSeriseObj.createdBy = 18;
     this.fundSeriseObj.createdDate = new Date();
-    this.fundSeriseObj.modifiedBy =  e.data.modifiedBy;
-    this.fundSeriseObj.modifiedDate =  e.data.modifiedDate;
+    this.fundSeriseObj.modifiedBy =  18;
+    this.fundSeriseObj.modifiedDate =  new Date();;
     this.fundSeriseObj.isDeleted = false;
+    console.log('OnRowInsertingFundSeries', this.fundSeriseObj)
     this.service.postfundSeries(this.fundSeriseObj).subscribe(success => {
       console.log('fund Series Added', true);
     },
@@ -178,7 +171,7 @@ export class FundManagementComponent implements OnInit {
     this.updatefundSeriseObj.fundId = e.newData.fundId ? e.newData.fundId : e.oldData.fundId;
     this.updatefundSeriseObj.seriesAamount = e.newData.seriesAamount ? e.newData.seriesAamount : e.oldData.seriesAamount;
     this.updatefundSeriseObj.seriesCamount = e.newData.seriesCamount ? e.newData.seriesCamount : e.oldData.seriesCamount;
-    this.updatefundSeriseObj.acctCode = e.newData.acctCode ?  e.newData.acctCode : e.oldData.acctCode;
+    this.updatefundSeriseObj.accountCode = e.newData.accountCode ?  e.newData.accountCode : e.oldData.accountCode;
     this.updatefundSeriseObj.startDate = e.newData.startDate ?  e.newData.startDate : e.oldData.startDate;
     this.updatefundSeriseObj.endDate = e.newData.endDate ? e.newData.endDate : e.oldData.endDate;
     this.updatefundSeriseObj.createdBy = e.newData.createdBy ? e.newData.createdBy : e.oldData.createdBy;
@@ -197,14 +190,16 @@ export class FundManagementComponent implements OnInit {
 
   onRowExpanding(e) {
     e.component.collapseAll(-1);  //NP-789
-    this.fundSourceid = e.key.id;
+    this.fundSourceid = e.key.fundId;
+    console.log('onRowExpanding', this.fundSourceid );
     this.fundSeriseDataSource = [];
 
-    // this.service.getfundSeriesById(e.key.id).subscribe(
-    //   data => (this.fundSeriseDataSource = data)
-    // );
+    this.service.getfundSeriesById(e.key.fundId).subscribe(
+      data => (this.fundSeriseDataSource = data,
+        console.log(this.fundSeriseDataSource))
+    );
 
-    this.loadfundSerise();
+  // this.loadfundSerise();
   }
 
   onContentReady(e) {
@@ -212,10 +207,10 @@ export class FundManagementComponent implements OnInit {
   }
 
 
-  loadfundSerise() {
-    let server = this.dataSource.find(x => x.fundId === this.fundSourceid);
-    return this.fundSeriseDataSource = server.series;
-  }
+  // loadfundSerise() {
+  //   let server = this.dataSource.find(x => x.fundId === this.fundSourceid);
+  //   return this.fundSeriseDataSource = server.series;
+  // }
 
 
 }
