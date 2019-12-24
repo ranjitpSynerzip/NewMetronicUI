@@ -5,7 +5,7 @@
 					<dx-button id="gridDeleteSelected" icon="trash" [height]="36" [disabled]="!selectedItemKeys.length"
 					(onClick)="deleteRecords()">
 				</dx-button>
-				
+
 			</ng-container>
 		</kt-portlet-header>
 		<kt-portlet-body style="padding: inherit;">
@@ -14,12 +14,14 @@
 				[showBorders]="true"
 				[showRowLines]="true"
 				[showColumnLines]="false"
+
 				(onSelectionChanged)="selectionChanged($event)"
 				(onRowInserting)="OnRowInserting($event)"
 				(onRowUpdating)="onRowUpdating($event)"
 				(onRowExpanding)=onRowExpanding($event)
 				[masterDetail]="{ enabled: true, template: 'fundSeries' }"
 				(onContentReady)="onContentReady($event)"
+				
 				>
 				<dxo-load-panel [enabled]="true"></dxo-load-panel>
 				<dxo-scrolling mode="virtual"></dxo-scrolling>
@@ -27,8 +29,8 @@
 				<dxo-editing mode="cell" [allowUpdating]="true" [allowAdding]="true">
 				</dxo-editing>
 				<dxo-selection mode="multiple"></dxo-selection>
-			
-				<dxi-column dataField="fundName" caption="Name" >
+
+				<dxi-column dataField="fundName" caption="Name" cellTemplate="BoldCellTemplate">
 				</dxi-column>
 				<dxi-column [allowEditing]="false" caption="Start Date">
 				</dxi-column>
@@ -36,7 +38,7 @@
 				</dxi-column>
 				<dxi-column dataField="fundCode" caption="Code" alignment="left">
 				</dxi-column>
-			
+
 				<div *dxTemplate="let series of 'fundSeries'" class="masterdetail">
 					
 					<dx-data-grid [dataSource]="fundSeriseDataSource" 
@@ -48,11 +50,13 @@
 					(onRowUpdating)="onRowUpdatingFundSeries($event)"
 					[remoteOperations]="true"
 					[showColumnHeaders]="false"
-					class="masterdetail">
+					class="masterdetail"
+				
+					>
 						<dxo-editing mode="cell" [allowUpdating]="true" [allowAdding]="true">
 						</dxo-editing>
 						<dxo-selection mode="multiple"></dxo-selection>
-						<dxi-column dataField="seriesName">
+						<dxi-column dataField="seriesName" [width]="250" alignment="center">
 						</dxi-column>
 						<dxi-column dataField="startDate" dataType="date">
 						</dxi-column>
@@ -62,7 +66,12 @@
 						</dxi-column>
 					</dx-data-grid>
 				</div>
-			
+
+				<div *dxTemplate="let d of 'BoldCellTemplate'">
+						<div class="current-value">
+							<b>{{d.value}}</b></div>
+					</div>
+
 			</dx-data-grid>
 		</kt-portlet-body>
 	</kt-portlet>
