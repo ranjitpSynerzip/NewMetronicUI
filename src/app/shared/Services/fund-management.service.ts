@@ -15,6 +15,8 @@ export class Funds {
 	public fundCamount: number;
 	public fundCode: number;
 	public createdBy: number;
+	public startDate: Date;
+	public endDate: Date;
 	public createdDate: Date;
 	public modifiedBy: number;
 	public modifiedDate: Date;
