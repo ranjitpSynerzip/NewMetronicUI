@@ -31,7 +31,7 @@
 	</dxo-editing>
 	<dxo-selection mode="multiple" ></dxo-selection>
 
-	<dxi-column dataField="campusName" caption="Name" cellTemplate="linkCellTemplate"></dxi-column>
+	<dxi-column dataField="campusName" caption="Name" [width]="250" cellTemplate="linkCellTemplate"></dxi-column>
 	<dxi-column dataField="accountCode" alignment="left" caption="Code"></dxi-column>
 
 	<div *dxTemplate="let d of 'linkCellTemplate'">
