@@ -59,6 +59,8 @@ export class Campus {
 
 export class CampusManagementService {
 
+	baseUrl = 'http://172.25.29.38:88/api'
+
 	constructor(private http: HttpClient) { }
 
 	// getCampuses() {
@@ -66,21 +68,21 @@ export class CampusManagementService {
 	// }
 
 	getCampus(): Observable<any[]> {
-		return this.http.get<any>('/campus')
+		return this.http.get<any>(this.baseUrl + '/Campus')
 	}
 
 	getCampusById(id: number): Observable<any> {
-		return this.http.get<any>('/campus' + '/' + id)
+		return this.http.get<any>(this.baseUrl + '/Campus' + '/' + id)
 	}
 
 	putCampus(campusModel: Campusmodel, id: number): Observable<any> {
 		const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-		return this.http.put<any>('/campus' + '/' + id, campusModel, httpOptions);
+		return this.http.put<any>(this.baseUrl + '/Campus' + '/' + id, campusModel, httpOptions);
 	}
 
 	postCampus(campusModel: Campusmodel): Observable<any> {
 		const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-		return this.http.post<Campusmodel>('/campus', campusModel, httpOptions)
+		return this.http.post<Campusmodel>(this.baseUrl + '/Campus', campusModel, httpOptions)
 			.pipe(
 				map((res: Campusmodel) => {
 					return res;
@@ -93,7 +95,7 @@ export class CampusManagementService {
 
 	deleteCampus(id: number): Observable<any> {
 		const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-		return this.http.delete<any>('/campus' + '/' + id, httpOptions);
+		return this.http.delete<any>(this.baseUrl + '/Campus' + '/' + id, httpOptions);
 	}
 
 
