@@ -75,6 +75,13 @@ export class FundManagementService {
 		//.catch(this.errorHandler);
 	}
 
+
+	getfundSeriesByfundId(id: number): Observable<any> {
+		return this.http.get<any>(this.baseUrl + '/Series/fundid/' + id)
+		//.catch(this.errorHandler);
+	}
+
+
 	putfundSeries(fundSeriesModel: FundSeriesModel, id: number): Observable<any> {
 		const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
 		return this.http.put<any>(this.baseUrl + '/Series/' + id, fundSeriesModel, httpOptions);

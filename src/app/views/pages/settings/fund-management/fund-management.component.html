@@ -11,7 +11,9 @@
 		<kt-portlet-body style="padding: inherit;">
 
 				<dx-data-grid id="Fundgrid" [dataSource]="dataSource" 
-				showBorders="false"
+				[showBorders]="true"
+				[showRowLines]="true"
+				[showColumnLines]="false"
 				(onSelectionChanged)="selectionChanged($event)"
 				(onRowInserting)="OnRowInserting($event)"
 				(onRowUpdating)="onRowUpdating($event)"
@@ -26,7 +28,7 @@
 				</dxo-editing>
 				<dxo-selection mode="multiple"></dxo-selection>
 			
-				<dxi-column dataField="fundName" caption="Name" cssClass="pointer-column">
+				<dxi-column dataField="fundName" caption="Name" >
 				</dxi-column>
 				<dxi-column [allowEditing]="false" caption="Start Date">
 				</dxi-column>
@@ -37,8 +39,10 @@
 			
 				<div *dxTemplate="let series of 'fundSeries'" class="masterdetail">
 					
-					<dx-data-grid [dataSource]="getMasterDetailGridDataSource(series.key.fundId)" 
-					showBorders="false"
+					<dx-data-grid [dataSource]="fundSeriseDataSource" 
+					[showBorders]="true"
+					[showRowLines]="true"
+					[showColumnLines]="false"
 					(onSelectionChanged)="selectionChanged($event)"
 					(onRowInserting)="OnRowInsertingFundSeries($event)"
 					(onRowUpdating)="onRowUpdatingFundSeries($event)"

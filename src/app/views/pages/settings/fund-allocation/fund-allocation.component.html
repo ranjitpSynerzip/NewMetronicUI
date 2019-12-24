@@ -5,9 +5,15 @@
   </kt-portlet-header>
   <kt-portlet-body style="padding: inherit;">
 
-    <dx-pivot-grid [showTotalsPrior]="'both'" [dataFieldArea]="'row'" [wordWrapEnabled]="false"
-      [dataSource]="pivotGridDataSource" [showBorders]="true" [height]="440">
+    <dx-pivot-grid
+    [showBorders]="false"
+      [dataFieldArea]="'row'" 
+      [wordWrapEnabled]="false"
+      [dataSource]="pivotGridDataSource" 
+      (onCellClick)="onCellClick($event)"
+      [height]="440">
+      <dxo-field-chooser [enabled]="false" ></dxo-field-chooser>
     </dx-pivot-grid>
-    
+
   </kt-portlet-body>
 </kt-portlet>

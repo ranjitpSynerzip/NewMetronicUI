@@ -105,7 +105,7 @@ export class FundAllocationComponent implements OnInit {
 
 
   onCellClick(e) {
-   console.log(e);
+console.log('onCellClick', e);
   }
 
 
