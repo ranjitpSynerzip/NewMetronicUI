@@ -1,22 +1,25 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable , throwError  } from 'rxjs';
 
+import { FundallocationModel } from '../models/fund-amount.model';
 
 
 export class Sale {
-  id: number;
-  campus: string;
-  serise: string;
-  amount: number;
-  fund: string;
+    id: number;
+    campus: string;
+    serise: string;
+    amount: number;
+    fund: string;
 }
 
-let sales: Sale[] = [   {
+let sales: Sale[] = [{
     "id": 16,
     "campus": "Australia",
     "serise": "serise1",
     "amount": 3920,
     "fund": "Measure1"
-},  {
+}, {
     "id": 41,
     "campus": "Australia",
     "serise": "serise1",
@@ -58,7 +61,7 @@ let sales: Sale[] = [   {
     "serise": "serise1",
     "amount": 1110,
     "fund": "Alumini-Fund"
-},  {
+}, {
     "id": 90,
     "campus": "Australia",
     "serise": "serise1",
@@ -105,14 +108,39 @@ let sales: Sale[] = [   {
 
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 
 export class FundAllocationService {
-  constructor() { }
+    fundAllocationObj: FundallocationModel[];
+    baseUrl = 'http://172.25.29.38:88/api';
+    constructor(private http: HttpClient) { }
 
-getSales() {
-  return sales;
-};
+    getSales() {
+        return sales;
+    };
 
+    getfundAllocation(): Observable<any[]> {
+        return this.http.get<any[]>(this.baseUrl + '/SeriesDetails/fundallocation');
+    }
+
+    getfunds() {
+        // this.getfundAllocation().subscribe(data => {
+        //     return  this.fundAllocationObj = data;
+        //     console.log('getfundAllocation', this.fundAllocationObj);
+        // });
+
+       return  this.http.get(this.baseUrl + '/SeriesDetails/fundallocation')
+        .toPromise().then(res => this.fundAllocationObj = res as FundallocationModel[]);
+   
+    }
+
+
+    public async fetchData(){
+        const data = await this.http.get(this.baseUrl + '/SeriesDetails/fundallocation').toPromise();
+        console.log("Data: " + JSON.stringify(data)); 
+        return JSON.stringify(data) ;
+      }
+
+   
 }
