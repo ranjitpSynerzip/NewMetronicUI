@@ -87,7 +87,7 @@ export class FundManagementService {
 
 	deletefundSeries(id: number): Observable<any> {
 		const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-		return this.http.delete<any>(this.baseUrl + '/Series' + '/' + id, httpOptions);
+		return this.http.delete<any>(this.baseUrl + '/Series/' + id, httpOptions);
 	}
 
 

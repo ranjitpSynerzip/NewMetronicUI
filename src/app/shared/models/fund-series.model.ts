@@ -5,7 +5,7 @@ export class FundSeriesModel {
   public fundId: number;
   public seriesAamount: number;
   public seriesCamount: number;
-  public acctCode: string;
+  public accountCode: string;
   public startDate: Date;
   public endDate: Date;
   public createdBy: number;

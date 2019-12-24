@@ -44,9 +44,9 @@ export class CampusManagementComponent implements OnInit{
 
    }
    ngOnInit() {
-    this.service.getCampus().subscribe(
-		data => (this.dataSource = data)
-	  );
+    // this.service.getCampus().subscribe(
+	// 	data => (this.dataSource = data)
+	//   );
   }
 
 //    onReorder(e) {
@@ -87,12 +87,12 @@ deleteRecords() {
 	this.campusObj.modifiedDate = "2019-12-23T12:39:20.923";
 	this.campusObj.isDeleted = false;
 
-    this.service.postCampus(this.campusObj).subscribe(success => {
-      console.log('Campus Added', true);
-    },
-      error => {
-        console.log('Campus Added', false);
-      })
+    // this.service.postCampus(this.campusObj).subscribe(success => {
+    //   console.log('Campus Added', true);
+    // },
+    //   error => {
+    //     console.log('Campus Added', false);
+    //   })
   }
 
   onRowUpdating(e) {
