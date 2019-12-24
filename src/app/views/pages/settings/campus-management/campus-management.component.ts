@@ -29,44 +29,32 @@ export class CampusManagementComponent implements OnInit{
 	SelectedRowsData: any[] = [];
 	  selectedItemKeys: any[] = [];
 	  showDragIcons: boolean;
-    // dataSource: ArrayStore;
-	// selectedItemKeys: any[] = [];
-	// showDragIcons: boolean;
-	// campus: Array<Campus>
 
   constructor(private httpClient: HttpClient, private service: CampusManagementService) {
 	this.showDragIcons = true;
-	this.getdata();
-
-
+	this.getData();
+	this.onReorder = this.onReorder.bind(this);
    }
    ngOnInit() {
-	this.getdata();
+	this.getData();
   }
 
-  getdata(){
-	this.service.getCampus().subscribe(
-			data => {this.dataSource = data}
+
+	getData(){
+		this.service.getCampus().subscribe(
+		  data => { this.dataSource = data;}
 		  );
-	}
-
-   onReorder(e) {
-	   debugger;
-	var visibleRows = e.component.getVisibleRows();
-	console.log(visibleRows);
-
-		var toIndex = visibleRows[e.toIndex].data;
-		console.log("toIndex", visibleRows[e.toIndex].data);
-		var fromIndex = e.itemData;
-		console.log("fromIndex", e.itemData);
+	  }
 
 
-	console.log("DataSource", this.dataSource);
-	//visibleRows.splice(fromIndex, 1);
-	//console.log("data 1", this.dataSource.splice(fromIndex, 1));
-	//visibleRows.splice(toIndex, 0, e.itemData);
-	//console.log("data 2", this.dataSource.splice(toIndex, 0, e.itemData));
-}
+onReorder(e) {
+	debugger;
+		var visibleRows = e.component.getVisibleRows(),
+	   toIndex = this.dataSource.indexOf(visibleRows[e.toIndex].data),
+	   fromIndex = this.dataSource.indexOf(e.itemData);
+	   this.dataSource.splice(fromIndex, 1);
+	   this.dataSource.splice(toIndex, 0, e.itemData);
+  }
 
    selectionChanged(data: any) {
 	this.SelectedRowsData = data.selectedRowsData;
