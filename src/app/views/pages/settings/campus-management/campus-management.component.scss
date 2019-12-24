@@ -1,11 +1,10 @@
-::ng-deep #Campusgrid {
-	//max-height: 430px;
-	// padding: inherit;
+
+  #gridDeleteSelected {
+    position: absolute;
+    z-index: 1;
+    right: 50px;
+    height: 36px;
 }
-// .dx-command-select {
-//     width: 20px !important;
-//     min-width: 20px !important;
-// }
 .dx-command-select {
     width: 40px!important;
     min-width: 40px!important;

@@ -2,7 +2,7 @@
 ::ng-deep #gridDeleteSelected {
     position: absolute;
     z-index: 1;
-    right: 75px;
+    right: 50px;
     height: 36px;
 }
 
@@ -18,17 +18,17 @@
   #gridDeleteSelected {
     position: absolute;
     z-index: 1;
-    right: 75px;
+    right: 50px;
     height: 36px;
 }
 
-.dx-header-row > td[role="columnheader"]> div.dx-datagrid-text-content {  
-  // font-size: 17px;  
-  font-weight: bold;  
+.dx-header-row > td[role="columnheader"]> div.dx-datagrid-text-content {
+  // font-size: 17px;
+  font-weight: bold;
 }
 
 .fontbold{
-  font-weight: bold;  
+  font-weight: bold;
 }
 
 i.dx-icon.dx-icon-trash{
