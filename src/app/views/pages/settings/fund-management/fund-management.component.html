@@ -14,7 +14,6 @@
 
 	<dxo-load-panel [enabled]="true"></dxo-load-panel>
     <dxo-scrolling mode="virtual"></dxo-scrolling>
-	<!-- <dxo-scrolling columnRenderingMode=""></dxo-scrolling> -->
 	<dxo-paging [enabled]="false"></dxo-paging>
 	<dxo-editing mode="cell" [allowUpdating]="true" [allowAdding]="true">
 	</dxo-editing>
@@ -22,11 +21,11 @@
 
 	<dxi-column dataField="fundName" caption="Name">
 	</dxi-column>
-	<dxi-column  [allowEditing]="false" dataType="date"  dataField="fundAamount" caption="fundAamount">
+	<dxi-column [allowEditing]="false" caption="Start Date">
 	</dxi-column>
-	<dxi-column dataField="createdDate" caption="createdDate">
+	<dxi-column  [allowEditing]="false" caption="End Date">
 	</dxi-column>
-	<dxi-column dataField="fundCode" caption="Code">
+	<dxi-column dataField="fundCode" caption="Code" alignment="left">
 	</dxi-column>
 
 	<div *dxTemplate="let series of 'fundSeries'" class="masterdetail">
@@ -45,7 +44,7 @@
 			</dxi-column>
 			<dxi-column dataField="endDate" caption="End Date" dataType="date">
 			</dxi-column>
-			<dxi-column dataField="accountCode" caption="Code">
+			<dxi-column dataField="accountCode" caption="Code" alignment="left">
 			</dxi-column>
 		</dx-data-grid>
 	</div>

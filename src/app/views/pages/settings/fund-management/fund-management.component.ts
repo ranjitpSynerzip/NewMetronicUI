@@ -22,6 +22,7 @@ export class FundManagementComponent implements OnInit {
   dataSource: Funds[];
   fundSeriseDataSource: FundSeriesModel[];
   fundSourceObj = new FundsourceModel();
+  insertfundSourceObj = new Funds();
   updatefundSourceObj = new Funds();
   fundSeriseObj = new FundSeriesModel();
   updatefundSeriseObj = new FundSeriesModel();
@@ -85,20 +86,21 @@ export class FundManagementComponent implements OnInit {
 
 
   deleteRecords() {
+    console.log('deleteRecords', this.SelectedRowsData);
     this.SelectedRowsData.forEach((item) => {
-      if (item.fundSourceId) {
-        this.service.deletefundSeries(item.id).subscribe(success => {
-          console.log('removed Fund', true);
+      if (item.seriesName) {
+        this.service.deletefundSeries(item.seriesId).subscribe(success => {
+          console.log('deletefundSeries', true);
         },
           error => {
-            console.log('removed Fund', false);
+            console.log('deletefundSeries', false);
           });
       } else {
-        this.service.deletefundsource(item.id).subscribe(success => {
-          console.log('removed Fund', true);
+        this.service.deletefundsource(item.fundId).subscribe(success => {
+          console.log('deletefundsource', true);
         },
           error => {
-            console.log('removed Fund', false);
+            console.log('deletefundsource', false);
           });
       }
     });
@@ -109,14 +111,20 @@ export class FundManagementComponent implements OnInit {
   }
 
   OnRowInserting(e) {
-    this.fundSourceObj = e.data;
-    this.fundSourceObj.fundName = e.data.name;
-    this.fundSourceObj.createdBy = 18;
-    this.fundSourceObj.isDeleted = false;
-    // this.fundSourceObj. = e.data.displayName;
-    this.fundSourceObj.createdDate = e.data.createdDate;
+    this.insertfundSourceObj.fundName = e.data.fundName;
+    this.insertfundSourceObj.fundCode = e.data.fundCode;
+    this.insertfundSourceObj.districtId = 2;
+    this.insertfundSourceObj.fundAamount = 0;
+    this.insertfundSourceObj.fundCamount = 0;
+    this.insertfundSourceObj.createdBy = 1;
+    this.insertfundSourceObj.isDeleted = false;
+    this.insertfundSourceObj.createdDate = new Date();
+    this.insertfundSourceObj.modifiedBy = 1;
+    this.insertfundSourceObj.modifiedDate = new Date();
+    this.insertfundSourceObj.series = [];
 
-    this.service.postfundsource(this.fundSourceObj).subscribe(success => {
+    console.log('OnRowInserting',  this.insertfundSourceObj);
+    this.service.postfundsource(this.insertfundSourceObj).subscribe(success => {
       console.log('fund Source Added', true);
     },
       error => {
@@ -125,12 +133,21 @@ export class FundManagementComponent implements OnInit {
   }
 
   onRowUpdating(e) {
-    this.updatefundSourceObj = e.key;
+   console.log('onRowUpdating', e);
     this.updatefundSourceObj = e.oldData;
     this.updatefundSourceObj.fundName = e.newData.fundName ? e.newData.fundName : e.oldData.fundName;
     this.updatefundSourceObj.fundCode = e.newData.fundCode ? e.newData.fundCode : e.oldData.fundCode;
+    this.updatefundSourceObj.districtId = 2;
+    this.updatefundSourceObj.fundAamount = 0;
+    this.updatefundSourceObj.fundCamount = 0;
+    this.updatefundSourceObj.createdBy = 1;
+    this.updatefundSourceObj.isDeleted = false;
+    this.updatefundSourceObj.createdDate = new Date();
+    this.updatefundSourceObj.modifiedBy = 1;
+    this.updatefundSourceObj.modifiedDate = new Date();
+    this.updatefundSourceObj.series = [];
 
-    this.service.putfundsource(this.updatefundSourceObj, e.key.id).subscribe(success => {
+    this.service.putfundsource(this.updatefundSourceObj, e.key.fundId).subscribe(success => {
       console.log('fund Source Updated', true);
     },
       error => {
@@ -148,9 +165,9 @@ export class FundManagementComponent implements OnInit {
     this.fundSeriseObj.accountCode =  e.data.accountCode;
     this.fundSeriseObj.startDate =  e.data.startDate;
     this.fundSeriseObj.endDate =  e.data.endDate;
-    this.fundSeriseObj.createdBy = 18;
+    this.fundSeriseObj.createdBy = 1;
     this.fundSeriseObj.createdDate = new Date();
-    this.fundSeriseObj.modifiedBy =  18;
+    this.fundSeriseObj.modifiedBy =  1;
     this.fundSeriseObj.modifiedDate =  new Date();;
     this.fundSeriseObj.isDeleted = false;
     console.log('OnRowInsertingFundSeries', this.fundSeriseObj)
@@ -176,7 +193,7 @@ export class FundManagementComponent implements OnInit {
     this.updatefundSeriseObj.endDate = e.newData.endDate ? e.newData.endDate : e.oldData.endDate;
     this.updatefundSeriseObj.createdBy = e.newData.createdBy ? e.newData.createdBy : e.oldData.createdBy;
     this.updatefundSeriseObj.createdDate = e.newData.createdDate ? e.newData.createdDate : e.oldData.createdDate;
-    this.updatefundSeriseObj.modifiedBy = this.userObj.id;
+    this.updatefundSeriseObj.modifiedBy = 1;
     this.updatefundSeriseObj.modifiedDate =  new Date();
     this.updatefundSeriseObj.isDeleted = false;
 

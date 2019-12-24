@@ -35,7 +35,8 @@ export class FundAllocationComponent implements OnInit {
         dataField: "amount",
         dataType: "number",
         format: "currency",
-        area: "data"
+        area: "data",
+        alignment:"left",
       }],
       store: service.getSales()
     };
