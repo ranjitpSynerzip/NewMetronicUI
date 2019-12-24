@@ -76,7 +76,7 @@ deleteRecords() {
   }
 
   OnRowInserting(e) {
-	debugger;
+	// debugger;
     this.campusObj.campusName = e.data.campusName;
     this.campusObj.clientId = 2;
 	this.campusObj.districtId = 2;
@@ -97,7 +97,7 @@ deleteRecords() {
   }
 
   onRowUpdating(e) {
-debugger;
+// debugger;
   this.updatecampusObj = e.oldData;
   this.updatecampusObj.campusName = e.newData.campusName ? e.newData.campusName : e.oldData.campusName;
   this.updatecampusObj.accountCode = e.newData.accountCode ? e.newData.accountCode : e.oldData.accountCode;
