@@ -14,8 +14,9 @@ export class Funds {
 	public fundAamount: number;
 	public fundCamount: number;
 	public fundCode: number;
-	public createdBy: string;
-	public modifiedBy: string;
+	public createdBy: number;
+	public createdDate: Date;
+	public modifiedBy: number;
 	public modifiedDate: Date;
 	public isDeleted: boolean;
 	public series?: FundSeriesModel[];
@@ -43,11 +44,11 @@ export class FundManagementService {
 		return this.http.put<any>(this.baseUrl + '/Funds/' + id, fundsourceModle, httpOptions);
 	}
 
-	postfundsource(fundsourceModel: FundsourceModel): Observable<any> {
+	postfundsource(fundsourceModel: Funds): Observable<any> {
 		const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-		return this.http.post<FundsourceModel>(this.baseUrl + '/Funds', fundsourceModel, httpOptions)
+		return this.http.post<Funds>(this.baseUrl + '/Funds', fundsourceModel, httpOptions)
 			.pipe(
-				map((res: FundsourceModel) => {
+				map((res: Funds) => {
 					return res;
 				}),
 				catchError(err => {
