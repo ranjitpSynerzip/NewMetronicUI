@@ -1,52 +1,64 @@
-  <dx-button id="gridDeleteSelected" icon="trash" [height]="36" [disabled]="!selectedItemKeys.length"
-	(onClick)="deleteRecords()">
-</dx-button>
 
+<kt-portlet [class]="'kt-portlet--height-fluid'">
+		<kt-portlet-header [title]="'Funds'">
+			<ng-container ktPortletTools>
+					<dx-button id="gridDeleteSelected" icon="trash" [height]="36" [disabled]="!selectedItemKeys.length"
+					(onClick)="deleteRecords()">
+				</dx-button>
+				
+			</ng-container>
+		</kt-portlet-header>
+		<kt-portlet-body style="padding: inherit;">
 
-<dx-data-grid id="Fundgrid" [dataSource]="dataSource" showBorders="true"
-	(onSelectionChanged)="selectionChanged($event)"
-	(onRowInserting)="OnRowInserting($event)"
-	(onRowUpdating)="onRowUpdating($event)"
-	(onRowExpanding)=onRowExpanding($event)
-	[masterDetail]="{ enabled: true, template: 'fundSeries' }"
-	(onContentReady)="onContentReady($event)"
-	>
-
-	<dxo-load-panel [enabled]="true"></dxo-load-panel>
-    <dxo-scrolling mode="virtual"></dxo-scrolling>
-	<dxo-paging [enabled]="false"></dxo-paging>
-	<dxo-editing mode="cell" [allowUpdating]="true" [allowAdding]="true">
-	</dxo-editing>
-	<dxo-selection mode="multiple"></dxo-selection>
-
-	<dxi-column dataField="fundName" caption="Name" cssClass="pointer-column">
-	</dxi-column>
-	<dxi-column [allowEditing]="false" caption="Start Date">
-	</dxi-column>
-	<dxi-column  [allowEditing]="false" caption="End Date">
-	</dxi-column>
-	<dxi-column dataField="fundCode" caption="Code" alignment="left">
-	</dxi-column>
-
-	<div *dxTemplate="let series of 'fundSeries'" class="masterdetail">
-		<dx-data-grid [dataSource]="fundSeriseDataSource" showBorders="true"
-		(onSelectionChanged)="selectionChanged($event)"
-		(onRowInserting)="OnRowInsertingFundSeries($event)"
-		(onRowUpdating)="onRowUpdatingFundSeries($event)"
-		[remoteOperations]="true"
-		class="masterdetail">
-			<dxo-editing mode="cell" [allowUpdating]="true" [allowAdding]="true">
-			</dxo-editing>
-			<dxo-selection mode="multiple"></dxo-selection>
-			<dxi-column dataField="seriesName" caption="Name">
-			</dxi-column>
-			<dxi-column dataField="startDate" caption="Start Date" dataType="date">
-			</dxi-column>
-			<dxi-column dataField="endDate" caption="End Date" dataType="date">
-			</dxi-column>
-			<dxi-column dataField="accountCode" caption="Code" alignment="left">
-			</dxi-column>
-		</dx-data-grid>
-	</div>
-
-</dx-data-grid>
+				<dx-data-grid id="Fundgrid" [dataSource]="dataSource" 
+				showBorders="false"
+				(onSelectionChanged)="selectionChanged($event)"
+				(onRowInserting)="OnRowInserting($event)"
+				(onRowUpdating)="onRowUpdating($event)"
+				(onRowExpanding)=onRowExpanding($event)
+				[masterDetail]="{ enabled: true, template: 'fundSeries' }"
+				(onContentReady)="onContentReady($event)"
+				>
+				<dxo-load-panel [enabled]="true"></dxo-load-panel>
+				<dxo-scrolling mode="virtual"></dxo-scrolling>
+				<dxo-paging [enabled]="false"></dxo-paging>
+				<dxo-editing mode="cell" [allowUpdating]="true" [allowAdding]="true">
+				</dxo-editing>
+				<dxo-selection mode="multiple"></dxo-selection>
+			
+				<dxi-column dataField="fundName" caption="Name" cssClass="pointer-column">
+				</dxi-column>
+				<dxi-column [allowEditing]="false" caption="Start Date">
+				</dxi-column>
+				<dxi-column  [allowEditing]="false" caption="End Date">
+				</dxi-column>
+				<dxi-column dataField="fundCode" caption="Code" alignment="left">
+				</dxi-column>
+			
+				<div *dxTemplate="let series of 'fundSeries'" class="masterdetail">
+					
+					<dx-data-grid [dataSource]="getMasterDetailGridDataSource(series.key.fundId)" 
+					showBorders="false"
+					(onSelectionChanged)="selectionChanged($event)"
+					(onRowInserting)="OnRowInsertingFundSeries($event)"
+					(onRowUpdating)="onRowUpdatingFundSeries($event)"
+					[remoteOperations]="true"
+					[showColumnHeaders]="false"
+					class="masterdetail">
+						<dxo-editing mode="cell" [allowUpdating]="true" [allowAdding]="true">
+						</dxo-editing>
+						<dxo-selection mode="multiple"></dxo-selection>
+						<dxi-column dataField="seriesName">
+						</dxi-column>
+						<dxi-column dataField="startDate" dataType="date">
+						</dxi-column>
+						<dxi-column dataField="endDate" dataType="date">
+						</dxi-column>
+						<dxi-column dataField="accountCode" alignment="left">
+						</dxi-column>
+					</dx-data-grid>
+				</div>
+			
+			</dx-data-grid>
+		</kt-portlet-body>
+	</kt-portlet>

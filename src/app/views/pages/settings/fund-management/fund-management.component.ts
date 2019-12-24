@@ -105,8 +105,8 @@ export class FundManagementComponent implements OnInit {
       }
     });
 
-    this.dataGrid.instance.refresh();
-    this.refreshgrid();
+    // this.dataGrid.instance.refresh();
+   // this.refreshgrid();
     //this.loadfundSerise();
   }
 
