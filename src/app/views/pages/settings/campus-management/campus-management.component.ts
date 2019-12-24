@@ -27,36 +27,46 @@ export class CampusManagementComponent implements OnInit{
 	updatecampusObj = new Campusmodel();
 	// url = environment.baseUrl;
 	SelectedRowsData: any[] = [];
-  	selectedItemKeys: any[] = [];
+	  selectedItemKeys: any[] = [];
+	  showDragIcons: boolean;
     // dataSource: ArrayStore;
 	// selectedItemKeys: any[] = [];
 	// showDragIcons: boolean;
 	// campus: Array<Campus>
 
   constructor(private httpClient: HttpClient, private service: CampusManagementService) {
-	// this.dataSource = new ArrayStore({
-	// 	key: "ID",
-	// 	data: service.getCampuses()
-	// });
-	// this.campus = service.getCampuses();
-	// this.showDragIcons = true;
-	// this.onReorder = this.onReorder.bind(this);
+	this.showDragIcons = true;
+	this.getdata();
+
 
    }
    ngOnInit() {
-    this.service.getCampus().subscribe(
-		data => (this.dataSource = data)
-	  );
+	this.getdata();
   }
 
-//    onReorder(e) {
-// 	var visibleRows = e.component.getVisibleRows(),
-// 		toIndex = this.campus.indexOf(visibleRows[e.toIndex].data),
-// 		fromIndex = this.campus.indexOf(e.itemData);
+  getdata(){
+	this.service.getCampus().subscribe(
+			data => {this.dataSource = data}
+		  );
+	}
 
-// 	this.campus.splice(fromIndex, 1);
-// 	this.campus.splice(toIndex, 0, e.itemData);
-// }
+   onReorder(e) {
+	   debugger;
+	var visibleRows = e.component.getVisibleRows();
+	console.log(visibleRows);
+
+		var toIndex = visibleRows[e.toIndex].data;
+		console.log("toIndex", visibleRows[e.toIndex].data);
+		var fromIndex = e.itemData;
+		console.log("fromIndex", e.itemData);
+
+
+	console.log("DataSource", this.dataSource);
+	//visibleRows.splice(fromIndex, 1);
+	//console.log("data 1", this.dataSource.splice(fromIndex, 1));
+	//visibleRows.splice(toIndex, 0, e.itemData);
+	//console.log("data 2", this.dataSource.splice(toIndex, 0, e.itemData));
+}
 
    selectionChanged(data: any) {
 	this.SelectedRowsData = data.selectedRowsData;
@@ -76,7 +86,7 @@ deleteRecords() {
   }
 
   OnRowInserting(e) {
-	// debugger;
+
     this.campusObj.campusName = e.data.campusName;
     this.campusObj.clientId = 2;
 	this.campusObj.districtId = 2;
@@ -97,7 +107,7 @@ deleteRecords() {
   }
 
   onRowUpdating(e) {
-// debugger;
+
   this.updatecampusObj = e.oldData;
   this.updatecampusObj.campusName = e.newData.campusName ? e.newData.campusName : e.oldData.campusName;
   this.updatecampusObj.accountCode = e.newData.accountCode ? e.newData.accountCode : e.oldData.accountCode;

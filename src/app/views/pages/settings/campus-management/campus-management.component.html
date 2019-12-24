@@ -9,6 +9,12 @@
 	(onRowUpdating)="onRowUpdating($event)"
 	>
 
+	<dxo-row-dragging
+			[allowReordering]="true"
+			[onReorder]="onReorder"
+			[showDragIcons]="showDragIcons"
+        ></dxo-row-dragging>
+
 	<dxo-paging [enabled]="false"></dxo-paging>
 	<dxo-scrolling
     columnRenderingMode="virtual"
@@ -23,7 +29,12 @@
 	</dxo-editing>
 	<dxo-selection mode="multiple" ></dxo-selection>
 
-	<dxi-column dataField="campusName" caption="Name"></dxi-column>
+	<dxi-column dataField="campusName" caption="Name" cellTemplate="linkCellTemplate"></dxi-column>
 	<dxi-column dataField="accountCode" alignment="left" caption="Code"></dxi-column>
+
+	<div *dxTemplate="let d of 'linkCellTemplate'">
+			<div class="current-value">
+				<a style="color: #079DE5;">{{d.value}}</a></div>
+		</div>
 </dx-data-grid>
 
