@@ -76,30 +76,31 @@ deleteRecords() {
   }
 
   OnRowInserting(e) {
-	debugger;
+	// debugger;
     this.campusObj.campusName = e.data.campusName;
     this.campusObj.clientId = 2;
 	this.campusObj.districtId = 2;
-	this.campusObj.displayOrder = e.data.displayOrder;
+	this.campusObj.accountCode = e.data.accountCode;
+	this.campusObj.displayOrder = 1;
 	this.campusObj.createdBy = 1;
 	this.campusObj.createdDate = "2019-12-23T12:39:20.923";
 	this.campusObj.modifiedBy = 2;
 	this.campusObj.modifiedDate = "2019-12-23T12:39:20.923";
 	this.campusObj.isDeleted = false;
 
-    // this.service.postCampus(this.campusObj).subscribe(success => {
-    //   console.log('Campus Added', true);
-    // },
-    //   error => {
-    //     console.log('Campus Added', false);
-    //   })
+    this.service.postCampus(this.campusObj).subscribe(success => {
+      console.log('Campus Added', true);
+    },
+      error => {
+        console.log('Campus Added', false);
+      })
   }
 
   onRowUpdating(e) {
-debugger;
+// debugger;
   this.updatecampusObj = e.oldData;
   this.updatecampusObj.campusName = e.newData.campusName ? e.newData.campusName : e.oldData.campusName;
-  this.updatecampusObj.displayOrder = e.newData.displayOrder ? e.newData.displayOrder : e.oldData.displayOrder;
+  this.updatecampusObj.accountCode = e.newData.accountCode ? e.newData.accountCode : e.oldData.accountCode;
 
   this.service.putCampus(this.updatecampusObj, e.oldData.campusId).subscribe(success => {
 	console.log('Campus Updated', true);

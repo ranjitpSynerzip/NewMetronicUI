@@ -9,5 +9,6 @@ export class Campusmodel {
 	public modifiedBy: number;
 	public modifiedDate: string;
 	public isDeleted: boolean;
+	public accountCode: number;
 }
 
