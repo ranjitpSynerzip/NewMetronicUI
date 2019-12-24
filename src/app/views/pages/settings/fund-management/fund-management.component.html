@@ -19,7 +19,7 @@
 	</dxo-editing>
 	<dxo-selection mode="multiple"></dxo-selection>
 
-	<dxi-column dataField="fundName" caption="Name">
+	<dxi-column dataField="fundName" caption="Name" cssClass="pointer-column">
 	</dxi-column>
 	<dxi-column [allowEditing]="false" caption="Start Date">
 	</dxi-column>
@@ -29,7 +29,7 @@
 	</dxi-column>
 
 	<div *dxTemplate="let series of 'fundSeries'" class="masterdetail">
-		<dx-data-grid [dataSource]="getMasterDetailGridDataSource(series.key.fundId)" showBorders="true"
+		<dx-data-grid [dataSource]="fundSeriseDataSource" showBorders="true"
 		(onSelectionChanged)="selectionChanged($event)"
 		(onRowInserting)="OnRowInsertingFundSeries($event)"
 		(onRowUpdating)="onRowUpdatingFundSeries($event)"
