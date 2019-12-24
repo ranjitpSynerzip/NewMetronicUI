@@ -62,47 +62,44 @@ export class FundAllocationComponent implements OnInit {
 
 
 
-    this.dataSource = {
-      remoteOperations: true,
-      store: AspNetData.createStore({
-        key: "seriesDetaild",
-        loadUrl: "http://172.25.29.38:88/api/SeriesDetails/fundallocation"
-      }),
-      fields: [{
-        caption: "Campus",
-        dataField: "campusName",
-        sortBySummaryField: "seriesDetailAamount",
-        sortBySummaryPath: [],
-        sortOrder: "desc",
-        area: "row"
-      }, {
-        caption: "fundName",
-        dataField: "fundName",
-        dataType: "string",
-        area: "column"
-      },
-      {
-        caption: "Serise",
-        dataField: "seriesName",
-        dataType: "string",
-        area: "column"
-      }, {
-        caption: "seriesDetailAamount",
-        dataField: "seriesDetailAamount",
-        dataType: "number",
-        format: "currency",
-        area: "data",
-      }, {
-        caption: "Store",
-        dataField: "StoreName"
-      },]
-    }
+    // this.dataSource = {
+    //   remoteOperations: true,
+    //   store: AspNetData.createStore({
+    //     key: "seriesDetaild",
+    //     loadUrl: "http://172.25.29.38:88/api/SeriesDetails/fundallocation"
+    //   }),
+    //   fields: [{
+    //     caption: "Campus",
+    //     dataField: "campusName",
+    //     sortBySummaryField: "seriesDetailAamount",
+    //     sortBySummaryPath: [],
+    //     sortOrder: "desc",
+    //     area: "row"
+    //   }, {
+    //     caption: "fundName",
+    //     dataField: "fundName",
+    //     dataType: "string",
+    //     area: "column"
+    //   },
+    //   {
+    //     caption: "Serise",
+    //     dataField: "seriesName",
+    //     dataType: "string",
+    //     area: "column"
+    //   }, {
+    //     caption: "seriesDetailAamount",
+    //     dataField: "seriesDetailAamount",
+    //     dataType: "number",
+    //     format: "currency",
+    //     area: "data",
+    //   }, {
+    //     caption: "Store",
+    //     dataField: "StoreName"
+    //   },]
+    // }
   }
 
   ngOnInit() {
-
-
-
 
   }
 
