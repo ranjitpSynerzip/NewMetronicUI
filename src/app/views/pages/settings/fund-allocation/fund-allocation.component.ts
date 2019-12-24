@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import PivotGridDataSource from 'devextreme/ui/pivot_grid/data_source';
 import { FundAllocationService } from '../../../../shared/Services/fund-allocation.service';
 import * as AspNetData from "devextreme-aspnet-data-nojquery";
 import { HttpClient } from '@angular/common/http';
 import { DxPivotGridComponent } from 'devextreme-angular';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -11,8 +12,8 @@ import { DxPivotGridComponent } from 'devextreme-angular';
   templateUrl: './fund-allocation.component.html',
   styleUrls: ['./fund-allocation.component.scss']
 })
-export class FundAllocationComponent implements OnInit {
-
+export class FundAllocationComponent implements OnInit, OnDestroy {
+  private subscription: Subscription;
   @ViewChild(DxPivotGridComponent, { static: false }) pivotGrid: DxPivotGridComponent;
 
   pivotGridDataSource: any;
@@ -29,7 +30,7 @@ export class FundAllocationComponent implements OnInit {
   clickedColumn: any;
 
   constructor(private httpClient: HttpClient, private service: FundAllocationService) {
-    this.service.getfundAllocation().subscribe(
+   this.subscription = this.service.getfundAllocation().subscribe(
       data => {
         this.serviceData = data;
         this.pivotGridDataSource = {
@@ -108,6 +109,11 @@ export class FundAllocationComponent implements OnInit {
 console.log('onCellClick', e);
   }
 
+
+  ngOnDestroy()
+  {
+    this.subscription.unsubscribe();
+  }
 
 
 }

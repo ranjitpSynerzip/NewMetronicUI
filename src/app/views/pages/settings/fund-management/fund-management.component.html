@@ -2,14 +2,14 @@
 <kt-portlet [class]="'kt-portlet--height-fluid'">
 		<kt-portlet-header [title]="'Funds'">
 			<ng-container ktPortletTools>
-					<dx-button id="gridDeleteSelected" icon="trash" [height]="36" [disabled]="!selectedItemKeys.length"
-					(onClick)="deleteRecords()">
-				</dx-button>
+		
 
 			</ng-container>
 		</kt-portlet-header>
 		<kt-portlet-body style="padding: inherit;">
-
+				<dx-button id="gridDeleteSelected" icon="trash" [height]="36" [disabled]="!selectedItemKeys.length"
+				(onClick)="deleteRecords()">
+			</dx-button>
 				<dx-data-grid id="Fundgrid" [dataSource]="dataSource" 
 				[showBorders]="true"
 				[showRowLines]="true"
@@ -31,12 +31,14 @@
 				<dxo-selection mode="multiple"></dxo-selection>
 
 				<dxi-column dataField="fundName" caption="Name" cellTemplate="BoldCellTemplate">
+						<dxi-validation-rule type="required"></dxi-validation-rule>
 				</dxi-column>
 				<dxi-column [allowEditing]="false"  dataType="date"  dataField="startDate"  caption="Start Date">
 				</dxi-column>
 				<dxi-column  [allowEditing]="false"  dataType="date" dataField="endDate" caption="End Date">
 				</dxi-column>
 				<dxi-column dataField="fundCode" caption="Code" alignment="left">
+						<dxi-validation-rule type="required"></dxi-validation-rule>
 				</dxi-column>
 
 				<div *dxTemplate="let series of 'fundSeries'" class="masterdetail">
@@ -56,13 +58,17 @@
 						<dxo-editing mode="cell" [allowUpdating]="true" [allowAdding]="true">
 						</dxo-editing>
 						<dxo-selection mode="multiple"></dxo-selection>
-						<dxi-column dataField="seriesName" [width]="250" alignment="center">
+						<dxi-column dataField="seriesName" >
+								<dxi-validation-rule type="required"></dxi-validation-rule>
 						</dxi-column>
 						<dxi-column dataField="startDate" dataType="date">
+								<dxi-validation-rule type="required"></dxi-validation-rule>
 						</dxi-column>
 						<dxi-column dataField="endDate" dataType="date">
+								<dxi-validation-rule type="required"></dxi-validation-rule>
 						</dxi-column>
 						<dxi-column dataField="accountCode" alignment="left">
+								<dxi-validation-rule type="required"></dxi-validation-rule>
 						</dxi-column>
 					</dx-data-grid>
 				</div>
