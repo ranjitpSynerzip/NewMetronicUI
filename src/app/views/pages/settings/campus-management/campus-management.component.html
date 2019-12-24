@@ -6,6 +6,7 @@
 	[showBorders]="true"
 	(onSelectionChanged)="selectionChanged($event)"
 	(onRowInserting)="OnRowInserting($event)"
+	(onRowUpdating)="onRowUpdating($event)"
 	>
 
 	<dxo-paging [enabled]="false"></dxo-paging>
@@ -35,7 +36,7 @@
 	</dxo-editing>
 	<dxo-selection mode="multiple"></dxo-selection>
 
-	<dxi-column dataField="name" caption="Name"></dxi-column>
+	<dxi-column dataField="campusName" caption="Name"></dxi-column>
 	<dxi-column dataField="displayOrder" caption="Display Order"></dxi-column>
 </dx-data-grid>
 

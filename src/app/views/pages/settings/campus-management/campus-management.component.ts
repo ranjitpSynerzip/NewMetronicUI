@@ -24,6 +24,7 @@ export class CampusManagementComponent implements OnInit{
 	@ViewChild(DxDataGridComponent, { static: false }) dataGrid: DxDataGridComponent;
 	dataSource: Campusmodel[];
 	campusObj = new Campusmodel();
+	updatecampusObj = new Campusmodel();
 	// url = environment.baseUrl;
 	SelectedRowsData: any[] = [];
   	selectedItemKeys: any[] = [];
@@ -93,6 +94,20 @@ deleteRecords() {
         console.log('Campus Added', false);
       })
   }
+
+  onRowUpdating(e) {
+debugger;
+  this.updatecampusObj = e.oldData;
+  this.updatecampusObj.campusName = e.newData.campusName ? e.newData.campusName : e.oldData.campusName;
+  this.updatecampusObj.displayOrder = e.newData.displayOrder ? e.newData.displayOrder : e.oldData.displayOrder;
+
+  this.service.putCampus(this.updatecampusObj, e.oldData.campusId).subscribe(success => {
+	console.log('Campus Updated', true);
+  },
+	error => {
+	  console.log('Campus Updated', false);
+	})
+}
 
 }
 
