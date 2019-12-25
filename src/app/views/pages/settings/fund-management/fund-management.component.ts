@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewEncapsulation, HostListener, Inject } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation, HostListener, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DxDataGridComponent } from 'devextreme-angular';
 import * as AspNetData from "devextreme-aspnet-data-nojquery";
@@ -16,7 +16,7 @@ import { DxoMasterDetailComponent } from 'devextreme-angular/ui/nested';
   selector: 'kt-fund-management',
   templateUrl: './fund-management.component.html',
   styleUrls: ['./fund-management.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  // encapsulation: ViewEncapsulation.None,
 })
 
 export class FundManagementComponent implements OnInit {
@@ -42,6 +42,7 @@ export class FundManagementComponent implements OnInit {
   private deletefundsourceSubs: Subscription;
 
   constructor(private httpClient: HttpClient, private service: FundManagementService) {
+    this.refreshgrid();
   }
 
 
@@ -92,15 +93,12 @@ export class FundManagementComponent implements OnInit {
 
 
   deleteRecords() {
-    // var result = confirm("Are you sure?", "Confirm changes");
-    // result.then(function (dialogResult) {
-    //   dialogResult ? this.ConfirmDelete(this) : this.stopPropagation();
-    // });
-    if (confirm('Are you sure you want to delete?', 'Alert')) {
-      this.ConfirmDelete();
-    } else {
-      return false;
-    }
+    var result = confirm("Are you sure you want to delete?", "Confirm");
+    result.then((dialogResult) => {
+      if (dialogResult) {
+        this.ConfirmDelete();
+      }
+    });
   }
 
   ConfirmDelete() {
@@ -128,7 +126,7 @@ export class FundManagementComponent implements OnInit {
 
     });
 
- 
+
     // this.loadfundSerise();
     // this.deletefundSeriesSubs.unsubscribe();
     // this.deletefundsourceSubs.unsubscribe();
