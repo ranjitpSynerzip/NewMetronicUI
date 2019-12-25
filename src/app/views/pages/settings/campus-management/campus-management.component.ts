@@ -16,6 +16,8 @@ import { Campusmodel } from "./../../../../shared/models/campusmodel";
 import { environment } from "../../../../../environments/environment";
 import { User } from "../../../../core/auth";
 import { confirm } from 'devextreme/ui/dialog';
+import { Subscription } from 'rxjs';
+
 
 @Component({
   selector: "kt-campus-management",
@@ -34,6 +36,8 @@ export class CampusManagementComponent implements OnInit {
   SelectedRowsData: any[] = [];
   selectedItemKeys: any[] = [];
   showDragIcons: boolean;
+  private deleteCampuses: Subscription;
+
 
   constructor(
     private httpClient: HttpClient,
@@ -48,6 +52,7 @@ export class CampusManagementComponent implements OnInit {
   }
 
   getData() {
+	this.dataSource = [];
     this.service.getCampus().subscribe(data => {
       this.dataSource = data;
     });
@@ -82,25 +87,27 @@ export class CampusManagementComponent implements OnInit {
   }
 
   deleteRecords() {
-    if (confirm('Are you sure you want to delete?', 'Alert')) {
-      this.ConfirmDelete();
-    } else {
-      this.stop1();
-    }
+    var result = confirm("Are you sure you want to delete?", "Confirm");
+    result.then((dialogResult) => {
+      if (dialogResult) {
+        this.ConfirmDelete();
+      }
+    });
   }
 
   ConfirmDelete() {
-    this.SelectedRowsData.forEach(item => {
-      this.service.deleteCampus(item.campusId).subscribe(
-        success => {
-          console.log("removed Campus", true);
+    this.SelectedRowsData.forEach((item) => {
+      this.deleteCampuses = this.service.deleteCampus(item.campusId).subscribe(success => {
+		  console.log("removed Campus", true);
+		  this.getData();
+		  //this.dataGrid.instance.refresh();
         },
         error => {
           console.log("removed Campus", false);
         }
       );
     });
-    this.dataGrid.instance.refresh();
+    // this.dataGrid.instance.refresh();
 
   }
 
@@ -120,7 +127,8 @@ export class CampusManagementComponent implements OnInit {
 
     this.service.postCampus(this.campusObj).subscribe(
       success => {
-        console.log("Campus Added", true);
+		console.log("Campus Added", true);
+		this.getData();
       },
       error => {
         console.log("Campus Added", false);
@@ -142,7 +150,8 @@ export class CampusManagementComponent implements OnInit {
       .putCampus(this.updatecampusObj, e.oldData.campusId)
       .subscribe(
         success => {
-          console.log("Campus Updated", true);
+		  console.log("Campus Updated", true);
+		  this.getData();
         },
         error => {
           console.log("Campus Updated", false);
