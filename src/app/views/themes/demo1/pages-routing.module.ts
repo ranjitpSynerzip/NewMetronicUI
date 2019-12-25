@@ -37,6 +37,11 @@ const routes: Routes = [
 				path: 'settings',
 				loadChildren: () => import('app/views/pages/settings/settings.module').then(m => m.SettingsModule)
 			},
+			{
+				path: 'projects',
+				loadChildren: () => import('app/views/pages/project/project.module').then(m => m.ProjectModule)
+			},
+		
 		
 
 			{path: 'error/:type', component: ErrorPageComponent},

@@ -1,0 +1,36 @@
+<p>project works!</p>
+<dx-data-grid [dataSource]="dataSource"
+              [remoteOperations]="true" 
+              height="600" showBorders="true">
+
+    <dxo-header-filter [visible]="true"></dxo-header-filter>
+    <dxo-scrolling mode="virtual"></dxo-scrolling>
+    <dxo-editing mode="cell"
+              [allowAdding]="true" 
+              [allowUpdating]="true" 
+              [allowDeleting]="true">
+    </dxo-editing>
+    <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
+    <dxi-column dataField="projectName" caption="Project Name">
+    </dxi-column>
+    <dxi-column dataField="projectId" caption="project #">
+    </dxi-column>
+    <dxi-column dataField="statusId" caption="Status">
+    </dxi-column>
+    <dxi-column dataField="statusId" caption="Status">
+    </dxi-column>
+    <dxi-column dataField="startDate" dataType="date" caption="Status">
+    </dxi-column>
+    <dxi-column dataField="estimatedCompletionDate" dataType="date" caption="Estimated Compleation Date">
+    </dxi-column>
+    <dxi-column dataField="bondFundCategoryId" caption="Category">
+    </dxi-column>
+    <dxi-column dataField="orgCodeId" caption="Organization Code">
+    </dxi-column>
+    <dxi-column dataField="gccontactId" caption="General Contractor">
+    </dxi-column>
+    <dxi-column dataField="aorcompanyId" caption="Architect">
+    </dxi-column>
+    <dxi-column dataField="gccompanyId" caption="General Contractor">
+    </dxi-column>
+</dx-data-grid>

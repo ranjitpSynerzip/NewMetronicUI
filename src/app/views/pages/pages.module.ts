@@ -10,6 +10,7 @@ import { WelcomeModule } from './welcome/welcome.module';
 import { DevgridModule } from './dev-grid/devgrid.module';
 import { StatusModule } from './status/status.module';
 import { SettingsModule } from './settings/settings.module';
+import { ProjectModule } from './project/project.module';
 
 
 
@@ -26,6 +27,7 @@ import { SettingsModule } from './settings/settings.module';
 		DevgridModule,
 		StatusModule,
 		SettingsModule,
+		ProjectModule,
 	
 	],
 	providers: []

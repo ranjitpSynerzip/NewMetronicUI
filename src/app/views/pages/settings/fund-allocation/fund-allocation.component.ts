@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
-import PivotGridDataSource from 'devextreme/ui/pivot_grid/data_source';
 import { FundAllocationService } from '../../../../shared/Services/fund-allocation.service';
 import * as AspNetData from "devextreme-aspnet-data-nojquery";
 import { HttpClient } from '@angular/common/http';
@@ -30,7 +29,7 @@ export class FundAllocationComponent implements OnInit, OnDestroy {
   clickedColumn: any;
 
   constructor(private httpClient: HttpClient, private service: FundAllocationService) {
-   this.subscription = this.service.getfundAllocation().subscribe(
+    this.subscription = this.service.getfundAllocation().subscribe(
       data => {
         this.serviceData = data;
         this.pivotGridDataSource = {
@@ -106,12 +105,11 @@ export class FundAllocationComponent implements OnInit, OnDestroy {
 
 
   onCellClick(e) {
-console.log('onCellClick', e);
+    console.log('onCellClick', e);
   }
 
 
-  ngOnDestroy()
-  {
+  ngOnDestroy() {
     this.subscription.unsubscribe();
   }
 
