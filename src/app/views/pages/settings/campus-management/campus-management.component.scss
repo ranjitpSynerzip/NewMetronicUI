@@ -3,7 +3,22 @@
     position: absolute;
     z-index: 1;
     right: 50px;
+	height: 36px;
+	top:0px;
+
+}
+
+#gridHeaderTitle{
+	position: absolute;
+    left: 10px;
     height: 36px;
+    top: 0;
+    z-index: 99999999;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #48465b;
+    padding: 15px;
+    margin: 0;
 }
 .dx-command-select {
     width: 40px!important;
@@ -13,4 +28,8 @@
 
 i.dx-icon.dx-icon-trash{
     color:red;
+  }
+
+  #Campusgrid{
+	  height: 500px;
   }

@@ -1,3 +1,6 @@
+<div class="dx-viewport demo-container">
+		<span id="gridHeaderTitle" >Campuses</span>
+
 <dx-button id="gridDeleteSelected" icon="trash" [disabled]="!selectedItemKeys.length" style="color:red" (onClick)="deleteRecords()"></dx-button>
 
 <dx-data-grid
@@ -42,4 +45,5 @@
 				<a style="color: #079DE5;">{{d.value}}</a></div>
 		</div>
 </dx-data-grid>
+</div>
 
