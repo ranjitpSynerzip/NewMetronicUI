@@ -48,6 +48,7 @@ export class CampusManagementComponent implements OnInit {
   }
 
   getData() {
+	this.dataSource = [];
     this.service.getCampus().subscribe(data => {
       this.dataSource = data;
     });
@@ -93,14 +94,16 @@ export class CampusManagementComponent implements OnInit {
     this.SelectedRowsData.forEach(item => {
       this.service.deleteCampus(item.campusId).subscribe(
         success => {
-          console.log("removed Campus", true);
+		  console.log("removed Campus", true);
+		  this.getData();
+		  //this.dataGrid.instance.refresh();
         },
         error => {
           console.log("removed Campus", false);
         }
       );
     });
-    this.dataGrid.instance.refresh();
+    // this.dataGrid.instance.refresh();
 
   }
 
@@ -120,7 +123,8 @@ export class CampusManagementComponent implements OnInit {
 
     this.service.postCampus(this.campusObj).subscribe(
       success => {
-        console.log("Campus Added", true);
+		console.log("Campus Added", true);
+		this.getData();
       },
       error => {
         console.log("Campus Added", false);
@@ -142,7 +146,8 @@ export class CampusManagementComponent implements OnInit {
       .putCampus(this.updatecampusObj, e.oldData.campusId)
       .subscribe(
         success => {
-          console.log("Campus Updated", true);
+		  console.log("Campus Updated", true);
+		  this.getData();
         },
         error => {
           console.log("Campus Updated", false);
