@@ -1,4 +1,4 @@
-
+<!-- 
 <kt-portlet [class]="'kt-portlet--height-fluid'">
 		<kt-portlet-header [title]="'Funds'">
 			<ng-container ktPortletTools>
@@ -6,7 +6,9 @@
 
 			</ng-container>
 		</kt-portlet-header>
-		<kt-portlet-body style="padding: inherit;">
+		<kt-portlet-body style="padding: inherit;"> -->
+			<div class="dx-viewport demo-container">
+				<span id="gridHeaderTitle" >Funds</span>
 				<dx-button id="gridDeleteSelected" icon="trash" [height]="36" [disabled]="!selectedItemKeys.length"
 				(onClick)="deleteRecords()">
 			</dx-button>
@@ -14,7 +16,7 @@
 				[showBorders]="true"
 				[showRowLines]="true"
 				[showColumnLines]="false"
-
+                [showColumnHeaders]="true"
 				(onSelectionChanged)="selectionChanged($event)"
 				(onRowInserting)="OnRowInserting($event)"
 				(onRowUpdating)="onRowUpdating($event)"
@@ -24,7 +26,6 @@
 				
 				>
 				<dxo-load-panel [enabled]="true"></dxo-load-panel>
-				<dxo-scrolling mode="virtual"></dxo-scrolling>
 				<dxo-paging [enabled]="false"></dxo-paging>
 				<dxo-editing mode="cell" [allowUpdating]="true" [allowAdding]="true">
 				</dxo-editing>
@@ -79,5 +80,6 @@
 					</div>
 
 			</dx-data-grid>
-		</kt-portlet-body>
-	</kt-portlet>
+		</div>
+		<!-- </kt-portlet-body>
+	</kt-portlet> -->
