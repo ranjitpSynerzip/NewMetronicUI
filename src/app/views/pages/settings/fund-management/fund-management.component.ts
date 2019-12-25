@@ -8,6 +8,8 @@ import { environment } from '../../../../../environments/environment';
 import { FundSeriesModel } from '../../../../shared/models/fund-series.model';
 import { User } from '../../../../core/auth';
 import { confirm } from 'devextreme/ui/dialog';
+import { Subscription } from 'rxjs';
+import { DxoMasterDetailComponent } from 'devextreme-angular/ui/nested';
 
 
 @Component({
@@ -19,6 +21,7 @@ import { confirm } from 'devextreme/ui/dialog';
 
 export class FundManagementComponent implements OnInit {
   @ViewChild(DxDataGridComponent, { static: false }) dataGrid: DxDataGridComponent;
+  @ViewChild(DxoMasterDetailComponent, { static: false }) MasterDetail: DxoMasterDetailComponent;
   dataSource: Funds[];
   fundSeriseDataSource: FundSeriesModel[];
   fundSourceObj = new FundsourceModel();
@@ -35,7 +38,8 @@ export class FundManagementComponent implements OnInit {
   userInfo: any;
   userObj = new User();
   // loadIndicatorVisible = true;
-
+  private deletefundSeriesSubs: Subscription;
+  private deletefundsourceSubs: Subscription;
 
   constructor(private httpClient: HttpClient, private service: FundManagementService) {
   }
@@ -49,6 +53,7 @@ export class FundManagementComponent implements OnInit {
   }
 
   refreshgrid() {
+    console.log('refreshgrid');
     this.dataSource = [];
     this.service.getfundsource().subscribe(
       data => {
@@ -93,36 +98,40 @@ export class FundManagementComponent implements OnInit {
     // });
     if (confirm('Are you sure you want to delete?', 'Alert')) {
       this.ConfirmDelete();
-  } else {
-     return false;
-  }
+    } else {
+      return false;
+    }
   }
 
   ConfirmDelete() {
     console.log('deleteRecords', this.SelectedRowsData);
     this.SelectedRowsData.forEach((item) => {
       if (item.seriesName) {
-        this.service.deletefundSeries(item.seriesId).subscribe(success => {
+        this.deletefundSeriesSubs = this.service.deletefundSeries(item.seriesId).subscribe(success => {
           console.log('deletefundSeries', true);
           this.loadfundSerise();
+          this.MasterDetail.instance.refresh();
         },
           error => {
             console.log('deletefundSeries', false);
           });
       } else {
-        this.service.deletefundsource(item.fundId).subscribe(success => {
+        this.deletefundsourceSubs = this.service.deletefundsource(item.fundId).subscribe(success => {
           console.log('deletefundsource', true);
+          this.dataGrid.instance.refresh();
           this.refreshgrid();
         },
           error => {
             console.log('deletefundsource', false);
           });
       }
+
     });
 
-    this.dataGrid.instance.refresh();
-    this.refreshgrid();
-    //this.loadfundSerise();
+ 
+    // this.loadfundSerise();
+    // this.deletefundSeriesSubs.unsubscribe();
+    // this.deletefundsourceSubs.unsubscribe();
 
   }
 
@@ -142,7 +151,7 @@ export class FundManagementComponent implements OnInit {
     console.log('OnRowInserting', this.insertfundSourceObj);
     this.service.postfundsource(this.insertfundSourceObj).subscribe(success => {
       console.log('fund Source Added', true);
-      this.loadfundSerise();
+      this.refreshgrid();
     },
       error => {
         console.log('fund Source Added', false);
@@ -255,7 +264,6 @@ export class FundManagementComponent implements OnInit {
     this.service.getfundSeriesByfundId(this.fundSourceid).subscribe(
       data => (this.fundSeriseDataSource = data)
     );
-
   }
 
 
