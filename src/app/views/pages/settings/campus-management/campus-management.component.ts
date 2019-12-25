@@ -16,6 +16,8 @@ import { Campusmodel } from "./../../../../shared/models/campusmodel";
 import { environment } from "../../../../../environments/environment";
 import { User } from "../../../../core/auth";
 import { confirm } from 'devextreme/ui/dialog';
+import { Subscription } from 'rxjs';
+
 
 @Component({
   selector: "kt-campus-management",
@@ -34,6 +36,8 @@ export class CampusManagementComponent implements OnInit {
   SelectedRowsData: any[] = [];
   selectedItemKeys: any[] = [];
   showDragIcons: boolean;
+  private deleteCampuses: Subscription;
+
 
   constructor(
     private httpClient: HttpClient,
@@ -83,17 +87,17 @@ export class CampusManagementComponent implements OnInit {
   }
 
   deleteRecords() {
-    if (confirm('Are you sure you want to delete?', 'Alert')) {
-      this.ConfirmDelete();
-    } else {
-      this.stop1();
-    }
+    var result = confirm("Are you sure you want to delete?", "Confirm");
+    result.then((dialogResult) => {
+      if (dialogResult) {
+        this.ConfirmDelete();
+      }
+    });
   }
 
   ConfirmDelete() {
-    this.SelectedRowsData.forEach(item => {
-      this.service.deleteCampus(item.campusId).subscribe(
-        success => {
+    this.SelectedRowsData.forEach((item) => {
+      this.deleteCampuses = this.service.deleteCampus(item.campusId).subscribe(success => {
 		  console.log("removed Campus", true);
 		  this.getData();
 		  //this.dataGrid.instance.refresh();
