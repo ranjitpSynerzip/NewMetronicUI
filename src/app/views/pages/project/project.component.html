@@ -1,18 +1,18 @@
 <p>project works!</p>
 <dx-data-grid [dataSource]="dataSource"
-              [remoteOperations]="true" 
+              [remoteOperations]="true"
               height="600" showBorders="true"
               >
 
     <dxo-header-filter [visible]="true"></dxo-header-filter>
     <dxo-scrolling mode="virtual"></dxo-scrolling>
     <dxo-editing mode="cell"
-              [allowAdding]="true" 
-              [allowUpdating]="true" 
+              [allowAdding]="true"
+              [allowUpdating]="true"
               [allowDeleting]="true">
     </dxo-editing>
 
-    <dxi-column dataField="projectName" caption="Project Name">
+    <dxi-column dataField="displayName" caption="Project Name">
     </dxi-column>
     <dxi-column dataField="projectId" caption="project #">
     </dxi-column>
