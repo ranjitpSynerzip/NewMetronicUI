@@ -2,8 +2,6 @@
 <dx-data-grid [dataSource]="dataSource"
               [remoteOperations]="true" 
               height="600" showBorders="true"
-              (onRowInserting)="OnProjectInserting($event)"
-              (onRowUpdating)="onProjectUpdating($event)"
               >
 
     <dxo-header-filter [visible]="true"></dxo-header-filter>
@@ -13,7 +11,7 @@
               [allowUpdating]="true" 
               [allowDeleting]="true">
     </dxo-editing>
-    <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
+
     <dxi-column dataField="projectName" caption="Project Name">
     </dxi-column>
     <dxi-column dataField="projectId" caption="project #">

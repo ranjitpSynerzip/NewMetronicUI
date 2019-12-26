@@ -22,7 +22,7 @@ import { DxoMasterDetailComponent } from 'devextreme-angular/ui/nested';
 
 export class FundManagementComponent implements OnInit {
   @ViewChild(DxDataGridComponent, { static: false }) dataGrid: DxDataGridComponent;
-  @ViewChild(DxoMasterDetailComponent, { static: false }) MasterDetail: DxoMasterDetailComponent;
+ 
   dataSource: Funds[];
   fundSeriseDataSource: FundSeriesModel[];
   fundSourceObj = new FundsourceModel();
@@ -43,7 +43,7 @@ export class FundManagementComponent implements OnInit {
   private deletefundsourceSubs: Subscription;
 
   constructor(private httpClient: HttpClient, private service: FundManagementService) {
-    // this.refreshgrid();
+  
   }
 
 
@@ -110,7 +110,6 @@ export class FundManagementComponent implements OnInit {
       if (item.seriesName) {
         this.deletefundSeriesSubs = this.service.deletefundSeries(item.seriesId).subscribe(success => {
           console.log('deletefundSeries', true);
-          this.dataGrid.instance.refresh();
           this.loadfundSerise();
         },
           error => {
@@ -119,9 +118,7 @@ export class FundManagementComponent implements OnInit {
       } else {
         this.deletefundsourceSubs = this.service.deletefundsource(item.fundId).subscribe(success => {
           console.log('deletefundsource', true);
-          this.dataGrid.instance.refresh();
           this.refreshgrid();
-          //this.refreshDataGrid();
         },
           error => {
             console.log('deletefundsource', false);
@@ -247,7 +244,8 @@ export class FundManagementComponent implements OnInit {
   }
 
   onRowExpanding(e) {
-    //e.component.collapseAll(-1);  //NP-789
+   e.component.collapseAll(-1);  //NP-789
+    // e.component.expandRow(this.selectedItemKeys[0]);
     this.fundSourceid = e.key.fundId;
     console.log('onRowExpanding', this.fundSourceid);
 
@@ -260,6 +258,10 @@ export class FundManagementComponent implements OnInit {
   }
 
   onContentReady(e) {
+    e.component.option("loadPanel.enabled", false);
+  }
+
+  onMasterdetailReady(e) {
     e.component.option("loadPanel.enabled", false);
   }
 

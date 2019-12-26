@@ -41,9 +41,10 @@
 	<dxi-column dataField="accountCode" alignment="left" caption="Code"></dxi-column>
 
 	<div *dxTemplate="let d of 'linkCellTemplate'">
-			<div class="current-value">
-				<a style="color: #079DE5;">{{d.value}}</a></div>
+			<div>
+				<a  (click)="openLarge();" style="color: #079DE5;">{{d.value}}</a></div>
 		</div>
 </dx-data-grid>
 </div>
+
 

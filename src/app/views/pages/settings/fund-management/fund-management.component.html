@@ -1,4 +1,4 @@
-			<div class="dx-viewport demo-container">
+			<div class="">
 				<span id="gridHeaderTitle" >Funds</span>
 				<dx-button id="gridDeleteSelected" icon="trash" [height]="36" [disabled]="!selectedItemKeys.length"
 				(onClick)="deleteRecords()">
@@ -13,16 +13,13 @@
 				(onRowUpdating)="onRowUpdating($event)"
 				(onRowExpanding)=onRowExpanding($event)
 				[masterDetail]="{ enabled: true, template: 'fundSeries' }"
-				(onContentReady)="onContentReady($event)"
-				
+				(onContentReady)="onMasterdetailReady($event)"
 				>
+				<dxo-selection mode="multiple"></dxo-selection>
 				<dxo-load-panel [enabled]="true"></dxo-load-panel>
 				<dxo-scrolling mode="virtual"></dxo-scrolling>
-				<dxo-paging [enabled]="false"></dxo-paging>
 				<dxo-editing mode="cell" [allowUpdating]="true" [allowAdding]="true">
 				</dxo-editing>
-				<dxo-selection mode="multiple"></dxo-selection>
-
 				<dxi-column dataField="fundName" caption="Name" cellTemplate="BoldCellTemplate">
 						<dxi-validation-rule type="required"></dxi-validation-rule>
 				</dxi-column>
@@ -46,7 +43,6 @@
 					[remoteOperations]="true"
 					[showColumnHeaders]="false"
 					class="masterdetail"
-					[columnAutoWidth]="true"
 					>
 					<dxo-load-panel [enabled]="true"></dxo-load-panel>
 					<dxo-scrolling mode="virtual"></dxo-scrolling>

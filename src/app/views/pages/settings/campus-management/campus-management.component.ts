@@ -17,6 +17,8 @@ import { environment } from "../../../../../environments/environment";
 import { User } from "../../../../core/auth";
 import { confirm } from 'devextreme/ui/dialog';
 import { Subscription } from 'rxjs';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CampusUpdateComponent } from './campus-update/campus-update.component';
 
 
 @Component({
@@ -41,7 +43,8 @@ export class CampusManagementComponent implements OnInit {
 
   constructor(
     private httpClient: HttpClient,
-    private service: CampusManagementService
+    private service: CampusManagementService,
+    private modalService: NgbModal,
   ) {
     this.showDragIcons = true;
     this.getData();
@@ -52,7 +55,7 @@ export class CampusManagementComponent implements OnInit {
   }
 
   getData() {
-	this.dataSource = [];
+    this.dataSource = [];
     this.service.getCampus().subscribe(data => {
       this.dataSource = data;
     });
@@ -98,10 +101,10 @@ export class CampusManagementComponent implements OnInit {
   ConfirmDelete() {
     this.SelectedRowsData.forEach((item) => {
       this.deleteCampuses = this.service.deleteCampus(item.campusId).subscribe(success => {
-		  console.log("removed Campus", true);
-		  this.getData();
-		  //this.dataGrid.instance.refresh();
-        },
+        console.log("removed Campus", true);
+        this.getData();
+        //this.dataGrid.instance.refresh();
+      },
         error => {
           console.log("removed Campus", false);
         }
@@ -127,8 +130,8 @@ export class CampusManagementComponent implements OnInit {
 
     this.service.postCampus(this.campusObj).subscribe(
       success => {
-		console.log("Campus Added", true);
-		this.getData();
+        console.log("Campus Added", true);
+        this.getData();
       },
       error => {
         console.log("Campus Added", false);
@@ -150,8 +153,8 @@ export class CampusManagementComponent implements OnInit {
       .putCampus(this.updatecampusObj, e.oldData.campusId)
       .subscribe(
         success => {
-		  console.log("Campus Updated", true);
-		  this.getData();
+          console.log("Campus Updated", true);
+          this.getData();
         },
         error => {
           console.log("Campus Updated", false);
@@ -164,4 +167,10 @@ export class CampusManagementComponent implements OnInit {
   stop1() {
     return false;
   }
+
+  openLarge() {
+		this.modalService.open(CampusUpdateComponent, {
+			size: 'lg'
+		});
+	}
 }

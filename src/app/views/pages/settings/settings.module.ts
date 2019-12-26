@@ -11,9 +11,14 @@ import { PartialsModule } from '../../partials/partials.module';
 
 import { FundManagementComponent } from './fund-management/fund-management.component';
 import { AdminSettingsComponent } from './admin-settings/admin-settings.component';
-import { DxTreeListModule, DxButtonModule, DxCheckBoxModule, DxDataGridModule, DxPivotGridModule, DxTemplateModule } from 'devextreme-angular';
+import {
+  DxTreeListModule, DxButtonModule, DxCheckBoxModule, DxDataGridModule, DxPivotGridModule,
+  DxTemplateModule
+} from 'devextreme-angular';
 import { CampusManagementComponent } from './campus-management/campus-management.component';
 import { FundAllocationComponent } from './fund-allocation/fund-allocation.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { CampusUpdateComponent } from './campus-management/campus-update/campus-update.component';
 
 
 
@@ -31,8 +36,8 @@ const routes: Routes = [
       {
         path: 'adminsettings',
         component: AdminSettingsComponent,
-	  },
-	  {
+      },
+      {
         path: 'campuses',
         component: CampusManagementComponent,
       },
@@ -56,7 +61,7 @@ const routes: Routes = [
     DxCheckBoxModule,
     DxDataGridModule,
     DxPivotGridModule,
-    DxTemplateModule,
+    // DxTemplateModule,
 
   ],
   exports: [RouterModule],
@@ -66,7 +71,10 @@ const routes: Routes = [
     AdminSettingsComponent,
     CampusManagementComponent,
     FundAllocationComponent,
+    CampusUpdateComponent,
+  ],
+  entryComponents: [
+    CampusUpdateComponent
   ]
-
 })
 export class SettingsModule { }
