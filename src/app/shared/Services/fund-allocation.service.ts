@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable , throwError  } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 
 import { FundallocationModel } from '../models/fund-amount.model';
 
@@ -130,17 +130,22 @@ export class FundAllocationService {
         //     console.log('getfundAllocation', this.fundAllocationObj);
         // });
 
-       return  this.http.get(this.baseUrl + '/SeriesDetails/fundallocation')
-        .toPromise().then(res => this.fundAllocationObj = res as FundallocationModel[]);
-   
+        return this.http.get(this.baseUrl + '/SeriesDetails/fundallocation')
+            .toPromise().then(res => this.fundAllocationObj = res as FundallocationModel[]);
+
     }
 
 
-    public async fetchData(){
+    public async fetchData() {
         const data = await this.http.get(this.baseUrl + '/SeriesDetails/fundallocation').toPromise();
-        console.log("Data: " + JSON.stringify(data)); 
-        return JSON.stringify(data) ;
-      }
+        console.log("Data: " + JSON.stringify(data));
+        return JSON.stringify(data);
+    }
 
-   
+    updateseriesdetailamount(amount: string, seriseName: string, fundName: string, campusName: string): Observable<any> {
+        const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+        return this.http.post<any>(this.baseUrl + '/SeriesDetails/updateseriesdetailamount?amount=' + amount +'&seriesName='+ seriseName +'&fundName='+ fundName +'&campusName='+ campusName, httpOptions)
+    }
+
+
 }
