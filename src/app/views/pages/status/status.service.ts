@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
+import { catchError, map } from 'rxjs/operators';
+// import { ProjectModel } from './../models/project-model.module';
+import { ProjectModel } from '../../../shared/models/project-model.module';
+
 import { delay } from 'rxjs/operators';
 
 @Injectable({
@@ -9,12 +13,44 @@ import { delay } from 'rxjs/operators';
 })
 export class StatusService {
 
+  baseUrl = 'http://172.25.29.38:88/api'
+
   constructor(private http: HttpClient) { }
 
   getData(): Observable<Status> {
     let apiURL = environment.baseUrl + "/status";
     return this.http.get<Status>(apiURL);
   }
+
+
+  getStatus(): Observable<any[]> {
+		return this.http.get<any>(this.baseUrl + '/Status')
+  }
+  
+  getCompanies(): Observable<any[]> {
+		return this.http.get<any>(this.baseUrl + '/Companies')
+  }
+
+  getContacts(): Observable<any[]> {
+		return this.http.get<any>(this.baseUrl + '/Contacts')
+  }
+
+  getActivities(): Observable<any[]> {
+		return this.http.get<any>(this.baseUrl + '/Activities')
+  }
+
+  postProject(projectModel: ProjectModel): Observable<any> {
+		const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+		return this.http.post<ProjectModel>(this.baseUrl + '/Projects', projectModel, httpOptions)
+			.pipe(
+				map((res: ProjectModel) => {
+					return res;
+				}),
+				catchError(err => {
+					return null;
+				})
+			);
+	}
 
   // getVersion(): Observable<any> {
   //   // let apiURL = environment.versionfile;
