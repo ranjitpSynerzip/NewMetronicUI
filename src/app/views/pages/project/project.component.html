@@ -1,7 +1,10 @@
 <p>project works!</p>
 <dx-data-grid [dataSource]="dataSource"
               [remoteOperations]="true" 
-              height="600" showBorders="true">
+              height="600" showBorders="true"
+              (onRowInserting)="OnProjectInserting($event)"
+              (onRowUpdating)="onProjectUpdating($event)"
+              >
 
     <dxo-header-filter [visible]="true"></dxo-header-filter>
     <dxo-scrolling mode="virtual"></dxo-scrolling>

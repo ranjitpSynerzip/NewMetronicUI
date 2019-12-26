@@ -25,4 +25,13 @@ export class ProjectComponent implements OnInit {
   ngOnInit() {
   }
 
+
+  OnProjectInserting(){
+
+  }
+
+  onProjectUpdating(){
+    
+  }
+
 }
