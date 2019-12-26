@@ -16,7 +16,7 @@ import { DxoMasterDetailComponent } from 'devextreme-angular/ui/nested';
   selector: 'kt-fund-management',
   templateUrl: './fund-management.component.html',
   styleUrls: ['./fund-management.component.scss'],
-  // encapsulation: ViewEncapsulation.None,
+ encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.Default,
 })
 
@@ -118,6 +118,7 @@ export class FundManagementComponent implements OnInit {
       } else {
         this.deletefundsourceSubs = this.service.deletefundsource(item.fundId).subscribe(success => {
           console.log('deletefundsource', true);
+          this.dataGrid.instance.refresh();
           this.refreshgrid();
         },
           error => {
