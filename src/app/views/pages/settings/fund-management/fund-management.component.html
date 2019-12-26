@@ -1,12 +1,3 @@
-<!-- 
-<kt-portlet [class]="'kt-portlet--height-fluid'">
-		<kt-portlet-header [title]="'Funds'">
-			<ng-container ktPortletTools>
-		
-
-			</ng-container>
-		</kt-portlet-header>
-		<kt-portlet-body style="padding: inherit;"> -->
 			<div class="dx-viewport demo-container">
 				<span id="gridHeaderTitle" >Funds</span>
 				<dx-button id="gridDeleteSelected" icon="trash" [height]="36" [disabled]="!selectedItemKeys.length"
@@ -55,8 +46,9 @@
 					[remoteOperations]="true"
 					[showColumnHeaders]="false"
 					class="masterdetail"
-				
+					[columnAutoWidth]="true"
 					>
+					<dxo-load-panel [enabled]="true"></dxo-load-panel>
 					<dxo-scrolling mode="virtual"></dxo-scrolling>
 						<dxo-editing mode="cell" [allowUpdating]="true" [allowAdding]="true">
 						</dxo-editing>
@@ -83,5 +75,4 @@
 
 			</dx-data-grid>
 		</div>
-		<!-- </kt-portlet-body>
-	</kt-portlet> -->
+	

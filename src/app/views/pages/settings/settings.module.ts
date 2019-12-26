@@ -11,7 +11,7 @@ import { PartialsModule } from '../../partials/partials.module';
 
 import { FundManagementComponent } from './fund-management/fund-management.component';
 import { AdminSettingsComponent } from './admin-settings/admin-settings.component';
-import { DxTreeListModule, DxButtonModule, DxCheckBoxModule, DxDataGridModule, DxPivotGridModule } from 'devextreme-angular';
+import { DxTreeListModule, DxButtonModule, DxCheckBoxModule, DxDataGridModule, DxPivotGridModule, DxTemplateModule } from 'devextreme-angular';
 import { CampusManagementComponent } from './campus-management/campus-management.component';
 import { FundAllocationComponent } from './fund-allocation/fund-allocation.component';
 
@@ -56,6 +56,8 @@ const routes: Routes = [
     DxCheckBoxModule,
     DxDataGridModule,
     DxPivotGridModule,
+    DxTemplateModule,
+
   ],
   exports: [RouterModule],
   declarations: [

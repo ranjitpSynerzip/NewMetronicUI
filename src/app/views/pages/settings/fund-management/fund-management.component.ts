@@ -60,6 +60,7 @@ export class FundManagementComponent implements OnInit {
     this.service.getfundsource().subscribe(
       data => {
         this.dataSource = data;
+        this.dataGrid.instance.refresh();
       }
     );
 
@@ -87,6 +88,7 @@ export class FundManagementComponent implements OnInit {
   // }
 
   selectionChanged(data: any) {
+    console.log('selectionChanged');
     this.SelectedRowsData = data.selectedRowsData;
     this.selectedItemKeys = data.selectedRowKeys;
   }
@@ -108,8 +110,8 @@ export class FundManagementComponent implements OnInit {
       if (item.seriesName) {
         this.deletefundSeriesSubs = this.service.deletefundSeries(item.seriesId).subscribe(success => {
           console.log('deletefundSeries', true);
+          this.dataGrid.instance.refresh();
           this.loadfundSerise();
-          this.MasterDetail.instance.refresh();
         },
           error => {
             console.log('deletefundSeries', false);
@@ -203,7 +205,8 @@ export class FundManagementComponent implements OnInit {
     console.log('OnRowInsertingFundSeries', this.fundSeriseObj)
     this.service.postfundSeries(this.fundSeriseObj).subscribe(success => {
       console.log('fund Series Added', true);
-      this.MasterDetail.instance.refresh();
+      this.dataGrid.instance.refresh();
+        //this.MasterDetail.instance.refresh();
       this.loadfundSerise();
     },
       error => {
@@ -234,7 +237,8 @@ export class FundManagementComponent implements OnInit {
 
     this.service.putfundSeries(this.updatefundSeriseObj, e.key.seriesId).subscribe(success => {
       console.log('fund Source Updated', true);
-      this.MasterDetail.instance.refresh();
+      this.dataGrid.instance.refresh();
+      //this.MasterDetail.instance.refresh();
       this.loadfundSerise();
     },
       error => {
@@ -243,7 +247,7 @@ export class FundManagementComponent implements OnInit {
   }
 
   onRowExpanding(e) {
-    e.component.collapseAll(-1);  //NP-789
+    //e.component.collapseAll(-1);  //NP-789
     this.fundSourceid = e.key.fundId;
     console.log('onRowExpanding', this.fundSourceid);
 
@@ -266,7 +270,10 @@ export class FundManagementComponent implements OnInit {
     console.log('loadfundSerise');
     this.fundSeriseDataSource = [];
     this.service.getfundSeriesByfundId(this.fundSourceid).subscribe(
-      data => (this.fundSeriseDataSource = data)
+      data => {
+      this.fundSeriseDataSource = data;
+      this.dataGrid.instance.refresh();
+      }
     );
   }
 
