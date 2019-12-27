@@ -3,7 +3,7 @@
 				<dx-button id="gridDeleteSelected" icon="trash" [height]="36" [disabled]="!selectedItemKeys.length"
 				(onClick)="deleteRecords()">
 			</dx-button>
-				<dx-data-grid id="Fundgrid" [dataSource]="dataSource" 
+				<dx-data-grid id="Fundgrid" #Fundgrid [dataSource]="dataSource" 
 				[showBorders]="true"
 				[showRowLines]="true"
 				[showColumnLines]="false"
@@ -13,11 +13,11 @@
 				(onRowUpdating)="onRowUpdating($event)"
 				(onRowExpanding)=onRowExpanding($event)
 				[masterDetail]="{ enabled: true, template: 'fundSeries' }"
-				(onContentReady)="onMasterdetailReady($event)"
+				(onContentReady)="onContentReady($event)"
 				>
 				<dxo-selection mode="multiple"></dxo-selection>
+				<!-- <dxo-scrolling mode="standard"></dxo-scrolling> -->
 				<dxo-load-panel [enabled]="true"></dxo-load-panel>
-				<dxo-scrolling mode="virtual"></dxo-scrolling>
 				<dxo-editing mode="cell" [allowUpdating]="true" [allowAdding]="true">
 				</dxo-editing>
 				<dxi-column dataField="fundName" caption="Name" cellTemplate="BoldCellTemplate">
@@ -33,7 +33,7 @@
 
 				<div *dxTemplate="let series of 'fundSeries'" class="masterdetail">
 					
-					<dx-data-grid [dataSource]="fundSeriseDataSource" 
+					<dx-data-grid #fundSeries [dataSource]="fundSeriseDataSource" 
 					[showBorders]="true"
 					[showRowLines]="true"
 					[showColumnLines]="false"
@@ -42,10 +42,11 @@
 					(onRowUpdating)="onRowUpdatingFundSeries($event)"
 					[remoteOperations]="true"
 					[showColumnHeaders]="false"
+					(onContentReady)="onMasterdetailReady($event)"
 					class="masterdetail"
 					>
 					<dxo-load-panel [enabled]="true"></dxo-load-panel>
-					<!-- <dxo-scrolling mode="virtual"></dxo-scrolling> -->
+					<!-- <dxo-scrolling mode="standard"></dxo-scrolling> -->
 						<dxo-editing mode="cell" [allowUpdating]="true" [allowAdding]="true">
 						</dxo-editing>
 						<dxo-selection mode="multiple"></dxo-selection>

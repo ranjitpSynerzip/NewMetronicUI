@@ -21,7 +21,8 @@ import { DxoMasterDetailComponent } from 'devextreme-angular/ui/nested';
 })
 
 export class FundManagementComponent implements OnInit {
-  @ViewChild(DxDataGridComponent, { static: false }) dataGrid: DxDataGridComponent;
+  @ViewChild('Fundgrid', { static: false }) dataGrid: DxDataGridComponent;
+   @ViewChild('fundSeries', { static: false }) fundSeriesGrid: DxDataGridComponent;
  
   dataSource: Funds[];
   fundSeriseDataSource: FundSeriesModel[];
@@ -111,6 +112,7 @@ export class FundManagementComponent implements OnInit {
         this.deletefundSeriesSubs = this.service.deletefundSeries(item.seriesId).subscribe(success => {
           console.log('deletefundSeries', true);
           this.loadfundSerise();
+          this.fundSeriesGrid.instance.refresh();
         },
           error => {
             console.log('deletefundSeries', false);
@@ -118,8 +120,8 @@ export class FundManagementComponent implements OnInit {
       } else {
         this.deletefundsourceSubs = this.service.deletefundsource(item.fundId).subscribe(success => {
           console.log('deletefundsource', true);
-          this.dataGrid.instance.refresh();
           this.refreshgrid();
+          this.dataGrid.instance.refresh();
         },
           error => {
             console.log('deletefundsource', false);
@@ -153,7 +155,7 @@ export class FundManagementComponent implements OnInit {
       console.log('fund Source Added', true);
       this.dataGrid.instance.refresh();
       this.refreshgrid();
-      //this.refreshDataGrid();
+     
     },
       error => {
         console.log('fund Source Added', false);
@@ -203,8 +205,8 @@ export class FundManagementComponent implements OnInit {
     console.log('OnRowInsertingFundSeries', this.fundSeriseObj)
     this.service.postfundSeries(this.fundSeriseObj).subscribe(success => {
       console.log('fund Series Added', true);
-      this.dataGrid.instance.refresh();
-        //this.MasterDetail.instance.refresh();
+      //this.dataGrid.instance.refresh();
+      this.fundSeriesGrid.instance.refresh();
       this.loadfundSerise();
     },
       error => {
@@ -235,9 +237,10 @@ export class FundManagementComponent implements OnInit {
 
     this.service.putfundSeries(this.updatefundSeriseObj, e.key.seriesId).subscribe(success => {
       console.log('fund Source Updated', true);
-      this.dataGrid.instance.refresh();
-      //this.MasterDetail.instance.refresh();
-      this.loadfundSerise();
+     // this.dataGrid.instance.refresh();
+     this.loadfundSerise();
+      this.fundSeriesGrid.instance.refresh();
+    
     },
       error => {
         console.log('fund Source Updated', false);
@@ -249,7 +252,7 @@ export class FundManagementComponent implements OnInit {
     // e.component.expandRow(this.selectedItemKeys[0]);
     this.fundSourceid = e.key.fundId;
     console.log('onRowExpanding', this.fundSourceid);
-
+    this.dataGrid.instance.refresh();
     // this.service.getfundSeriesByfundId(e.key.fundId).subscribe(
     //   data => (this.fundSeriseDataSource = data,
     //     console.log(this.fundSeriseDataSource))
@@ -259,11 +262,11 @@ export class FundManagementComponent implements OnInit {
   }
 
   onContentReady(e) {
-    e.component.option("loadPanel.enabled", false);
+    e.component.option("loadPanel.enabled", true);
   }
 
   onMasterdetailReady(e) {
-    e.component.option("loadPanel.enabled", false);
+    e.component.option("loadPanel.enabled", true);
   }
 
 
@@ -275,7 +278,7 @@ export class FundManagementComponent implements OnInit {
     this.service.getfundSeriesByfundId(this.fundSourceid).subscribe(
       data => {
       this.fundSeriseDataSource = data;
-      this.dataGrid.instance.refresh();
+      this.fundSeriesGrid.instance.refresh();
       }
     );
   }
