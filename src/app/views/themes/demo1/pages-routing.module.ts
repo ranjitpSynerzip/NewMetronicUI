@@ -41,8 +41,12 @@ const routes: Routes = [
 				path: 'projects',
 				loadChildren: () => import('app/views/pages/project/project.module').then(m => m.ProjectModule)
 			},
-		
-		
+			{
+				path: 'campuses',
+				loadChildren: () => import('app/views/pages/campus/campus.module').then(m => m.CampusModule)
+			},
+
+
 
 			{path: 'error/:type', component: ErrorPageComponent},
 			{path: '', redirectTo: 'dashboard', pathMatch: 'full'},

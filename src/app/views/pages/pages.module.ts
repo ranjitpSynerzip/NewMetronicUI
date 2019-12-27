@@ -11,6 +11,8 @@ import { DevgridModule } from './dev-grid/devgrid.module';
 import { StatusModule } from './status/status.module';
 import { SettingsModule } from './settings/settings.module';
 import { ProjectModule } from './project/project.module';
+import { CampusModule } from './campus/campus.module';
+
 
 
 
@@ -28,7 +30,8 @@ import { ProjectModule } from './project/project.module';
 		StatusModule,
 		SettingsModule,
 		ProjectModule,
-	
+		CampusModule
+
 	],
 	providers: []
 })
