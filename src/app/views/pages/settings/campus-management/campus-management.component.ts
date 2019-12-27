@@ -70,6 +70,7 @@ export class CampusManagementComponent implements OnInit {
       .subscribe(
         success => {
           console.log("Campus Updated", true);
+          this.CampusGrid.instance.refresh();
         },
         error => {
           console.log("Campus Updated", false);
@@ -113,7 +114,7 @@ export class CampusManagementComponent implements OnInit {
     this.campusObj.clientId = 2;
     this.campusObj.districtId = 2;
     this.campusObj.accountCode = e.data.accountCode;
-    this.campusObj.displayOrder = 1;
+    this.campusObj.displayOrder = 0;
     this.campusObj.createdBy = 1;
     this.campusObj.createdDate = new Date();
     this.campusObj.modifiedBy = 2;
@@ -139,7 +140,7 @@ export class CampusManagementComponent implements OnInit {
     this.updatecampusObj.accountCode = e.newData.accountCode ? e.newData.accountCode : e.oldData.accountCode;
     this.updatecampusObj.clientId = 2;
     this.updatecampusObj.districtId = 2;
-    this.updatecampusObj.displayOrder = 1;
+    this.updatecampusObj.displayOrder =  e.newData.displayOrder ? e.newData.displayOrder : e.oldData.displayOrder;
     this.updatecampusObj.createdBy = 1;
     this.updatecampusObj.createdDate = new Date();
     this.updatecampusObj.modifiedBy = 2;
