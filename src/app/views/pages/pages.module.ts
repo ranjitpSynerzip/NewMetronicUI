@@ -12,6 +12,9 @@ import { StatusModule } from './status/status.module';
 import { SettingsModule } from './settings/settings.module';
 import { ProjectModule } from './project/project.module';
 import { CampusModule } from './campus/campus.module';
+import { CampusOverviewModule } from './campus-overview/campus-overview.module';
+
+
 
 
 
@@ -30,7 +33,8 @@ import { CampusModule } from './campus/campus.module';
 		StatusModule,
 		SettingsModule,
 		ProjectModule,
-		CampusModule
+		CampusModule,
+		CampusOverviewModule
 
 	],
 	providers: []
