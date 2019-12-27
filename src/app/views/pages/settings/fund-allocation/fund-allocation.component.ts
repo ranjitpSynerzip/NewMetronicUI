@@ -53,6 +53,7 @@ export class FundAllocationComponent implements OnInit, OnDestroy {
             dataField: "seriesDetailAamount",
             dataType: "number",
             format: "currency",
+            summaryType:"sum",
             area: "data",
           }],
           store: this.serviceData,

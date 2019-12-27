@@ -61,6 +61,7 @@ export class UpdateFundAllocationComponent implements OnInit, OnDestroy {
           }, {
             dataField: "seriesDetailAamount",
             dataType: "number",
+            summaryType:"sum",
             format: "currency",
             area: "data",
           },
