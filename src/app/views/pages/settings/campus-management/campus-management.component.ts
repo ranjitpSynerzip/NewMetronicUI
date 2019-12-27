@@ -168,7 +168,7 @@ export class CampusManagementComponent implements OnInit {
   }
 
 
-  onContentReady(e) {
+  onCampusContentReady(e) {
     e.component.option("loadPanel.enabled", true);
   }
 }
