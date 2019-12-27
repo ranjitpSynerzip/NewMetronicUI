@@ -38,7 +38,15 @@ export class UpdateFundAllocationComponent implements OnInit, OnDestroy {
 
 
   constructor(private httpClient: HttpClient, private service: FundAllocationService) {
-    this.subscription = this.service.getfundAllocation().subscribe(
+   
+  }
+
+  ngOnInit() {
+    this.getFundAllocation();
+  }
+
+  getFundAllocation() {
+    this.service.getfundAllocation().subscribe(
       data => {
         this.serviceData = data;
         this.pivotGridDataSource = {
@@ -61,47 +69,32 @@ export class UpdateFundAllocationComponent implements OnInit, OnDestroy {
           }, {
             dataField: "seriesDetailAamount",
             dataType: "number",
-            summaryType:"sum",
             format: "currency",
+            summaryType: "sum",
             area: "data",
-          },
-          ],
+          }],
           store: this.serviceData,
         };
-
-      })
-
-
-
+      });
   }
-
-  ngOnInit() {
-
-  }
-
 
   onCellClick(e) {
     console.log('onCellClick', e)
-    if (e.area == "data") {
+    if (e.area == "data" && e.cell.columnPath.length > 1) {
       var rowPathLength = e.cell.rowPath.length,
         rowPathName = e.cell.rowPath[rowPathLength - 1];
-      console.log('campus', rowPathName);
-      console.log('Fund', e.cell.columnPath[0]);
-      console.log('serise', e.cell.columnPath[1]);
-
       this.campusName = rowPathName;
       this.fundName = e.cell.columnPath[0];
       this.seriseName = e.cell.columnPath[1];
-      // console.log('e.cell', e.cell);
       this.CellValue = e.cell.value;
-      this.PopupTitle = 'Serise Amount';
+      this.PopupTitle = 'Update Amount';
       this.PopupVisible = true;
     }
   }
 
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+   // this.subscription.unsubscribe();
   }
 
   onPopupShown() {
@@ -118,9 +111,12 @@ export class UpdateFundAllocationComponent implements OnInit, OnDestroy {
     this.seriseAmount = (Object.values(form.value).toLocaleString());
     this.PopupVisible = false;
     this.service.updateseriesdetailamount(this.seriseAmount, this.seriseName, this.fundName, this.campusName).subscribe(
-      success => { console.log('updateseriesdetailamount'); },
+      success => { console.log('updateseriesdetailamount'); 
+      this.getFundAllocation();
+ 
+     },
       error => { console.log('error'); }
-    )
+    );
   }
 
 }
