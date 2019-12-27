@@ -59,25 +59,25 @@ export class CampusComponent implements OnInit {
 		});
 	}
 
-	// OnRowInserting(e) {
-	// 	this.campusObj.campusName = e.data.campusName;
-	// 	this.campusObj.clientId = 2;
-	// 	this.campusObj.districtId = 2;
-	// 	this.campusObj.accountCode = e.data.accountCode;
-	// 	this.campusObj.displayOrder = 1;
-	// 	this.campusObj.createdBy = 1;
-	// 	this.campusObj.createdDate = "2019-12-23T12:39:20.923";
-	// 	this.campusObj.modifiedBy = 2;
-	// 	this.campusObj.modifiedDate = "2019-12-23T12:39:20.923";
-	// 	this.campusObj.isDeleted = false;
+	OnRowInserting(e) {
+		this.campusObj.campusName = e.data.campusName;
+		this.campusObj.clientId = 2;
+		this.campusObj.districtId = 2;
+		this.campusObj.accountCode = e.data.accountCode;
+		this.campusObj.displayOrder = 0;
+		this.campusObj.createdBy = 1;
+		this.campusObj.createdDate = new Date();
+		this.campusObj.modifiedBy = 2;
+		this.campusObj.modifiedDate = new Date();
+		this.campusObj.isDeleted = false;
 
-	// 	this.service.postCampus(this.campusObj).subscribe(
-	// 		success => {
-	// 			console.log("Campus Added", true);
-	// 		},
-	// 		error => {
-	// 			console.log("Campus Added", false);
-	// 		}
-	// 	);
-	// }
+		this.service.postCampus(this.campusObj).subscribe(
+			success => {
+				console.log("Campus Added", true);
+			},
+			error => {
+				console.log("Campus Added", false);
+			}
+		);
+	}
 }

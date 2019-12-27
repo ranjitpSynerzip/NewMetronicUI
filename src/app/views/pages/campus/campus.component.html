@@ -16,6 +16,7 @@
 		[showRowLines]="true"
 		[showColumnLines]="false"
 		(onSelectionChanged)="selectionChanged($event)"
+		(onRowInserting)="OnRowInserting($event)"
 	>
 	<dxo-paging [pageSize]="10"></dxo-paging>
     <dxo-pager
@@ -47,7 +48,7 @@
 			alignment="left"
 		>
 		</dxi-column>
-		<dxi-column
+		<!-- <dxi-column
 			dataField="displayOrder"
 			caption="Display Order"
 			alignment="left"
@@ -61,7 +62,7 @@
 			alignment="left"
 			dataType="date"
 		>
-		</dxi-column>
+		</dxi-column> -->
 		<dxi-column
 			dataField="modifiedBy"
 			caption="Modified By"
