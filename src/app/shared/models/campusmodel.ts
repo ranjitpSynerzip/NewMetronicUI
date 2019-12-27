@@ -5,9 +5,9 @@ export class Campusmodel {
 	public districtId: number;
 	public displayOrder: number;
 	public createdBy: number;
-	public createdDate: string;
+	public createdDate: Date;
 	public modifiedBy: number;
-	public modifiedDate: string;
+	public modifiedDate: Date;
 	public isDeleted: boolean;
 	public accountCode: number;
 }
