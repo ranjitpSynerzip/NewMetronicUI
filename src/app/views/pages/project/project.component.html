@@ -1,7 +1,7 @@
 <div class="dx-viewport demo-container">
 	<span id="gridHeaderTitle" >Projects</span>
 <dx-button id="gridDeleteSelected" icon="trash" [disabled]="!selectedItemKeys.length" style="color:red" (onClick)="deleteRecords()"></dx-button>
-<dx-button id="gridAddSelected" routerLink="/status" > Add</dx-button>
+<dx-button id="gridAddSelected" routerLink="/status" > + </dx-button>
 
 
 <dx-data-grid [dataSource]="dataSource"
@@ -28,6 +28,11 @@
     <dxi-column dataField="projectId" caption="project #" alignment="left">
     </dxi-column>
     <dxi-column dataField="statusId" caption="Status" alignment="left">
+			<dxo-lookup
+			[dataSource]="Statues"
+			valueExpr="statusId"
+			displayExpr="statusName">
+		</dxo-lookup>
     </dxi-column>
     <!-- <dxi-column dataField="statusId" caption="Status">
     </dxi-column> -->
@@ -35,15 +40,44 @@
     </dxi-column>
     <dxi-column dataField="estimatedCompletionDate" dataType="date" caption="Estimated Compleation Date">
     </dxi-column>
-    <dxi-column dataField="bondFundCategoryId" caption="Category" alignment="left">
+    <dxi-column dataField="bondFundCategoryId" caption="Bond Fund Category" alignment="left">
     </dxi-column>
     <dxi-column dataField="orgCodeId" caption="Organization Code" alignment="left">
+			<dxo-lookup
+			[dataSource]="OrgCode"
+			valueExpr="id"
+			displayExpr="name">
+		</dxo-lookup>
     </dxi-column>
-    <dxi-column dataField="gccontactId" caption="General Contractor" alignment="left">
-    </dxi-column>
-    <dxi-column dataField="aorcompanyId" caption="Architect" alignment="left">
-    </dxi-column>
-    <dxi-column dataField="gccompanyId" caption="General Contractor" alignment="left">
-    </dxi-column>
+    <dxi-column dataField="gccontactId" caption="GC Contact" alignment="left">
+			<dxo-lookup
+			[dataSource]="contacts"
+			valueExpr="contactId"
+			displayExpr="contactName">
+		</dxo-lookup>
+	</dxi-column>
+	<dxi-column dataField="gccompanyId" caption="GC Company" alignment="left">
+			<dxo-lookup
+			[dataSource]="companies"
+			valueExpr="companyId"
+			displayExpr="comapnyName">
+		</dxo-lookup>
+	</dxi-column>
+	<dxi-column dataField="aorcontactId" caption="AOR Contact" alignment="left">
+			<dxo-lookup
+			[dataSource]="contacts"
+			valueExpr="contactId"
+			displayExpr="contactName">
+		</dxo-lookup>
+	</dxi-column>
+    <dxi-column dataField="aorcompanyId" caption="AOR Company" alignment="left">
+			<dxo-lookup
+			[dataSource]="companies"
+			valueExpr="companyId"
+			displayExpr="comapnyName">
+		</dxo-lookup>
+	</dxi-column>
+
+
 </dx-data-grid>
 </div>

@@ -36,6 +36,18 @@ export class ProjectService {
 		return this.http.put<any>(this.baseUrl + '/Projects' + '/' + id, projectModel, httpOptions);
 	}
 
+	getStatus(): Observable<any[]> {
+		return this.http.get<any>(this.baseUrl + '/Status')
+  }
+
+  getContacts(): Observable<any[]> {
+	return this.http.get<any>(this.baseUrl + '/Contacts')
+}
+
+getCompanies(): Observable<any[]> {
+	return this.http.get<any>(this.baseUrl + '/Companies')
+}
+
 }
 
 
