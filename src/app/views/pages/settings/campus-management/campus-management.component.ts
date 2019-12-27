@@ -1,20 +1,17 @@
 import {
   Component,
   OnInit,
-  NgModule,
   ViewChild,
-  ViewEncapsulation
+  ViewEncapsulation,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { DxDataGridComponent } from "devextreme-angular";
-// import * as AspNetData from "devextreme-aspnet-data-nojquery";
+
 import {
-  CampusManagementService,
-  Campus
+  CampusManagementService
 } from "./../../../../shared/Services/campus-management.service";
 import { Campusmodel } from "./../../../../shared/models/campusmodel";
-import { environment } from "../../../../../environments/environment";
-import { User } from "../../../../core/auth";
 import { confirm } from 'devextreme/ui/dialog';
 import { Subscription } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -25,39 +22,35 @@ import { CampusUpdateComponent } from './campus-update/campus-update.component';
   selector: "kt-campus-management",
   templateUrl: "./campus-management.component.html",
   styleUrls: ["./campus-management.component.scss"],
-  //   providers: [CampusManagementService]
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.Default,
 })
 export class CampusManagementComponent implements OnInit {
-  @ViewChild(DxDataGridComponent, { static: false })
-  dataGrid: DxDataGridComponent;
+  @ViewChild('Campusgrid', { static: false }) CampusGrid: DxDataGridComponent;
+
   dataSource: Campusmodel[];
   campusObj = new Campusmodel();
   updatecampusObj = new Campusmodel();
-  // url = environment.baseUrl;
   SelectedRowsData: any[] = [];
   selectedItemKeys: any[] = [];
   showDragIcons: boolean;
   private deleteCampuses: Subscription;
 
 
-  constructor(
-    private httpClient: HttpClient,
-    private service: CampusManagementService,
-    private modalService: NgbModal,
-  ) {
+  constructor(private httpClient: HttpClient, private service: CampusManagementService, private modalService: NgbModal ) {
     this.showDragIcons = true;
-    this.getData();
     this.onReorder = this.onReorder.bind(this);
   }
   ngOnInit() {
-    this.getData();
+    this.getCampusData();
   }
 
-  getData() {
+  getCampusData() {
+    console.log('getCampusData');
     this.dataSource = [];
     this.service.getCampus().subscribe(data => {
       this.dataSource = data;
+      this.CampusGrid.instance.refresh();
     });
   }
 
@@ -69,7 +62,7 @@ export class CampusManagementComponent implements OnInit {
     this.dataSource.splice(toIndex, 0, e.itemData);
 
     this.updatecampusObj = e.itemData;
-    console.log(this.updatecampusObj);
+    console.log('onReorder', this.updatecampusObj);
     this.updatecampusObj.displayOrder = toIndex;
 
     this.service
@@ -77,6 +70,7 @@ export class CampusManagementComponent implements OnInit {
       .subscribe(
         success => {
           console.log("Campus Updated", true);
+          this.CampusGrid.instance.refresh();
         },
         error => {
           console.log("Campus Updated", false);
@@ -84,54 +78,54 @@ export class CampusManagementComponent implements OnInit {
       );
   }
 
-  selectionChanged(data: any) {
+  onSelection(data: any) {
     this.SelectedRowsData = data.selectedRowsData;
     this.selectedItemKeys = data.selectedRowKeys;
   }
 
   deleteRecords() {
-    var result = confirm("Are you sure you want to delete?", "Confirm");
-    result.then((dialogResult) => {
+    var response = confirm("Are you sure you want to delete?", "Confirm");
+    response.then((dialogResult) => {
       if (dialogResult) {
-        this.ConfirmDelete();
+        this.onConfirmDelete();
       }
     });
   }
 
-  ConfirmDelete() {
+  onConfirmDelete() {
     this.SelectedRowsData.forEach((item) => {
       this.deleteCampuses = this.service.deleteCampus(item.campusId).subscribe(success => {
         console.log("removed Campus", true);
-        this.getData();
-        //this.dataGrid.instance.refresh();
+        this.getCampusData();
       },
         error => {
           console.log("removed Campus", false);
         }
       );
     });
-    // this.dataGrid.instance.refresh();
+
 
   }
 
 
 
-  OnRowInserting(e) {
+  OnCampusInserting(e) {
     this.campusObj.campusName = e.data.campusName;
     this.campusObj.clientId = 2;
     this.campusObj.districtId = 2;
     this.campusObj.accountCode = e.data.accountCode;
-    this.campusObj.displayOrder = 1;
+    this.campusObj.displayOrder = 0;
     this.campusObj.createdBy = 1;
-    this.campusObj.createdDate = "2019-12-23T12:39:20.923";
+    this.campusObj.createdDate = new Date();
     this.campusObj.modifiedBy = 2;
-    this.campusObj.modifiedDate = "2019-12-23T12:39:20.923";
+    this.campusObj.modifiedDate = new Date();
     this.campusObj.isDeleted = false;
 
     this.service.postCampus(this.campusObj).subscribe(
       success => {
         console.log("Campus Added", true);
-        this.getData();
+        this.getCampusData();
+        this.CampusGrid.instance.refresh();
       },
       error => {
         console.log("Campus Added", false);
@@ -139,22 +133,27 @@ export class CampusManagementComponent implements OnInit {
     );
   }
 
-  onRowUpdating(e) {
-    this.updatecampusObj = e.oldData;
-    this.updatecampusObj.campusName = e.newData.campusName
-      ? e.newData.campusName
-      : e.oldData.campusName;
-    this.updatecampusObj.accountCode = e.newData.accountCode
-      ? e.newData.accountCode
-      : e.oldData.accountCode;
-    //this.updatecampusObj.displayOrder = e.newData.accountCode ? e.newData.accountCode : e.oldData.accountCode;
+  onCampusUpdating(e) {
+    console.log('onRowUpdating', e);
+    this.updatecampusObj.campusId = e.oldData.campusId;
+    this.updatecampusObj.campusName = e.newData.campusName ? e.newData.campusName : e.oldData.campusName;
+    this.updatecampusObj.accountCode = e.newData.accountCode ? e.newData.accountCode : e.oldData.accountCode;
+    this.updatecampusObj.clientId = 2;
+    this.updatecampusObj.districtId = 2;
+    this.updatecampusObj.displayOrder =  e.newData.displayOrder ? e.newData.displayOrder : e.oldData.displayOrder;
+    this.updatecampusObj.createdBy = 1;
+    this.updatecampusObj.createdDate = new Date();
+    this.updatecampusObj.modifiedBy = 2;
+    this.updatecampusObj.modifiedDate = new Date();
+    this.updatecampusObj.isDeleted = false;
 
-    this.service
-      .putCampus(this.updatecampusObj, e.oldData.campusId)
+    console.log('onRowUpdatingData', this.updatecampusObj);
+    this.service.putCampus(this.updatecampusObj, e.oldData.campusId)
       .subscribe(
         success => {
           console.log("Campus Updated", true);
-          this.getData();
+          this.CampusGrid.instance.refresh();
+          this.getCampusData();
         },
         error => {
           console.log("Campus Updated", false);
@@ -162,15 +161,14 @@ export class CampusManagementComponent implements OnInit {
       );
   }
 
-
-
-  stop1() {
-    return false;
+  openLarge() {
+    this.modalService.open(CampusUpdateComponent, {
+      size: 'lg'
+    });
   }
 
-  openLarge() {
-		this.modalService.open(CampusUpdateComponent, {
-			size: 'lg'
-		});
-	}
+
+  onCampusContentReady(e) {
+    e.component.option("loadPanel.enabled", true);
+  }
 }
