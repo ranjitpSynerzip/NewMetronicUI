@@ -1,37 +1,49 @@
-<p>project works!</p>
+<div class="dx-viewport demo-container">
+	<span id="gridHeaderTitle" >Projects</span>
+<dx-button id="gridDeleteSelected" icon="trash" [disabled]="!selectedItemKeys.length" style="color:red" (onClick)="deleteRecords()"></dx-button>
+<dx-button id="gridAddSelected" routerLink="/status" > Add</dx-button>
+
+
 <dx-data-grid [dataSource]="dataSource"
               [remoteOperations]="true"
-              height="600" showBorders="true"
+			  height="600" [showBorders]="true"
+			  [showRowLines]="true"
+			  [showColumnLines]="false"
+			  (onSelectionChanged)="selectionChanged($event)"
+			  (onRowUpdating)="onRowUpdating($event)"
               >
 
-    <dxo-header-filter [visible]="true"></dxo-header-filter>
+    <!-- <dxo-header-filter [visible]="true"></dxo-header-filter> -->
     <dxo-scrolling mode="virtual"></dxo-scrolling>
     <dxo-editing mode="cell"
               [allowAdding]="true"
               [allowUpdating]="true"
-              [allowDeleting]="true">
-    </dxo-editing>
+              >
+	</dxo-editing>
+
+	<dxo-selection mode="multiple" ></dxo-selection>
 
     <dxi-column dataField="displayName" caption="Project Name">
     </dxi-column>
-    <dxi-column dataField="projectId" caption="project #">
+    <dxi-column dataField="projectId" caption="project #" alignment="left">
     </dxi-column>
-    <dxi-column dataField="statusId" caption="Status">
+    <dxi-column dataField="statusId" caption="Status" alignment="left">
     </dxi-column>
-    <dxi-column dataField="statusId" caption="Status">
-    </dxi-column>
-    <dxi-column dataField="startDate" dataType="date" caption="Status">
+    <!-- <dxi-column dataField="statusId" caption="Status">
+    </dxi-column> -->
+    <dxi-column dataField="startDate" dataType="date" caption="Start Date">
     </dxi-column>
     <dxi-column dataField="estimatedCompletionDate" dataType="date" caption="Estimated Compleation Date">
     </dxi-column>
-    <dxi-column dataField="bondFundCategoryId" caption="Category">
+    <dxi-column dataField="bondFundCategoryId" caption="Category" alignment="left">
     </dxi-column>
-    <dxi-column dataField="orgCodeId" caption="Organization Code">
+    <dxi-column dataField="orgCodeId" caption="Organization Code" alignment="left">
     </dxi-column>
-    <dxi-column dataField="gccontactId" caption="General Contractor">
+    <dxi-column dataField="gccontactId" caption="General Contractor" alignment="left">
     </dxi-column>
-    <dxi-column dataField="aorcompanyId" caption="Architect">
+    <dxi-column dataField="aorcompanyId" caption="Architect" alignment="left">
     </dxi-column>
-    <dxi-column dataField="gccompanyId" caption="General Contractor">
+    <dxi-column dataField="gccompanyId" caption="General Contractor" alignment="left">
     </dxi-column>
 </dx-data-grid>
+</div>
