@@ -144,7 +144,7 @@ export class FundAllocationService {
 
     updateseriesdetailamount(amount: string, seriseName: string, fundName: string, campusName: string): Observable<any> {
         const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-        return this.http.post<any>(this.baseUrl + '/SeriesDetails/updateseriesdetailamount?amount=' + amount +'&seriesName='+ seriseName +'&fundName='+ fundName +'&campusName='+ campusName, httpOptions)
+        return this.http.put<any>(this.baseUrl + '/SeriesDetails/updateseriesdetailamount?amount=' + amount +'&seriesName='+ seriseName +'&fundName='+ fundName +'&campusName='+ campusName, httpOptions)
     }
 
 
