@@ -51,5 +51,8 @@ export class CampusManagementService {
 		return this.http.delete<any>(this.baseUrl + '/Campus' + '/' + id, httpOptions);
 	}
 
+	getcampsforgrid(): Observable<any[]> {
+		return this.http.get<any[]>(this.baseUrl + '/Campus/getcampsforgrid');
+	}
 
 }
