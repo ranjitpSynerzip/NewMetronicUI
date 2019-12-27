@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs';
 })
 export class FundAllocationComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
-  @ViewChild(DxPivotGridComponent, { static: false }) pivotGrid: DxPivotGridComponent;
+  @ViewChild('FundsAllocationGrid', { static: false }) pivotGrid: DxPivotGridComponent;
 
   pivotGridDataSource: any;
   showTotalsPrior = true;
@@ -79,7 +79,7 @@ export class FundAllocationComponent implements OnInit, OnDestroy {
 
   onCellClick(e) {
     console.log('onCellClick', e)
-    if (e.area == "data" && e.cell.columnPath.length > 1) {
+    if (e.area == "data" && e.cell.columnPath.length > 1 && e.cell.rowType !== 'GT') {
       var rowPathLength = e.cell.rowPath.length,
         rowPathName = e.cell.rowPath[rowPathLength - 1];
       this.campusName = rowPathName;
@@ -112,7 +112,6 @@ export class FundAllocationComponent implements OnInit, OnDestroy {
     this.service.updateseriesdetailamount(this.seriseAmount, this.seriseName, this.fundName, this.campusName).subscribe(
       success => { console.log('updateseriesdetailamount'); 
       this.getFundAllocation();
- 
      },
       error => { console.log('error'); }
     );

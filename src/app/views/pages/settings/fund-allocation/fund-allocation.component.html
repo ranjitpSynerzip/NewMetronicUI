@@ -1,14 +1,16 @@
 <div class="dx-viewport demo-container backwhite">
     <div class="gridheading">Funds Allocation</div>
     <div>
-        <dx-pivot-grid id="FundsAllocationGrid"
+        <dx-pivot-grid id="FundsAllocationGrid" #FundsAllocationGrid
          [showBorders]="false" 
          [dataFieldArea]="'row'"
           [wordWrapEnabled]="false"
             [dataSource]="pivotGridDataSource" 
             (onCellClick)="onCellClick($event)" 
-            [height]="440">
+            [height]="440"
+            [allowExpandAll]="false">
             <dxo-field-chooser [enabled]="false"></dxo-field-chooser>
+            <dxo-load-panel [enabled]="true"></dxo-load-panel>
         </dx-pivot-grid>
     </div>
 
