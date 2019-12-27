@@ -4,6 +4,8 @@ import * as AspNetData from "devextreme-aspnet-data-nojquery";
 import { HttpClient } from '@angular/common/http';
 import { DxPivotGridComponent } from 'devextreme-angular';
 import { Subscription } from 'rxjs';
+import { FundemitterService } from '../../../../shared/Services/fundemitter.service';
+import { ThrowStmt } from '@angular/compiler';
 
 
 @Component({
@@ -35,16 +37,22 @@ export class FundAllocationComponent implements OnInit, OnDestroy {
   seriseName = '';
   fundName = '';
   campusName = '';
-  
-  constructor(private httpClient: HttpClient, private service: FundAllocationService) {
+
+  constructor(private httpClient: HttpClient, private service: FundAllocationService, private fundemmiter: FundemitterService) {
 
   }
 
   ngOnInit() {
     this.getFundAllocation();
+    if (this.fundemmiter.subsVar == undefined) {
+      this.fundemmiter.subsVar = this.fundemmiter.invokeComponentFunction.subscribe((name: string) => {
+        this.getFundAllocation();
+      });
+    }
   }
 
   getFundAllocation() {
+    console.log('getFundAllocation');
     this.service.getfundAllocation().subscribe(
       data => {
         this.serviceData = data;
@@ -93,7 +101,7 @@ export class FundAllocationComponent implements OnInit, OnDestroy {
 
 
   ngOnDestroy() {
-   // this.subscription.unsubscribe();
+    // this.subscription.unsubscribe();
   }
 
   onPopupShown() {
@@ -110,9 +118,10 @@ export class FundAllocationComponent implements OnInit, OnDestroy {
     this.seriseAmount = (Object.values(form.value).toLocaleString());
     this.PopupVisible = false;
     this.service.updateseriesdetailamount(this.seriseAmount, this.seriseName, this.fundName, this.campusName).subscribe(
-      success => { console.log('updateseriesdetailamount'); 
-      this.getFundAllocation();
-     },
+      success => {
+        console.log('updateseriesdetailamount');
+        this.getFundAllocation();
+      },
       error => { console.log('error'); }
     );
   }
