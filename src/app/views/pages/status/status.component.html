@@ -145,7 +145,7 @@
           <div class="col-md-3">
             <div class="form-group">
 						  <select name="companygc" class="form-control"  #gccompanyId= "ngModel"  [(ngModel)]="selectedCompanygc" placeholder="Company">
-								<option *ngFor="let c of companies" [selected]="c.companyId === selectedCompanygc" [ngValue]="c.companyId" >{{ c.comapnyName }}</option>
+								<option *ngFor="let c of companies" [selected]="c.companyId === selectedCompanygc" [ngValue]="c.companyId" >{{ c.companyName }}</option>
 							  </select>
             </div>
 		  </div>
@@ -174,7 +174,7 @@
           <div class="col-md-3">
             <div class="form-group">
 					<select name="companyaor" class="form-control" #aorcompanyId= "ngModel"  [(ngModel)]="selectedCompanyaor">
-							<option *ngFor="let c of companies" [selected]="c.companyId === selectedCompanyaor" [ngValue]="c.companyId" >{{ c.comapnyName }}</option>
+							<option *ngFor="let c of companies" [selected]="c.companyId === selectedCompanyaor" [ngValue]="c.companyId" >{{ c.companyName }}</option>
 						  </select>
             </div>
 		  </div>
@@ -203,7 +203,7 @@
           <div class="col-md-3">
             <div class="form-group">
 					<select name="companyior" #iorcompanyId= "ngModel" class="form-control"  [(ngModel)]="selectedCompanyior">
-							<option *ngFor="let c of companies" [selected]="c.companyId === selectedCompanyior" [ngValue]="c.companyId" >{{ c.comapnyName }}</option>
+							<option *ngFor="let c of companies" [selected]="c.companyId === selectedCompanyior" [ngValue]="c.companyId" >{{ c.companyName }}</option>
 						  </select>
             </div>
 		  </div>
@@ -232,7 +232,7 @@
           <div class="col-md-3">
             <div class="form-group">
 					<select name="companycm" #cmcompanyId= "ngModel" class="form-control"  [(ngModel)]="selectedCompanycm">
-							<option *ngFor="let c of companies" [selected]="c.companyId === selectedCompanycm" [ngValue]="c.companyId" >{{ c.comapnyName }}</option>
+							<option *ngFor="let c of companies" [selected]="c.companyId === selectedCompanycm" [ngValue]="c.companyId" >{{ c.companyName }}</option>
 						  </select>
             </div>
 		  </div>
