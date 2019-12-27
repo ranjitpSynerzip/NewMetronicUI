@@ -7,7 +7,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CoreModule } from '../../../core/core.module';
 import { HttpClientModule } from '@angular/common/http';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
-import { DxDataGridModule } from 'devextreme-angular';
+import { DxDataGridModule, DxButtonModule } from 'devextreme-angular';
 
 
 const routes: Routes = [
@@ -32,7 +32,8 @@ const routes: Routes = [
     HttpClientModule,
     PerfectScrollbarModule,
     RouterModule.forChild(routes),
-    DxDataGridModule,
+	DxDataGridModule,
+	DxButtonModule
   ],
   exports: [RouterModule],
   declarations: [
