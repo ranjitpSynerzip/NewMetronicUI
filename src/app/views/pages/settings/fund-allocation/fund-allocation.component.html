@@ -1,14 +1,30 @@
 <div class="dx-viewport demo-container backwhite">
-  <div class="gridheading">Funds Allocation</div>
-  <div>
-    <dx-pivot-grid id="FundsAllocationGrid"
-     [showBorders]="false" 
-     [dataFieldArea]="'row'" 
-     [wordWrapEnabled]="false"
-      [dataSource]="pivotGridDataSource"
-      (onCellClick)="onCellClick($event)"
-       [height]="440">
-      <dxo-field-chooser [enabled]="false"></dxo-field-chooser>
-    </dx-pivot-grid>
-  </div>
+    <div class="gridheading">Funds Allocation</div>
+    <div>
+        <dx-pivot-grid id="FundsAllocationGrid"
+         [showBorders]="false" 
+         [dataFieldArea]="'row'"
+          [wordWrapEnabled]="false"
+            [dataSource]="pivotGridDataSource" 
+            (onCellClick)="onCellClick($event)" 
+            [height]="440">
+            <dxo-field-chooser [enabled]="false"></dxo-field-chooser>
+        </dx-pivot-grid>
+    </div>
+
+    <div>
+        <dx-popup [(visible)]="PopupVisible" [title]="PopupTitle" [width]="300" [height]="200"
+            (onShown)="onPopupShown()">
+  
+           <form #myform="ngForm" (ngSubmit)="onSubmit(myform)" class="form">
+                <div class="form-group">
+            <input name="SeriseAmount" id="SeriseAmount" class="form-control" [(ngModel)]='CellValue'  required>
+        </div>
+        <div class="text-center">
+                <input type="submit" class="btn btn-primary" value="Update">
+        </div>
+           
+          </form>
+        </dx-popup>
+    </div>
 </div>
