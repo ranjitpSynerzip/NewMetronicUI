@@ -10,6 +10,7 @@ import { DxDataGridModule, DxButtonModule } from 'devextreme-angular';
 import { CampusInfoComponent } from './campus-info/campus-info.component';
 import { CampusContactComponent } from './campus-contact/campus-contact.component';
 import { RecentActivitiesComponent } from './recent-activities/recent-activities.component';
+import { CampusTaskComponent } from './campus-task/campus-task.component';
 
 const routes: Routes = [
 	{
@@ -32,13 +33,17 @@ const routes: Routes = [
 			path: 'recentactivity',
 			component: RecentActivitiesComponent,
 		  },
+		  {
+			path: 'campustask',
+			component: RecentActivitiesComponent,
+		  },
 	  ]
 	}
   ];
 
 
 @NgModule({
-  declarations: [CampusOverviewComponent, CampusInfoComponent, CampusNotesComponent, CampusContactComponent, CampusContactComponent, RecentActivitiesComponent],
+  declarations: [CampusOverviewComponent, CampusInfoComponent, CampusNotesComponent, CampusContactComponent, CampusContactComponent, RecentActivitiesComponent, CampusTaskComponent],
   imports: [
     CommonModule,
 	PartialsModule,
