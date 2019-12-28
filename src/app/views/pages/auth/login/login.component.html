@@ -6,19 +6,23 @@
 <!--end::Head-->
 
 <!--begin::Body-->
-<div class="kt-login__body">
+<div class="kt-login__body" style="height:90%" >
 	<!--begin::Signin-->
 	
 	<div class="kt-login__form">
+		<div style="background-color: #b10069;;background-image: url(./assets/media/logos/logoCOD.png);width:285px; height: 85px;background-position: center; background-repeat: no-repeat;margin-bottom: 10px;">
+
+		</div>
+
 		<div class="kt-login__title">
-			<h3>New Prompt</h3>
+			<h5>Sign In To PROMPTed</h5>
 		</div>
 
 		<!-- <kt-auth-notice></kt-auth-notice> -->
 
 		<!--begin::Form-->
-		<div class="card cardShadow" style="box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);" >
-				<form class="kt-form" [formGroup]="loginForm" autocomplete="off">
+		<!-- <div class="card cardShadow" style="box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);" > -->
+				<form class="kt-form" [formGroup]="loginForm" autocomplete="off" style="text-align: center;">
 						<div class="form-group">
 							<mat-form-field>
 								<mat-label>{{ 'AUTH.INPUT.EMAIL' | translate }}</mat-label>
@@ -53,16 +57,36 @@
 							</mat-form-field>
 						</div>
 						<!--begin::Action-->
-						<div class="kt-login__actions">
-							<!-- <a href="javascript:;" routerLink="/auth/forgot-password" class="kt-link kt-login__link-forgot">
-								{{ 'AUTH.GENERAL.FORGOT_BUTTON' | translate }}
-							</a> -->
-							<button (click)="submit()" [ngClass]="{'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--light': loading}" id="kt_login_signin_submit" class="btn btn-primary btn-elevate kt-login__btn-primary">{{ 'AUTH.LOGIN.BUTTON' | translate }}</button>
+						<div>
+							<div style="text-align: left;width: 50%; float:left">
+									<label class="checkbox-inline">
+											<input type="checkbox" value="">Remember me
+										  </label>
+										</div>
+							<div style="text-align: right;width: 50%; float:right"><a href="javascript:;" routerLink="/auth/forgot-password" class="kt-link kt-login__link-forgot">
+							{{ 'AUTH.GENERAL.FORGOT_BUTTON' | translate }}
+						</a></div>
+					</div>
+						<div class="kt-login__actions" style="text-align: center;" >
+							
+							<button (click)="submit()" [ngClass]="{'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--light': loading}" id="kt_login_signin_submit" class="btn btn-primary btn-elevate kt-login__btn-primary" style="border-radius: 25px;">{{ 'AUTH.LOGIN.BUTTON' | translate }}</button>
 						</div>
 						<!--end::Action-->
+
+						<div>
+								<div style="text-align: left;width: 60%; float:left">
+										<label class="checkbox-inline">
+												
+Don't have an account yet ?
+											  </label>
+											</div>
+								<div style="text-align: right;width: 40%; float:right"><a href="javascript:;" routerLink="/auth/forgot-password" class="kt-link kt-login__link-forgot">
+									Sign Up
+							</a></div>
+						</div>
 					</form>
 		
-				</div>
+				<!-- </div> -->
 		<!--end::Form-->
 
 		<!--begin::Divider-->
@@ -93,8 +117,17 @@
 			</a>
 		</div> -->
 		<!--end::Options-->
+   
 	</div>
 
 	<!--end::Signin-->
+
 </div>
+<div style="text-align: center;">
+	<b>Powered by</b>
+	<div class="align-items-center"  style="background-image: url(./assets/media/logos/UserLogo1.jpg);width:100%; height: 45px;background-position: center; background-repeat: no-repeat;">
+
+	</div>
+</div>
+
 <!--end::Body-->
