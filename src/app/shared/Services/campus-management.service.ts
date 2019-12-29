@@ -4,54 +4,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { Campusmodel } from './../models/campusmodel';
 import { catchError, map } from 'rxjs/operators';
 
-export class Campus {
-	ID: number;
-	Name: string;
-	Code: number;
-}
 
-// let campuses: Campus[] = [
-// 	{
-// 		ID: 1,
-// 		Name: "Anahim",
-// 		Code: 6655455,
-// 	},
-// 	{
-// 		ID: 2,
-// 		Name: "New Port",
-// 		Code: 454486,
-// 	},
-// 	{
-// 		ID: 3,
-// 		Name: "Diamond Bar",
-// 		Code: 785152,
-// 	},
-// 	{
-// 		ID: 4,
-// 		Name: "Placentia",
-// 		Code: 56565656,
-// 	},
-// 	{
-// 		ID: 5,
-// 		Name: "Brea County",
-// 		Code: 7458123,
-// 	},
-// 	{
-// 		ID: 6,
-// 		Name: "Brea County",
-// 		Code: 7458123,
-// 	},
-// 	{
-// 		ID: 7,
-// 		Name: "Brea County",
-// 		Code: 7458123,
-// 	},
-// 	{
-// 		ID: 8,
-// 		Name: "Brea County",
-// 		Code: 7458123,
-// 	},
-// ]
 
 @Injectable({
 	providedIn: 'root',
@@ -67,8 +20,8 @@ export class CampusManagementService {
 	// 	return campuses;
 	// }
 
-	getCampus(): Observable<any[]> {
-		return this.http.get<any>(this.baseUrl + '/Campus')
+	getCampus(): Observable<Campusmodel[]> {
+		return this.http.get<Campusmodel[]>(this.baseUrl + '/Campus')
 	}
 
 	getCampusById(id: number): Observable<any> {
@@ -98,5 +51,8 @@ export class CampusManagementService {
 		return this.http.delete<any>(this.baseUrl + '/Campus' + '/' + id, httpOptions);
 	}
 
+	getcampsforgrid(): Observable<any[]> {
+		return this.http.get<any[]>(this.baseUrl + '/Campus/getcampsforgrid');
+	}
 
 }

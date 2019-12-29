@@ -6,15 +6,21 @@
 
 <dx-data-grid [dataSource]="dataSource"
               [remoteOperations]="true"
-			  height="600" [showBorders]="true"
+			  [showBorders]="true"
 			  [showRowLines]="true"
 			  [showColumnLines]="false"
 			  (onSelectionChanged)="selectionChanged($event)"
 			  (onRowUpdating)="onRowUpdating($event)"
               >
 
-    <!-- <dxo-header-filter [visible]="true"></dxo-header-filter> -->
-    <dxo-scrolling mode="virtual"></dxo-scrolling>
+	<!-- <dxo-header-filter [visible]="true"></dxo-header-filter> -->
+	<dxo-paging [pageSize]="10"></dxo-paging>
+    <dxo-pager
+        [showPageSizeSelector]="true"
+        [allowedPageSizes]="[5, 10, 20]"
+        [showInfo]="true">
+    </dxo-pager>
+    <!-- <dxo-scrolling mode="virtual"></dxo-scrolling> -->
     <dxo-editing mode="cell"
               [allowAdding]="true"
               [allowUpdating]="true"
@@ -25,7 +31,7 @@
 
     <dxi-column dataField="displayName" caption="Project Name">
     </dxi-column>
-    <dxi-column dataField="projectId" caption="project #" alignment="left">
+    <dxi-column dataField="projectNumber" caption="Project Number" alignment="left">
     </dxi-column>
     <dxi-column dataField="statusId" caption="Status" alignment="left">
 			<dxo-lookup
@@ -60,7 +66,7 @@
 			<dxo-lookup
 			[dataSource]="companies"
 			valueExpr="companyId"
-			displayExpr="comapnyName">
+			displayExpr="companyName">
 		</dxo-lookup>
 	</dxi-column>
 	<dxi-column dataField="aorcontactId" caption="AOR Contact" alignment="left">
@@ -74,7 +80,7 @@
 			<dxo-lookup
 			[dataSource]="companies"
 			valueExpr="companyId"
-			displayExpr="comapnyName">
+			displayExpr="companyName">
 		</dxo-lookup>
 	</dxi-column>
 

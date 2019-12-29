@@ -5,105 +5,122 @@ import { Observable, throwError } from 'rxjs';
 import { FundallocationModel } from '../models/fund-amount.model';
 
 
-export class Sale {
-    id: number;
-    campus: string;
-    serise: string;
-    amount: number;
-    fund: string;
+export class CampusSummary {
+    campusId: number;
+    campusName: string;
+    seriesName: string;
+    Amount: number;
+    seriesId: number;
+    displayOrder: string;
 }
 
-let sales: Sale[] = [{
-    "id": 16,
-    "campus": "Australia",
-    "serise": "serise1",
-    "amount": 3920,
-    "fund": "Measure1"
+let campusSummary: CampusSummary[] = [
+    {
+    "campusId": 1,
+    "campusName": "Australia",
+    "seriesName": "seriesName1",
+    "Amount": 3920,
+    "seriesId": 1,
+    "displayOrder": "1"
 }, {
-    "id": 41,
-    "campus": "Australia",
-    "serise": "serise1",
-    "amount": 6040,
-    "fund": "Bond-Local"
+    "campusId": 2,
+    "campusName": "Australia",
+    "seriesName": "seriesName1",
+    "Amount": 6040,
+    "seriesId": 2,
+    "displayOrder" : "1"
 }, {
-    "id": 42,
-    "campus": "Australia",
-    "serise": "serise2",
-    "amount": 2205,
-    "fund": "Bond-Local"
+    "campusId": 3,
+    "campusName": "Australia",
+    "seriesName": "seriesName2",
+    "Amount": 2205,
+    "seriesId":3,
+    "displayOrder": "2"
 }, {
-    "id": 43,
-    "campus": "Australia",
-    "serise": "serise1",
-    "amount": 990,
-    "fund": "Alumini-Fund"
+    "campusId": 4,
+    "campusName": "Australia",
+    "seriesName": "seriesName2",
+    "Amount": 990,
+    "seriesId": 4,
+    "displayOrder": "2"
 }, {
-    "id": 44,
-    "campus": "Australia",
-    "serise": "serise2",
-    "amount": 700,
-    "fund": "Alumini-Fund"
+    "campusId": 5,
+    "campusName": "Australia1",
+    "seriesName": "seriesName2",
+    "Amount": 700,
+    "seriesId": 5,
+    "displayOrder": "2"
 }, {
-    "id": 45,
-    "campus": "Australia",
-    "serise": "serise2",
-    "amount": 2325,
-    "fund": "Alumini-Fund"
+    "campusId": 6,
+    "campusName": "Australia1",
+    "seriesName": "seriesName1",
+    "Amount": 2325,
+    "seriesId": 6,
+    "displayOrder": "1"
 }, {
-    "id": 64,
-    "campus": "Australia",
-    "serise": "serise2",
-    "amount": 1980,
-    "fund": "Alumini-Fund"
+    "campusId": 7,
+    "campusName": "Australia1",
+    "seriesName": "seriesName1",
+    "Amount": 1980,
+    "seriesId": 7,
+    "displayOrder": "1"
 }, {
-    "id": 65,
-    "campus": "Australia",
-    "serise": "serise1",
-    "amount": 1110,
-    "fund": "Alumini-Fund"
+    "campusId": 8,
+    "campusName": "Australia1",
+    "seriesName": "seriesName1",
+    "Amount": 1110,
+    "seriesId": 8,
+    "displayOrder": "1"
 }, {
-    "id": 90,
-    "campus": "Australia",
-    "serise": "serise1",
-    "amount": 3090,
-    "fund": "Fund-Source4"
+    "campusId": 9,
+    "campusName": "Australia1",
+    "seriesName": "seriesName2",
+    "Amount": 3090,
+    "seriesId": 9,
+    "displayOrder": "2"
 }, {
-    "id": 91,
-    "campus": "Australia",
-    "serise": "serise1",
-    "amount": 1640,
-    "fund": "Fund-Source4"
+    "campusId": 10,
+    "campusName": "Australia1",
+    "seriesName": "seriesName2",
+    "Amount": 1640,
+    "seriesId": 10,
+    "displayOrder": "2"
 }, {
-    "id": 114,
-    "campus": "Australia",
-    "serise": "serise2",
-    "amount": 3190,
-    "fund": "Fund-Source4"
+    "campusId": 11,
+    "campusName": "Australia2",
+    "seriesName": "seriesName2",
+    "Amount": 3190,
+    "seriesId": 11,
+    "displayOrder": "2"
 }, {
-    "id": 278,
-    "campus": "Australia",
-    "serise": "serise2",
-    "amount": 3250,
-    "fund": "Fund-Source4"
+    "campusId": 12,
+    "campusName": "Australia2",
+    "seriesName": "seriesName2",
+    "Amount": 3250,
+    "seriesId": 12,
+    "displayOrder": "2"
 }, {
-    "id": 279,
-    "campus": "Australia",
-    "serise": "serise1",
-    "amount": 5550,
-    "fund": "Measure1"
+    "campusId": 13,
+    "campusName": "Australia2",
+    "seriesName": "seriesName1",
+    "Amount": 5550,
+    "seriesId": 13,
+    "displayOrder": "1"
 }, {
-    "id": 280,
-    "campus": "Australia",
-    "serise": "serise2",
-    "amount": 2860,
-    "fund": "Measure1"
+    "campusId": 14,
+    "campusName": "Australia2",
+    "seriesName": "seriesName1",
+    "Amount": 2860,
+    "seriesId": 14,
+    "displayOrder": "1"
 },
 {
-    "id": 580,
-    "campus": "Australia",
-    "serise": "serise1",
-    "amount": 990,
-    "fund": "Measure1"
+    "campusId": 15,
+    "campusName": "Australia2",
+    "seriesName": "seriesName1",
+    "Amount": 990,
+    "seriesId": 15,
+    "displayOrder": "1"
 }];
 
 
@@ -116,8 +133,8 @@ export class FundAllocationService {
     baseUrl = 'http://172.25.29.38:88/api';
     constructor(private http: HttpClient) { }
 
-    getSales() {
-        return sales;
+    getcampusSummary() {
+        return campusSummary;
     };
 
     getfundAllocation(): Observable<any[]> {
@@ -144,7 +161,7 @@ export class FundAllocationService {
 
     updateseriesdetailamount(amount: string, seriseName: string, fundName: string, campusName: string): Observable<any> {
         const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-        return this.http.post<any>(this.baseUrl + '/SeriesDetails/updateseriesdetailamount?amount=' + amount +'&seriesName='+ seriseName +'&fundName='+ fundName +'&campusName='+ campusName, httpOptions)
+        return this.http.put<any>(this.baseUrl + '/SeriesDetails/updateseriesdetailamount?amount=' + amount +'&seriesName='+ seriseName +'&fundName='+ fundName +'&campusName='+ campusName, httpOptions)
     }
 
 

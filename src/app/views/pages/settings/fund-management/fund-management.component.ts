@@ -10,6 +10,7 @@ import { User } from '../../../../core/auth';
 import { confirm } from 'devextreme/ui/dialog';
 import { Subscription } from 'rxjs';
 import { DxoMasterDetailComponent } from 'devextreme-angular/ui/nested';
+import { FundemitterService } from '../../../../shared/Services/fundemitter.service';
 
 
 @Component({
@@ -43,7 +44,7 @@ export class FundManagementComponent implements OnInit {
   private deletefundSeriesSubs: Subscription;
   private deletefundsourceSubs: Subscription;
 
-  constructor(private httpClient: HttpClient, private service: FundManagementService) {
+  constructor(private httpClient: HttpClient, private service: FundManagementService, private fundemitter: FundemitterService) {
   
   }
 
@@ -155,6 +156,7 @@ export class FundManagementComponent implements OnInit {
       console.log('fund Source Added', true);
       this.dataGrid.instance.refresh();
       this.refreshgrid();
+    
      
     },
       error => {
@@ -208,6 +210,7 @@ export class FundManagementComponent implements OnInit {
       //this.dataGrid.instance.refresh();
       this.fundSeriesGrid.instance.refresh();
       this.loadfundSerise();
+      this.fundemitter.onSaveOnUpdate();
     },
       error => {
         console.log('fund Series Added', false);
@@ -240,7 +243,7 @@ export class FundManagementComponent implements OnInit {
      // this.dataGrid.instance.refresh();
      this.loadfundSerise();
       this.fundSeriesGrid.instance.refresh();
-    
+      this.fundemitter.onSaveOnUpdate();
     },
       error => {
         console.log('fund Source Updated', false);

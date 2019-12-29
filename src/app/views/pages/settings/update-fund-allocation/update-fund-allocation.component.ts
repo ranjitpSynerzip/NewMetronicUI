@@ -1,9 +1,8 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
-import { FundAllocationService } from '../../../../shared/Services/fund-allocation.service';
 import { HttpClient } from '@angular/common/http';
 import { DxPivotGridComponent } from 'devextreme-angular';
 import { Subscription } from 'rxjs';
-import { NgForm } from '@angular/forms';
+import { CampusManagementService } from '../../../../shared/Services/campus-management.service';
 
 @Component({
   selector: 'kt-update-fund-allocation',
@@ -28,17 +27,16 @@ export class UpdateFundAllocationComponent implements OnInit, OnDestroy {
   clickedRow: any;
   clickedColumn: any;
 
-  PopupVisible = false;
-  PopupTitle = '';
-  CellValue = '';
-  seriseAmount = '';
-  seriseName = '';
-  fundName = '';
-  campusName = '';
 
+  constructor(private httpClient: HttpClient, private service: CampusManagementService) {
+  }
 
-  constructor(private httpClient: HttpClient, private service: FundAllocationService) {
-    this.subscription = this.service.getfundAllocation().subscribe(
+  ngOnInit() {
+    this.getFundAllocation();
+  }
+
+  getFundAllocation() {
+    this.service.getcampsforgrid().subscribe(
       data => {
         this.serviceData = data;
         this.pivotGridDataSource = {
@@ -48,59 +46,27 @@ export class UpdateFundAllocationComponent implements OnInit, OnDestroy {
             dataField: "campusName",
             area: "row"
           }, {
-            caption: "Source",
-            dataField: "fundName",
-            dataType: "string",
-            area: "column"
-          },
-          {
-            caption: "Serise",
+            caption: "seriesName",
             dataField: "seriesName",
             dataType: "string",
             area: "column"
-          }, {
-            dataField: "seriesDetailAamount",
+          },
+         {
+            dataField: "amount",
             dataType: "number",
             format: "currency",
+            summaryType: "sum",
             area: "data",
-          },
-          ],
+          }],
           store: this.serviceData,
         };
-
-      })
-
-
-
+      });
   }
 
-  ngOnInit() {
-
-  }
-
-
-  onCellClick(e) {
-    console.log('onCellClick', e)
-    if (e.area == "data") {
-      var rowPathLength = e.cell.rowPath.length,
-        rowPathName = e.cell.rowPath[rowPathLength - 1];
-      console.log('campus', rowPathName);
-      console.log('Fund', e.cell.columnPath[0]);
-      console.log('serise', e.cell.columnPath[1]);
-
-      this.campusName = rowPathName;
-      this.fundName = e.cell.columnPath[0];
-      this.seriseName = e.cell.columnPath[1];
-      // console.log('e.cell', e.cell);
-      this.CellValue = e.cell.value;
-      this.PopupTitle = 'Serise Amount';
-      this.PopupVisible = true;
-    }
-  }
 
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+   // this.subscription.unsubscribe();
   }
 
   onPopupShown() {
@@ -112,14 +78,5 @@ export class UpdateFundAllocationComponent implements OnInit, OnDestroy {
   };
 
 
-  onSubmit(form) {
-    console.log(form.value);
-    this.seriseAmount = (Object.values(form.value).toLocaleString());
-    this.PopupVisible = false;
-    this.service.updateseriesdetailamount(this.seriseAmount, this.seriseName, this.fundName, this.campusName).subscribe(
-      success => { console.log('updateseriesdetailamount'); },
-      error => { console.log('error'); }
-    )
-  }
 
 }

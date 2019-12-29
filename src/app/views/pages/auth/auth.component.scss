@@ -13,3 +13,14 @@ kt-auth, .kt-login {
 		padding-right: 3rem !important;
 	}
 }
+
+@media (min-width: 769px) {
+.kt-grid > .kt-grid__item {
+    // max-width:81% !important;
+	/* max-width: 100%;  */
+	
+}
+.kt-login__wrapper{
+	// max-width:81% !important;
+}
+}

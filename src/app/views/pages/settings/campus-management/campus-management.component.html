@@ -1,50 +1,43 @@
 <div class="dx-viewport demo-container">
-		<span id="gridHeaderTitle" >Campuses</span>
+	<span id="gridHeaderTitle">Campuses</span>
 
-<dx-button id="gridDeleteSelected" icon="trash" [disabled]="!selectedItemKeys.length" style="color:red" (onClick)="deleteRecords()"></dx-button>
+	<dx-button id="gridDeleteSelected" icon="trash" [disabled]="!selectedItemKeys.length" style="color:red"
+		(onClick)="deleteRecords()"></dx-button>
 
-<dx-data-grid
-	id="Campusgrid"
-	[dataSource]="dataSource"
-	[showBorders]="true"
-	[showRowLines]="true"
-	[showColumnLines]="false"
-	(onSelectionChanged)="selectionChanged($event)"
-	(onRowInserting)="OnRowInserting($event)"
-	(onRowUpdating)="onRowUpdating($event)"
-	>
+	<dx-data-grid id="Campusgrid" #Campusgrid 
+		   [dataSource]="dataSource" 
+		   [showBorders]="true" 
+		   [showRowLines]="true"
+		   [showColumnLines]="false" 
+		   (onSelectionChanged)="onSelection($event)" 
+		   (onRowInserting)="OnCampusInserting($event)"
+		   (onRowUpdating)="onCampusUpdating($event)"
+		   (onContentReady)="onCampusContentReady($event)"
+		   >
+		   <dxo-load-panel [enabled]="true"></dxo-load-panel>
+		<dxo-row-dragging [allowReordering]="true" [onReorder]="onReorder" [showDragIcons]="showDragIcons">
+		</dxo-row-dragging>
 
-	<dxo-row-dragging
-			[allowReordering]="true"
-			[onReorder]="onReorder"
-			[showDragIcons]="showDragIcons"
-        ></dxo-row-dragging>
+		<dxo-paging [enabled]="false"></dxo-paging>
+		<dxo-scrolling columnRenderingMode="virtual" showScrollbar="always"></dxo-scrolling>
 
-	<dxo-paging [enabled]="false"></dxo-paging>
-	<dxo-scrolling
-    columnRenderingMode="virtual"
-    showScrollbar="always"
-  ></dxo-scrolling>
+		<dxo-editing mode="cell" [allowUpdating]="true" [allowAdding]="true">
+		</dxo-editing>
 
+		<dxo-selection mode="multiple"></dxo-selection>
 
-	<dxo-editing
-		mode="cell"
-		[allowUpdating]="true"
-		[allowAdding]="true">
-	</dxo-editing>
-	<dxo-selection mode="multiple" ></dxo-selection>
-
-	<dxi-column dataField="campusName" caption="Name" cellTemplate="linkCellTemplate">
+		<dxi-column dataField="campusName" caption="Name" cellTemplate="linkCellTemplate">
 			<dxi-validation-rule type="required"></dxi-validation-rule>
-	</dxi-column>
+		</dxi-column>
 
-	<dxi-column dataField="accountCode" alignment="left" caption="Code"></dxi-column>
+		<dxi-column dataField="campusId" [visible]="false">
+		</dxi-column>
 
-	<div *dxTemplate="let d of 'linkCellTemplate'">
+		<dxi-column dataField="accountCode" alignment="left" caption="Code"></dxi-column>
+
+		<div *dxTemplate="let d of 'linkCellTemplate'">
 			<div>
-				<a  style="color: #079DE5;">{{d.value}}</a></div>
+				<a style="color: #079DE5;">{{d.value}}</a></div>
 		</div>
-</dx-data-grid>
+	</dx-data-grid>
 </div>
-
-
