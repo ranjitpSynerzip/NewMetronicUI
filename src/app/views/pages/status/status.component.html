@@ -1,404 +1,82 @@
-<div class="card">
-<div class="row" >
-        <div class="col-xs-12 col-lg-12 col-md-12">
-          <h2 class="justify-content:center;">Project</h2>
-        </div>
-	  </div>
+<div class="container">
+	<div class="row">
+		<table class="table table-hover table-bordered table-striped">
+			<tbody>
+				<tr>
+					<td class="text-center">
+						API Server: URL
+					</td>
+					<td class="text-center">
+						<a href='{{ APIUrl}}/swagger' target="_blank">{{ (APIUrl | emptyvalue)}}</a>
+					</td>
+				</tr>
+				<tr>
+					<td class="text-center">
+						Frontend Version
+					</td>
+					<td class="text-center">
+						{{ frontendVersion | emptyvalue }}
+					</td>
+				</tr>
 
-	  <hr>
+				<tr>
+					<td class="text-center">
+						Backend API Version
+					</td>
+					<td class="text-center">
+						{{ StatusModel.version | emptyvalue }}
+					</td>
+				</tr>
+				<tr>
+					<td class="text-center">
+						Assembly Version
+					</td>
+					<td class="text-center">
+						{{ StatusModel.assembly_version | emptyvalue }}
+					</td>
+				</tr>
 
-<div class="container-fluid">
-        <form name="form" (ngSubmit)="onSaveButton(); f.reset()" #f="ngForm">
-        <div class="row">
-				<div class="col-md-2">
-						<div class="form-group">
-								<label for="txtDisplayName">Display Name:</label>
-						</div>
-					</div>
-          <div class="col-md-4">
-            <div class="form-group">
-              <input type="text" class="form-control" name="displayName" id="displayname" #displayName=ngModel [(ngModel)]= 'projectObj.displayName'  placeholder="Enter Display Name"/>
-            </div>
-		  </div>
+				<tr>
+					<td class="text-center">
+						API Server: API Call Test:/status
+					</td>
+					<td class="text-center">{{ StatusModel.up | emptyvalue }}</td>
+				</tr>
+				<tr>
+					<td class="text-center">
+						API Server DB:Client Details: Connection
+					</td>
+					<td class="text-center">
+						{{ StatusModel.database_client_details_string | emptyvalue }}
+					</td>
+				</tr>
+				<tr>
+					<td class="text-center">
+						API Server DB:Client Details: Query Test
+					</td>
+					<td class="text-center">
+						{{ StatusModel.database_client_details | emptyvalue }}
+					</td>
+				</tr>
 
-		  <div class="col-md-2">
-				<div class="form-group">
-						<label for="txtProjectNumber">Project Number:</label>
-				</div>
-			</div>
-          <div class="col-md-4">
-            <div class="form-group">
+				<tr>
+					<td class="text-center">API Server DB:Main:Connection</td>
 
-              <input type="text" class="form-control" name="projectNumber" id="projectnumber" #projectnumber=ngModel [(ngModel)]= 'projectObj.projectnumber' placeholder="Enter Project Number"/>
-          </div>
-        </div>
-		</div>
-
-
-
-
-		<div class="row">
-				<div class="col-md-2">
-						<div class="form-group">
-								<label for="txtStatus">Status:</label>
-						</div>
-					</div>
-          <div class="col-md-4">
-            <div class="form-group">
-					<select name="statues" #statusId= "ngModel" class="form-control"  [(ngModel)]="selectedStatus">
-							<option *ngFor="let c of Statues" [selected]="c.statusId === selectedStatus" [ngValue]="c.statusId" >{{ c.statusName }}</option>
-						  </select>
-            </div>
-		  </div>
-
-		  <div class="col-md-2">
-				<div class="form-group">
-						<label for="txtActivityCode">Activity Code:</label>
-				</div>
-			</div>
-          <div class="col-md-4">
-            <div class="form-group">
-					<select name="activities" #activityId= "ngModel" class="form-control"  [(ngModel)]="selectedActivity">
-							<option *ngFor="let c of activities" [selected]="c.activityId === selectedActivity" [ngValue]="c.activityId" >{{ c.activityName }}</option>
-						  </select>
-          </div>
-        </div>
-		</div>
-
-		<div class="row">
-				<div class="col-md-2">
-						<div class="form-group">
-								<label for="txtStartDate">Start Date:</label>
-						</div>
-					</div>
-          <div class="col-md-4">
-            <div class="form-group">
-					<dx-date-box name="startDate" id="startDate" #startDate=ngModel [(ngModel)]= 'projectObj.startDate'
-					type="date">
-					</dx-date-box>
-            </div>
-		  </div>
-
-		  <div class="col-md-2">
-				<div class="form-group">
-						<label for="txtEstimationCompletionDate">Estimation Completion Date:</label>
-				</div>
-			</div>
-          <div class="col-md-4">
-            <div class="form-group">
-					<dx-date-box name="estimatedCompletionDate" id="estimatedCompletionDate" #estimatedCompletionDate=ngModel [(ngModel)]= 'projectObj.estimatedCompletionDate'
-					type="date">
-					</dx-date-box>
-          </div>
-        </div>
-		</div>
-
-        <div class="row">
-				<div class="col-md-2">
-						<div class="form-group">
-								<label for="txtNotes">Notes:</label>
-						</div>
-					</div>
-          <div class="col-md-10">
-            <div class="form-group">
-              <!-- <label for="inputName">Description:</label> -->
-                <textarea rows="3" name="notes" class="form-control" cols="70" id="notes" #notes=ngModel [(ngModel)]= 'projectObj.notes' maxlength="50"></textarea>
-            </div>
-          </div>
-		</div>
-
-
-
-		<div class="row">
-
-          <div class="col-md-4">
-            <div class="form-group">
-					<a href=""><u>More...</u></a>
-            </div>
-		  </div>
-
-          <div class="col-md-4">
-            <div class="form-group">
-					<a href=""><u>Contacts</u></a>
-          </div>
-		</div>
-
-		<div class="col-md-4">
-				<!-- <div class="form-group"> -->
-						<!-- <button type="button">Save</button> -->
-						<input type="submit" id="save" value="Save" class="btn btn-primary btn-elevate" style="width: 200px; height: 35px;">
-			  <!-- </div> -->
-			</div>
-
-
-		</div>
-
-
-		<hr>
-
-
-		<div class="row">
-				<div class="col-md-2">
-						<div class="form-group">
-								<label for="txtGeneralContractor">General Contractor:</label>
-						</div>
-					</div>
-          <div class="col-md-3">
-            <div class="form-group">
-						  <select name="companygc" class="form-control"  #gccompanyId= "ngModel"  [(ngModel)]="selectedCompanygc" placeholder="Company">
-								<option *ngFor="let c of companies" [selected]="c.companyId === selectedCompanygc" [ngValue]="c.companyId" >{{ c.companyName }}</option>
-							  </select>
-            </div>
-		  </div>
-
-          <div class="col-md-3">
-            <div class="form-group">
-					<select name="contactgc" class="form-control" #gccontactId= "ngModel"   [(ngModel)]="selectedContactgc">
-							<option *ngFor="let c of contacts" [selected]="c.contactId === selectedContactgc" [ngValue]="c.contactId" >{{ c.contactName }}</option>
-						  </select>
-          </div>
-		</div>
-
-		<div class="col-md-4">
-				<div class="form-group">
-						<input type="text" class="form-control" name="gcprojectnumber" id="gcprojectnumber" #gcprojectnumber= "ngModel"   [(ngModel)]="projectObj.gcprojectnumber" placeholder="Enter Project Number"/>
-			  </div>
-			</div>
-		</div>
-
-		<div class="row">
-				<div class="col-md-2">
-						<div class="form-group">
-								<label for="txtArchitectofRecord">Architect of Record:</label>
-						</div>
-					</div>
-          <div class="col-md-3">
-            <div class="form-group">
-					<select name="companyaor" class="form-control" #aorcompanyId= "ngModel"  [(ngModel)]="selectedCompanyaor">
-							<option *ngFor="let c of companies" [selected]="c.companyId === selectedCompanyaor" [ngValue]="c.companyId" >{{ c.companyName }}</option>
-						  </select>
-            </div>
-		  </div>
-
-          <div class="col-md-3">
-            <div class="form-group">
-					<select name="contactaor" class="form-control" #aorcontactId= "ngModel"  [(ngModel)]="selectedContactaor">
-							<option *ngFor="let c of contacts" [selected]="c.contactId === selectedContactaor" [ngValue]="c.contactId" >{{ c.contactName }}</option>
-						  </select>
-          </div>
-		</div>
-
-		<div class="col-md-4">
-				<div class="form-group">
-						<input type="text" class="form-control" name="aorprojectnumber" id="aorprojectnumber" #aorprojectnumber= "ngModel"   [(ngModel)]="projectObj.aorprojectnumber" placeholder="Enter Project Number"/>
-			  </div>
-			</div>
-		</div>
-
-		<div class="row">
-				<div class="col-md-2">
-						<div class="form-group">
-								<label for="txtInspectorofRecord">Inspector of Record:</label>
-						</div>
-					</div>
-          <div class="col-md-3">
-            <div class="form-group">
-					<select name="companyior" #iorcompanyId= "ngModel" class="form-control"  [(ngModel)]="selectedCompanyior">
-							<option *ngFor="let c of companies" [selected]="c.companyId === selectedCompanyior" [ngValue]="c.companyId" >{{ c.companyName }}</option>
-						  </select>
-            </div>
-		  </div>
-
-          <div class="col-md-3">
-            <div class="form-group">
-					<select name="contactior" #iorcontactId= "ngModel" class="form-control"  [(ngModel)]="selectedContactior">
-							<option *ngFor="let c of contacts" [selected]="c.contactId === selectedContactior" [ngValue]="c.contactId" >{{ c.contactName }}</option>
-						  </select>
-          </div>
-		</div>
-
-		<div class="col-md-4">
-				<div class="form-group">
-						<input type="text" class="form-control" name="iorprojectnumber" id="iorprojectnumber" #iorprojectnumber= "ngModel"   [(ngModel)]="projectObj.iorprojectnumber" placeholder="Enter Project Number"/>
-			  </div>
-			</div>
-		</div>
-
-		<div class="row">
-				<div class="col-md-2">
-						<div class="form-group">
-								<label for="txtConstructionManagement">Construction Management:</label>
-						</div>
-					</div>
-          <div class="col-md-3">
-            <div class="form-group">
-					<select name="companycm" #cmcompanyId= "ngModel" class="form-control"  [(ngModel)]="selectedCompanycm">
-							<option *ngFor="let c of companies" [selected]="c.companyId === selectedCompanycm" [ngValue]="c.companyId" >{{ c.companyName }}</option>
-						  </select>
-            </div>
-		  </div>
-
-          <div class="col-md-3">
-            <div class="form-group">
-					<select name="contactcm" #cmcontactId= "ngModel" class="form-control"  [(ngModel)]="selectedContactcm">
-							<option *ngFor="let c of contacts" [selected]="c.contactId === selectedContactcm" [ngValue]="c.contactId" >{{ c.contactName }}</option>
-						  </select>
-          </div>
-		</div>
-
-		<div class="col-md-4">
-				<div class="form-group">
-						<input type="text" class="form-control" name="cmreferencenumber" id="cmreferencenumber" #cmreferencenumber= "ngModel"   [(ngModel)]="projectObj.cmreferencenumber" placeholder="Enter Project Number"/>
-			  </div>
-			</div>
-		</div>
-
-		<hr>
-
-		<div class="row">
-				<div class="col-md-2">
-						<div class="form-group">
-								<label for="txtProjectManager">Project Manager:</label>
-						</div>
-					</div>
-          <div class="col-md-4">
-            <div class="form-group">
-					<select name="Contactpm" #pmcontactId= "ngModel" class="form-control"  [(ngModel)]="selectedContactpm">
-							<option *ngFor="let c of contacts" [selected]="c.contactId === selectedContactpm" [ngValue]="c.contactId" >{{ c.contactName }}</option>
-						  </select>
-            </div>
-		  </div>
-
-		  <div class="col-md-2">
-				<div class="form-group">
-						<label for="txtDirectorofFacilities">Director of Facilities:</label>
-				</div>
-			</div>
-          <div class="col-md-4">
-            <div class="form-group">
-					<select name="Contactdofcon" #doFcontactId= "ngModel" class="form-control"  [(ngModel)]="selectedContactdofcon">
-							<option *ngFor="let c of contacts" [selected]="c.contactId === selectedContactdofcon" [ngValue]="c.contactId" >{{ c.contactName }}</option>
-						  </select>
-          </div>
-        </div>
-		</div>
-
-		<div class="row">
-				<div class="col-md-2">
-						<div class="form-group">
-								<label for="txtFinanceManager">Finance Manager:</label>
-						</div>
-					</div>
-          <div class="col-md-4">
-            <div class="form-group">
-					<select name="Contactfimgr" #fmcontactId= "ngModel" class="form-control"  [(ngModel)]="selectedContactfimgr">
-							<option *ngFor="let c of contacts" [selected]="c.contactId === selectedContactfimgr" [ngValue]="c.contactId" >{{ c.contactName }}</option>
-						  </select>
-            </div>
-		  </div>
-
-		  <div class="col-md-2">
-				<div class="form-group">
-						<label for="txtProgramManager">Program Manager:</label>
-				</div>
-			</div>
-          <div class="col-md-4">
-            <div class="form-group">
-					<select name="Contactprmgr" #pgmgrcontactId= "ngModel" class="form-control"  [(ngModel)]="selectedContactprmgr">
-							<option *ngFor="let c of contacts" [selected]="c.contactId === selectedContactprmgr" [ngValue]="c.contactId" >{{ c.contactName }}</option>
-						  </select>
-          </div>
-        </div>
-		</div>
-
-		<div class="row">
-				<div class="col-md-2">
-						<div class="form-group">
-								<label for="txtDistrictAccountant">District Accountant:</label>
-						</div>
-					</div>
-          <div class="col-md-4">
-            <div class="form-group">
-					<select name="ContactForDisAcc" #dacontactId= "ngModel" class="form-control"  [(ngModel)]="selectedContactForDisAcc">
-							<option *ngFor="let c of contacts" [selected]="c.contactId === selectedContactForDisAcc" [ngValue]="c.contactId" >{{ c.contactName }}</option>
-						  </select>
-            </div>
-		  </div>
-
-
-		</div>
-
-		<hr>
-
-		<div class="row">
-				<div class="col-md-2">
-						<div class="form-group">
-								<label for="txtBondFundCategory">Bond Fund Category:</label>
-						</div>
-					</div>
-          <div class="col-md-4">
-            <div class="form-group">
-					<select name="BondFundCategory" #bondFundCategoryId= "ngModel" class="form-control" [(ngModel)]="selectedBondFundCategory">
-							<option *ngFor="let c of BondFundCategory" [selected]="c.id === selectedBondFundCategory" [ngValue]="c.id" >{{ c.name }}</option>
-						  </select>
-            </div>
-		  </div>
-
-		  <div class="col-md-2">
-				<div class="form-group">
-						<label for="txtOrgCode">Org Code:</label>
-				</div>
-			</div>
-          <div class="col-md-4">
-            <div class="form-group">
-					<select name="orgCode" #orgCodeId= "ngModel" class="form-control" [(ngModel)]="selectedOrgCode">
-							<option *ngFor="let c of OrgCode" [selected]="c.id === selectedOrgCode" [ngValue]="c.id" >{{ c.name }}</option>
-						  </select>
-          </div>
-        </div>
-		</div>
-
-		<div class="row">
-				<div class="col-md-2">
-						<div class="form-group">
-								<label for="txtFundLocation">Fund Location:</label>
-						</div>
-					</div>
-          <div class="col-md-4">
-            <div class="form-group">
-					<select name="fundLocation" #fundLocationId= "ngModel" class="form-control" [(ngModel)]="selectedFundLocation">
-							<option *ngFor="let c of FundLocation" [selected]="c.id === selectedFundLocation" [ngValue]="c.id" >{{ c.name }}</option>
-						  </select>
-            </div>
-		  </div>
-
-		  <div class="col-md-2">
-				<div class="form-group">
-						<label for="txtBondSeries">Bond Series:</label>
-				</div>
-			</div>
-          <div class="col-md-4">
-            <div class="form-group">
-				<select name="bondSeries" #bondSeriesId= "ngModel" class="form-control" [(ngModel)]="selectedBondSeries">
-							<option *ngFor="let c of BondSeries" [selected]="c.id === selectedBondSeries" [ngValue]="c.id" >{{ c.name }}</option>
-						  </select>
-          </div>
-        </div>
-		</div>
-
-		<div class="row">
-				<div class="col-md-2">
-						<div class="form-group">
-								<label for="txtsubnumber">Sub Number:</label>
-						</div>
-					</div>
-          <div class="col-md-4">
-            <div class="form-group">
-					<input type="number" class="form-control" name="Sub Number" id="subnumber" #subnumber= "ngModel"   [(ngModel)]="projectObj.subnumber" placeholder="Enter Sub Number"/>
-            </div>
-		  </div>
-		</div>
-      </form>
-
-	  </div>
+					<td class="text-center">
+						{{ StatusModel.database_main_string | emptyvalue }}
+					</td>
+				</tr>
+				<tr>
+					<td class="text-center">API Server DB:Main:Query Test</td>
+					<td class="text-center">{{ StatusModel.database_main | emptyvalue }}</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
+</div>
+<!-- <div class="overlay"> -->
+<div class="center" *ngIf="loader">
+	<mat-progress-spinner [mode]='"indeterminate"'>
+	</mat-progress-spinner>
+</div>
+<!-- </div> -->

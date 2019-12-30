@@ -5,8 +5,8 @@ export class ProjectModel {
   public projectnumber: string;
   public statusId: number;
   public activityId: number;
-  public startDate: string;
-  public estimatedCompletionDate: string;
+  public startDate: Date;
+  public estimatedCompletionDate: Date;
   public notes: string;
   public gccompanyId: number;
   public gccontactId: number;

@@ -4,9 +4,9 @@ import { RouterModule } from '@angular/router';
 import { CoreModule } from '../../../core/core.module';
 import { PartialsModule } from '../../partials/partials.module';
 import { StatusComponent } from './status.component';
-import { DxDataGridModule, DxBulletModule, DxDateBoxModule } from 'devextreme-angular';
+import { DxDataGridModule, DxBulletModule } from 'devextreme-angular';
 import { MatProgressSpinnerModule } from '@angular/material';
-import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
 	imports: [
@@ -15,8 +15,6 @@ import { FormsModule } from '@angular/forms';
 		CoreModule,
 		DxDataGridModule,
 		DxBulletModule,
-		DxDateBoxModule,
-		FormsModule,
 		MatProgressSpinnerModule,
 		RouterModule.forChild([
 			{
