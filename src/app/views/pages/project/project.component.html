@@ -4,22 +4,24 @@
 <dx-button id="gridAddSelected" routerLink="/status" > + </dx-button>
 
 
-<dx-data-grid [dataSource]="dataSource"
+<dx-data-grid [dataSource]="dataSource"  #projects
               [remoteOperations]="true"
 			  [showBorders]="true"
 			  [showRowLines]="true"
 			  [showColumnLines]="false"
 			  (onSelectionChanged)="selectionChanged($event)"
 			  (onRowUpdating)="onRowUpdating($event)"
+			  (onContentReady)="onContentReady($event)"
               >
 
 	<!-- <dxo-header-filter [visible]="true"></dxo-header-filter> -->
 	<dxo-paging [pageSize]="10"></dxo-paging>
-    <dxo-pager
+	<dxo-load-panel [enabled]="true"></dxo-load-panel>
+    <!-- <dxo-pager
         [showPageSizeSelector]="true"
         [allowedPageSizes]="[5, 10, 20]"
         [showInfo]="true">
-    </dxo-pager>
+    </dxo-pager> -->
     <!-- <dxo-scrolling mode="virtual"></dxo-scrolling> -->
     <dxo-editing mode="cell"
               [allowAdding]="true"

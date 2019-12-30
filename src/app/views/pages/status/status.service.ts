@@ -13,7 +13,7 @@ import { delay } from 'rxjs/operators';
 })
 export class StatusService {
 
-  baseUrl = 'http://172.25.29.38:88/api'
+  baseUrl = environment.baseUrl;
 
   constructor(private http: HttpClient) { }
 
