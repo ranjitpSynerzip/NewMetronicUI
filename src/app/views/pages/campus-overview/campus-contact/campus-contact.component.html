@@ -1,17 +1,26 @@
 <kt-portlet [class]="'kt-portlet--height-fluid'">
-		<kt-portlet-body>
-		  <h2 class="card-title"> <button class="btn"><i class="fas fa-phone-alt" style="font-size:24px"></i></button>
-			Contacts</h2>
-		  <hr>
-		  <table>
-			  <tr>
-				  <td><h6>Project Manager</h6></td>
-			  </tr>
-			  <tr>
-				  <td><h5>Jerry Jones</h5></td><br>
-				  <td><h5>jerryjones@cod.org</h5></td><br>
-				  <td><h5>714.948.5938</h5></td>
-			  </tr>
-		  </table>
+	<div class="kt-portlet__head">
+			<div class="kt-portlet__head-label">
+				<h3 class="kt-portlet__head-title"><span class="kt-portlet__head-icon">
+						<i class="fas fa-address-book"></i>
+					</span>Contacts</h3>
+			</div>
+		</div>
+	<kt-portlet-body>
+		<div class="row" >
+			<div class="col-xs-12 col-md-4">
+				<div>
+					Project Manager
+				</div>
+			</div>
+
+			<div  class="col-xs-12 col-md-8">
+				<div>
+					<div class="">Jerry Jones</div>
+					<div class="">jerryjones@cod.org</div>
+					<div class="">714.948.5938</div>
+				</div>
+			</div>
+		</div>
 	</kt-portlet-body>
-	</kt-portlet>
+</kt-portlet>
