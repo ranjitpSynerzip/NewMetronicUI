@@ -11,6 +11,7 @@ import { CampusInfoComponent } from './campus-info/campus-info.component';
 import { CampusContactComponent } from './campus-contact/campus-contact.component';
 import { RecentActivitiesComponent } from './recent-activities/recent-activities.component';
 import { CampusTaskComponent } from './campus-task/campus-task.component';
+import { MatCheckboxModule } from '@angular/material';
 
 const routes: Routes = [
 	{
@@ -51,7 +52,8 @@ const routes: Routes = [
     HttpClientModule,
     RouterModule.forChild(routes),
 	DxDataGridModule,
-	DxButtonModule
+	DxButtonModule,
+	MatCheckboxModule,
   ],
   exports: [RouterModule],
 })
