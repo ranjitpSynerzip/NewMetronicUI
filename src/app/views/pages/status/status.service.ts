@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
-import { delay } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -16,17 +16,10 @@ export class StatusService {
     return this.http.get<Status>(apiURL);
   }
 
-  // getVersion(): Observable<any> {
-  //   // let apiURL = environment.versionfile;
-  //   let apiURL = '/assets/VERSION';
-  //   return this.http.get<any>(apiURL);
+
+  // errorHandler(error: Response) {
+  //   return Observable.throw(error);
   // }
-
-
-
-  errorHandler(error: Response) {
-    return Observable.throw(error);
-  }
 
 
 

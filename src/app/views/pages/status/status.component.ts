@@ -28,9 +28,6 @@ export class StatusComponent implements OnInit {
 	constructor(private service: StatusService, private http: HttpClient) { }
 
 	ngOnInit() {
-		// this.service.getVersion().subscribe(data => {
-		// 	this.frontendVersion = data;
-		// });
 		this.http.get('/assets/VERSION.txt', { responseType: 'text' }).subscribe(data => {
 			this.frontendVersion = data;
 		});
