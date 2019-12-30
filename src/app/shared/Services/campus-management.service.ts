@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { Campusmodel } from './../models/campusmodel';
 import { catchError, map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 
 
@@ -12,7 +13,7 @@ import { catchError, map } from 'rxjs/operators';
 
 export class CampusManagementService {
 
-	baseUrl = 'http://172.25.29.38:88/api'
+	baseUrl = environment.baseUrl;
 
 	constructor(private http: HttpClient) { }
 

@@ -5,6 +5,7 @@ import { FundsourceModel } from '../models/fund-source.model';
 import { FundSeriesModel } from '../models/fund-series.model';
 import { FundAmountModel } from '../models/fund-amount.model';
 import { catchError, map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 
 export class Funds {
@@ -29,7 +30,7 @@ export class Funds {
 })
 export class FundManagementService {
 	fundSource: any[] = [];
-	baseUrl = 'http://172.25.29.38:88/api';
+	baseUrl = environment.baseUrl;
 
 	constructor(private http: HttpClient) { }
 

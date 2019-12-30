@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 
 import { FundallocationModel } from '../models/fund-amount.model';
+import { environment } from 'src/environments/environment';
 
 
 export class CampusSummary {
@@ -130,7 +131,7 @@ let campusSummary: CampusSummary[] = [
 
 export class FundAllocationService {
     fundAllocationObj: FundallocationModel[];
-    baseUrl = 'http://172.25.29.38:88/api';
+    baseUrl = environment.baseUrl;
     constructor(private http: HttpClient) { }
 
     getcampusSummary() {

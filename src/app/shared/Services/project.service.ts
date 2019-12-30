@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { ProjectModel } from '../models/project-model.module';
+import { environment } from 'src/environments/environment';
 
 
 
@@ -10,7 +11,7 @@ import { ProjectModel } from '../models/project-model.module';
 })
 export class ProjectService {
 
-  baseUrl = 'http://172.25.29.38:88/api';
+  baseUrl = environment.baseUrl;
   projectObj : ProjectModel[];
   constructor(private http: HttpClient) { }
 

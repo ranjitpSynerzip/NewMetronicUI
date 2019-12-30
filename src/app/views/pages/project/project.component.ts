@@ -5,6 +5,8 @@ import { ProjectModel } from '../../../shared/models/project-model.module';
 import { confirm } from 'devextreme/ui/dialog';
 import { Subscription } from 'rxjs';
 import { DxDataGridComponent } from 'devextreme-angular';
+import { environment } from 'src/environments/environment';
+
 
 @Component({
   selector: 'kt-project',
@@ -14,7 +16,8 @@ import { DxDataGridComponent } from 'devextreme-angular';
 export class ProjectComponent implements OnInit {
   @ViewChild('projects', { static: false }) dataGrid: DxDataGridComponent;
   dataSource: any[];
-  baseUrl = 'http://172.25.29.38:88/api';
+  baseUrl = environment.baseUrl;
+  // baseUrl = 'http://172.25.29.38:88/api';
   selectedItemKeys: any[] = [];
   SelectedRowsData: any[] = [];
   private deleteProjects: Subscription;

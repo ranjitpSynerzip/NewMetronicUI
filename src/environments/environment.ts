@@ -8,6 +8,7 @@ export const environment = {
 	authTokenKey: 'authce9d77b308c149d5992a80073637e4d5',
 	// baseUrl: $ENV.API_URL,
 	// versionfile: $ENV.VERSION_PATH,
-	baseUrl:'https://dev-newprompt-backend.azurewebsites.net/',
+	//baseUrl:'https://dev-newprompt-backend.azurewebsites.net/',
+	baseUrl:'http://172.25.29.38:88/api',
     versionfile: '',
 };
