@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 
 import { FundallocationModel } from '../models/fund-amount.model';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../../environments/environment';
 
 
 export class CampusSummary {

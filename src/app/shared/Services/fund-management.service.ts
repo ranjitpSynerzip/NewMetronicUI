@@ -5,7 +5,7 @@ import { FundsourceModel } from '../models/fund-source.model';
 import { FundSeriesModel } from '../models/fund-series.model';
 import { FundAmountModel } from '../models/fund-amount.model';
 import { catchError, map } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../../environments/environment';
 
 
 export class Funds {

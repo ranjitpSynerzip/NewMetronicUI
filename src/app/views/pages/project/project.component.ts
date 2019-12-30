@@ -5,7 +5,7 @@ import { ProjectModel } from '../../../shared/models/project-model.module';
 import { confirm } from 'devextreme/ui/dialog';
 import { Subscription } from 'rxjs';
 import { DxDataGridComponent } from 'devextreme-angular';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../../../environments/environment';
 
 
 @Component({
