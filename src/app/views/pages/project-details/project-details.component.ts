@@ -1,15 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { ProjectModel } from '../../../shared/models/project-model.module';
+import { ProjectService } from '../../../shared/Services/project.service';
+
 
 @Component({
-  selector: 'kt-project-details',
-  templateUrl: './project-details.component.html',
-  styleUrls: ['./project-details.component.scss']
+	selector: "kt-project-details",
+	templateUrl: "./project-details.component.html",
+	styleUrls: ["./project-details.component.scss"]
 })
 export class ProjectDetailsComponent implements OnInit {
 
-  constructor() { }
+	projectObj = new ProjectModel();
+	projectId: number;
+	IsHidden = true;
 
-  ngOnInit() {
-  }
+	constructor(private service: ProjectService) {}
 
+	ngOnInit() {
+
+		this.service.getProjectbyID(47).subscribe(
+			(data => {
+			  this.projectObj = data;
+			}));
+	}
+
+	onSelect() {
+		this.IsHidden = !this.IsHidden;
+	}
 }

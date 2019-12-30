@@ -32,6 +32,11 @@ export class ProjectService {
 		return this.http.delete<any>(this.baseUrl + '/Projects' + '/' + id, httpOptions);
 	}
 
+	getProjectbyID(id: number): Observable<any> {
+		const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+		return this.http.get<any>(this.baseUrl + '/Projects' + '/' + id, httpOptions);
+	}
+
 	putProject(projectModel: ProjectModel, id: number): Observable<any> {
 		const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
 		return this.http.put<any>(this.baseUrl + '/Projects' + '/' + id, projectModel, httpOptions);

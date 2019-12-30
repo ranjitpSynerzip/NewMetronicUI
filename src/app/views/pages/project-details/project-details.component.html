@@ -10,13 +10,13 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="name">Name</label>
-						<div class="result">Library Modernization</div>
+					<div class="result">{{projectObj.displayName}}</div>
 					</div>
 				</div>
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="startDate">Start Date</label>
-						<div class="result">10/20/2019</div>
+						<div class="result">{{projectObj.startDate | date : 'dd/MM/yyyy'}}</div>
 					</div>
 				</div>
 			</div>
@@ -25,13 +25,13 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="groupNumber">Group Number</label>
-						<div class="result">23095</div>
+						<div class="result">{{projectObj.gcprojectnumber}}</div>
 					</div>
 				</div>
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="endDate">End Date</label>
-						<div class="result">11/14/2020</div>
+						<div class="result">{{projectObj.estimatedCompletionDate | date : 'dd/MM/yyyy'}}</div>
 					</div>
 				</div>
 			</div>
@@ -41,9 +41,7 @@
 					<div class="form-group">
 						<label for="description">Description</label>
 						<div class="result">
-							Text field for recording of a description or other
-							important information to be persisted for this
-							record.
+								{{projectObj.notes}}
 						</div>
 					</div>
 				</div>
@@ -61,6 +59,7 @@
 
 				<div class="col-md-6">
 					<div class="form-group">
+						<label for="exampleInputEmail1"></label>
 						<div class="result">Catalogue Digitization</div>
 						<div class="result">Project # 48795</div>
 						<div class="result">Phase: Breakdown</div>
@@ -68,33 +67,43 @@
 				</div>
 			</div>
 
-			<div class="row">
-				<div class="col-md-6">
-					<div class="form-group">
-						<label for="reportStatus">CM/DM Report Status</label>
-						<div class="result">Active</div>
+			<div [hidden]="IsHidden">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="reportStatus"
+								>CM/DM Report Status</label
+							>
+							<div class="result">Active</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="projectBudgetStatus"
+								>CM/DM Project Budget Status</label
+							>
+							<div class="result">On Hold</div>
+						</div>
 					</div>
 				</div>
-				<div class="col-md-6">
-					<div class="form-group">
-						<label for="projectBudgetStatus"
-							>CM/DM Project Budget Status</label
-						>
-						<div class="result">On Hold</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="estimateCompleteStatus"
+								>CM/DM Estimate at Complete Status</label
+							>
+							<div class="result">Completing soon.</div>
+						</div>
 					</div>
 				</div>
 			</div>
-
-			<div class="row">
-				<div class="col-md-6">
-					<div class="form-group">
-						<label for="estimateCompleteStatus"
-							>CM/DM Estimate at Complete Status</label
-						>
-						<div class="result">Completing soon.</div>
-					</div>
-				</div>
-			</div>
+			<hr>
+			<i
+				id="toggleBtn"
+				[ngClass]="IsHidden ? 'fa fa-chevron-circle-down' : 'fa fa-chevron-circle-up'"
+				style="font-size:36px"
+				(click)="onSelect()"
+			></i>
 		</kt-portlet-body>
 	</kt-portlet>
 </div>
