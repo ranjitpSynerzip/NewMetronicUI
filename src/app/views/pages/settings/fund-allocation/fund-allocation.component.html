@@ -8,7 +8,9 @@
             [dataSource]="pivotGridDataSource" 
             (onCellClick)="onCellClick($event)" 
             [height]="440"
-            [allowExpandAll]="false">
+            [allowExpandAll]="false"
+            (onContentReady) = "onContentFundAllocationReady($event)"
+            >
             <dxo-field-chooser [enabled]="false"></dxo-field-chooser>
             <dxo-load-panel [enabled]="true"></dxo-load-panel>
         </dx-pivot-grid>

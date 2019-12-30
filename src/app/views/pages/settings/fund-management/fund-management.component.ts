@@ -114,6 +114,7 @@ export class FundManagementComponent implements OnInit {
           console.log('deletefundSeries', true);
           this.loadfundSerise();
           this.fundSeriesGrid.instance.refresh();
+          this.fundemitter.onSaveOnUpdate();
         },
           error => {
             console.log('deletefundSeries', false);
@@ -123,6 +124,7 @@ export class FundManagementComponent implements OnInit {
           console.log('deletefundsource', true);
           this.refreshgrid();
           this.dataGrid.instance.refresh();
+          this.fundemitter.onSaveOnUpdate();
         },
           error => {
             console.log('deletefundsource', false);
