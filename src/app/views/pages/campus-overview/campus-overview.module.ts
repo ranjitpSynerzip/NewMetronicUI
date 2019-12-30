@@ -43,7 +43,7 @@ const routes: Routes = [
 
 
 @NgModule({
-  declarations: [CampusOverviewComponent, CampusInfoComponent, CampusNotesComponent, CampusContactComponent, CampusContactComponent, RecentActivitiesComponent, CampusTaskComponent],
+  declarations: [CampusOverviewComponent, CampusInfoComponent, CampusNotesComponent, CampusContactComponent, RecentActivitiesComponent, CampusTaskComponent],
   imports: [
     CommonModule,
 	PartialsModule,

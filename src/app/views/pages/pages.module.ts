@@ -13,10 +13,7 @@ import { SettingsModule } from './settings/settings.module';
 import { ProjectModule } from './project/project.module';
 import { CampusModule } from './campus/campus.module';
 import { CampusOverviewModule } from './campus-overview/campus-overview.module';
-
-
-
-
+import { ProjectDetailsModule } from './project-details/project-details.module';
 
 
 @NgModule({
@@ -34,7 +31,8 @@ import { CampusOverviewModule } from './campus-overview/campus-overview.module';
 		SettingsModule,
 		ProjectModule,
 		CampusModule,
-		CampusOverviewModule
+		CampusOverviewModule,
+		ProjectDetailsModule
 
 	],
 	providers: []
