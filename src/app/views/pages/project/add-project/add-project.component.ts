@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../../environments/environment';
 import { ProjectModel } from '../../../../shared/models/project-model.module';
 import { ProjectService } from '../../../../shared/Services/project.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -77,7 +78,7 @@ export class AddProjectComponent implements OnInit {
   ];
 
   loader = true;
-  constructor(private service: ProjectService, private http: HttpClient) { }
+  constructor(private service: ProjectService, private http: HttpClient, private router: Router, ) { }
 
   ngOnInit() {
     this.service.getStatus().subscribe(data => {
@@ -133,7 +134,8 @@ export class AddProjectComponent implements OnInit {
     this.service.postProject(this.projectObj).subscribe(
       success => {
         console.log("Project Added", true);
-        //   this.getData();
+        this.router.navigateByUrl('/projects/projectlist');
+
       },
       error => {
         console.log("Project Added", false);
