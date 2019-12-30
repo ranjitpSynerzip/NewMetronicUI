@@ -1,3 +1,4 @@
+import { ProjectGroupDetailsModule } from './project-group-details/project-group-details.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -14,7 +15,7 @@ import { ProjectModule } from './project/project.module';
 import { CampusModule } from './campus/campus.module';
 import { CampusOverviewModule } from './campus-overview/campus-overview.module';
 import { ProjectDetailsModule } from './project-details/project-details.module';
-
+ProjectGroupDetailsModule
 
 @NgModule({
 	declarations: [],
@@ -32,7 +33,8 @@ import { ProjectDetailsModule } from './project-details/project-details.module';
 		ProjectModule,
 		CampusModule,
 		CampusOverviewModule,
-		ProjectDetailsModule
+		ProjectDetailsModule,
+		ProjectGroupDetailsModule
 
 	],
 	providers: []

@@ -1,0 +1,275 @@
+<div class="container">
+		<div class="row">
+			<div class="col-sm-12 col-md-8 col-lg-8 padb15">
+				<kt-portlet [class]="'kt-portlet--height-fluid'">
+					<div class="kt-portlet__head">
+						<div class="kt-portlet__head-label">
+							<h3 class="kt-portlet__head-title">
+								<span class="kt-portlet__head-icon">
+									<i class="fas fa-sliders-h"></i> </span
+								>Project Group Details
+							</h3>
+						</div>
+
+						<div class="kt-portlet__head-label">
+							<i class="fas fa-ellipsis-h"></i>
+						</div>
+					</div>
+					<kt-portlet-body>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="name">Name</label>
+									<div class="result">
+										{{ projectObj.displayName }}
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="startDate">Start Date</label>
+									<div class="result">
+										{{ projectObj.startDate | date: "dd/MM/yyyy" }}
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="groupNumber">Group Number</label>
+									<div class="result">
+										{{ projectObj.projectNumber }}
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="endDate">End Date</label>
+									<div class="result">
+										{{
+											projectObj.estimatedCompletionDate
+												| date: "dd/MM/yyyy"
+										}}
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div [hidden]="IsHidden">
+						<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label for="groupNumber">Status</label>
+										<div class="result">In Progress</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label for="endDate">Phase</label>
+										<div class="result">Construction Period</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="groupNumber">Previous Budget</label>
+											<div class="result">$57,948,021.85</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="endDate">Previous Expenses</label>
+											<div class="result">$20,235,690.94</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="reportStatus"
+													>CM/DM Report Status</label
+												>
+												<div class="result">Active</div>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="projectBudgetStatus"
+													>CM/DM Project Budget Status</label
+												>
+												<div class="result">On Hold</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label for="estimateCompleteStatus"
+														>CM/DM Estimate at Complete Status</label
+													>
+													<div class="result">Completing soon.</div>
+												</div>
+											</div>
+
+											<div class="col-md-6">
+												<div class="form-group">
+													<label for="projectBudgetStatus"
+														>Sub-projects</label
+													>
+													<div class="result">Library Rooms</div>
+													<div class="result">Meeting Rooms</div>
+												</div>
+											</div>
+										</div>
+
+									</div>
+						<hr />
+						<i
+							id="toggleBtn"
+							class="toggleBtn"
+							[ngClass]="
+								IsHidden
+								? 'fa fa-caret-down'
+								: 'fa fa-caret-up'"
+							style="font-size:18px"
+							(click)="onSelect()"
+						></i>
+					</kt-portlet-body>
+				</kt-portlet>
+			</div>
+			<div class="col-sm-12 col-md-4 col-lg-4 padb15">
+				<kt-portlet [class]="'kt-portlet--height-fluid'">
+					<div class="kt-portlet__head">
+						<div class="kt-portlet__head-label">
+							<h3 class="kt-portlet__head-title">
+								<span class="kt-portlet__head-icon">
+									<i class="fas fa-address-book"></i> </span
+								>Contacts
+							</h3>
+						</div>
+
+						<div class="kt-portlet__head-label">
+							<i class="fas fa-ellipsis-h"></i>
+						</div>
+					</div>
+					<kt-portlet-body>
+						<div class="row">
+							<div class="col-xs-12 col-md-4">
+								<div>
+									Project Manager
+								</div>
+							</div>
+
+							<div class="col-xs-12 col-md-8">
+								<div>
+									<div class="">Jerry Jones</div>
+									<a style="color: #079DE5;">
+											<div class="">jerryjones@cod.org</div>
+									</a>
+
+									<div class="">714.948.5938</div>
+								</div>
+							</div>
+						</div>
+						<br />
+						<!-- <div class="row">
+							<div class="col-xs-12 col-md-4">
+								<div>
+									Architect
+								</div>
+							</div>
+
+							<div class="col-xs-12 col-md-8">
+								<div>
+									<div class="">Suzie Wallard</div>
+									<div class="">suzie.wallard@cod.org</div>
+									<div class="">714.578.1235</div>
+								</div>
+							</div>
+						</div>
+						<br /> -->
+						<div class="row">
+							<div class="col-xs-12 col-md-4">
+								<div>
+									General Contractor
+								</div>
+							</div>
+
+							<div class="col-xs-12 col-md-8">
+								<div>
+									<div class="">George Jones</div>
+
+									<a style="color: #079DE5;">
+											<div class="">george.jones@cod.org</div>
+									</a>
+									<div class="">714.895.4587</div>
+								</div>
+							</div>
+						</div>
+						<br />
+						<div class="row">
+							<div class="col-xs-12 col-md-4">
+								<div>
+									Finance Manager
+								</div>
+							</div>
+
+							<div class="col-xs-12 col-md-8">
+								<div>
+									<div class="">Harry Williams</div>
+									<a style="color: #079DE5;">
+											<div class="">harry.williams@cod.org</div>
+									</a>
+
+									<div class="">748.314.9850</div>
+								</div>
+							</div>
+						</div>
+						<br />
+						<div class="row">
+							<div class="col-xs-12 col-md-4">
+								<div>
+									Program Manager
+								</div>
+							</div>
+
+							<div class="col-xs-12 col-md-8">
+								<div>
+									<div class="">Oscar Miller</div>
+									<a style="color: #079DE5;">
+											<div class="">oscar.miller@cod.org</div>
+									</a>
+
+
+									<div class="">752.525.3434</div>
+								</div>
+							</div>
+						</div>
+						<br />
+						<div class="row">
+							<div class="col-xs-12 col-md-4">
+								<div>
+									District Accountant
+								</div>
+							</div>
+
+							<div class="col-xs-12 col-md-8">
+								<div>
+									<div class="">Jack Wilson</div>
+									<a style="color: #079DE5;">
+											<div class="">jack.wilson@cod.org</div>
+									</a>
+									<div class="">712.257.0186</div>
+								</div>
+							</div>
+						</div>
+					</kt-portlet-body>
+				</kt-portlet>
+			</div>
+		</div>
+		</div>

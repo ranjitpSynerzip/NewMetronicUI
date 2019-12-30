@@ -53,6 +53,10 @@ const routes: Routes = [
 				path: 'projectdetails',
 				loadChildren: () => import('app/views/pages/project-details/project-details.module').then(m => m.ProjectDetailsModule)
 			},
+			{
+				path: 'projectgroupdetails',
+				loadChildren: () => import('app/views/pages/project-group-details/project-group-details.module').then(m => m.ProjectGroupDetailsModule)
+			},
 
 
 
