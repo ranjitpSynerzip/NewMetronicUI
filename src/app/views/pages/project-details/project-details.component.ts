@@ -18,7 +18,7 @@ export class ProjectDetailsComponent implements OnInit {
 
 	ngOnInit() {
 
-		this.service.getProjectbyID(47).subscribe(
+		this.service.getProjectbyID(7).subscribe(
 			(data => {
 			  this.projectObj = data;
 			}));
