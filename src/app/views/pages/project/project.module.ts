@@ -7,7 +7,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CoreModule } from '../../../core/core.module';
 import { HttpClientModule } from '@angular/common/http';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
-import { DxDataGridModule, DxButtonModule } from 'devextreme-angular';
+import { DxDataGridModule, DxButtonModule, DxDateBoxModule } from 'devextreme-angular';
+import { AddProjectComponent } from './add-project/add-project.component';
+import { FormsModule } from '@angular/forms';
+import { ProjectListComponent } from './project-list/project-list.component';
 
 
 const routes: Routes = [
@@ -16,8 +19,15 @@ const routes: Routes = [
     component: ProjectComponent,
     children: [
       {
-        path: 'project',
-        component: ProjectComponent,
+        path: 'addproject',
+        component: AddProjectComponent,
+      },
+      {
+        path: 'projectlist',
+        component: ProjectListComponent,
+      }, {
+        path: '',
+        component: ProjectListComponent,
       }
     ]
   }
@@ -32,12 +42,16 @@ const routes: Routes = [
     HttpClientModule,
     PerfectScrollbarModule,
     RouterModule.forChild(routes),
-	DxDataGridModule,
-	DxButtonModule
+    DxDataGridModule,
+    DxButtonModule,
+    DxDateBoxModule,
+    FormsModule,
   ],
   exports: [RouterModule],
   declarations: [
-   ProjectComponent,
+    ProjectComponent,
+    AddProjectComponent,
+    ProjectListComponent,
   ]
 })
 export class ProjectModule { }

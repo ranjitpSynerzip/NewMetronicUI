@@ -1,0 +1,30 @@
+#gridDeleteSelected {
+    position: absolute;
+    z-index: 1;
+    right: 77px;
+	height: 36px;
+	top:0px;
+
+}
+
+#gridAddSelected{
+	position: absolute;
+    z-index: 1;
+    right: 24px;
+    height: 36px;
+	top: 0px;
+	width: 38px;
+}
+
+#gridHeaderTitle{
+	position: absolute;
+    left: 10px;
+    height: 36px;
+    top: 0;
+    z-index: 99999999;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #48465b;
+    padding: 15px;
+    margin: 0;
+}

@@ -3,27 +3,20 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { ProjectModel } from '../models/project-model.module';
 import { environment } from '../../../environments/environment';
-
+import { catchError, map } from 'rxjs/operators';
 
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root'
 })
 export class ProjectService {
 
-  baseUrl = environment.baseUrl;
-  projectObj : ProjectModel[];
-  constructor(private http: HttpClient) { }
+	baseUrl = environment.baseUrl;
+	projectObj: ProjectModel[];
+	constructor(private http: HttpClient) { }
 
 
-  // getProjects() {
-
-  //   return this.http.get(this.baseUrl + '/Projects')
-  //     .toPromise().then(res => this.projectObj = res as ProjectModel[]);
-
-  // }
-
-  getProjects(): Observable<ProjectModel[]> {
+	getProjects(): Observable<ProjectModel[]> {
 		return this.http.get<ProjectModel[]>(this.baseUrl + '/Projects');
 	}
 
@@ -39,15 +32,32 @@ export class ProjectService {
 
 	getStatus(): Observable<any[]> {
 		return this.http.get<any>(this.baseUrl + '/Status')
-  }
+	}
 
-  getContacts(): Observable<any[]> {
-	return this.http.get<any>(this.baseUrl + '/Contacts')
-}
+	getContacts(): Observable<any[]> {
+		return this.http.get<any>(this.baseUrl + '/Contacts')
+	}
 
-getCompanies(): Observable<any[]> {
-	return this.http.get<any>(this.baseUrl + '/Companies')
-}
+	getCompanies(): Observable<any[]> {
+		return this.http.get<any>(this.baseUrl + '/Companies')
+	}
+
+	getActivities(): Observable<any[]> {
+		return this.http.get<any>(this.baseUrl + '/Activities')
+	}
+
+	postProject(projectModel: ProjectModel): Observable<any> {
+		const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+		return this.http.post<ProjectModel>(this.baseUrl + '/Projects', projectModel, httpOptions)
+			.pipe(
+				map((res: ProjectModel) => {
+					return res;
+				}),
+				catchError(err => {
+					return null;
+				})
+			);
+	}
 
 }
 
