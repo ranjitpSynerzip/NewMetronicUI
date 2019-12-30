@@ -128,9 +128,9 @@ export class FundAllocationComponent implements OnInit, OnDestroy {
   }
 
 
-  onContentFundAllocationReady(e) {
-    e.component.option("loadPanel.enabled", true);
-  }
+  // onContentFundAllocationReady(e) {
+  //   e.component.option("loadPanel.enabled", true);
+  // }
 
 
 }
