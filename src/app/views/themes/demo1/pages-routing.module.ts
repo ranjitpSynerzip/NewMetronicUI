@@ -49,6 +49,10 @@ const routes: Routes = [
 				path: 'campusoverview',
 				loadChildren: () => import('app/views/pages/campus-overview/campus-overview.module').then(m => m.CampusOverviewModule)
 			},
+			{
+				path: 'projectdetails',
+				loadChildren: () => import('app/views/pages/project-details/project-details.module').then(m => m.ProjectDetailsModule)
+			},
 
 
 
