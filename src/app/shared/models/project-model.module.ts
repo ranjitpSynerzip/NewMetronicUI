@@ -2,7 +2,7 @@ export class ProjectModel {
   public projectId: number;
   public projectName: string;
   public displayName: string;
-  public projectnumber: string;
+  public projectNumber: string;
   public statusId: number;
   public activityId: number;
   public startDate: string;
