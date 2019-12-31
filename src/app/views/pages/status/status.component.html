@@ -1,77 +1,94 @@
 <div class="container">
 	<div class="row">
-		<table class="table table-hover table-bordered table-striped">
-			<tbody>
-				<tr>
-					<td class="text-center">
-						API Server: URL
-					</td>
-					<td class="text-center">
-						<a href='{{ APIUrl}}/swagger' target="_blank">{{ (APIUrl | emptyvalue)}}</a>
-					</td>
-				</tr>
-				<tr>
-					<td class="text-center">
-						Frontend Version
-					</td>
-					<td class="text-center">
-						{{ frontendVersion | emptyvalue }}
-					</td>
-				</tr>
+		<div class="col-xl-12 col-xs-12">
+			<kt-portlet [class]="'kt-portlet'">
+				<div class="kt-portlet__head">
+					<div class="kt-portlet__head-label">
+						<h3 class="kt-portlet__head-title"><span class="kt-portlet__head-icon">
+								<i class="far fa-question-square"></i>
+							</span>Status</h3>
+					</div>
+					<div class="kt-portlet__head-label">
+						<i class="fas fa-ellipsis-h"></i>
+					</div>
+				</div>
+				<kt-portlet-body>
 
-				<tr>
-					<td class="text-center">
-						Backend API Version
-					</td>
-					<td class="text-center">
-						{{ StatusModel.version | emptyvalue }}
-					</td>
-				</tr>
-				<tr>
-					<td class="text-center">
-						Assembly Version
-					</td>
-					<td class="text-center">
-						{{ StatusModel.assembly_version | emptyvalue }}
-					</td>
-				</tr>
+					<table class="table table-hover table-bordered table-striped">
+						<tbody>
+							<tr>
+								<td class="text-center">
+									API Server: URL
+								</td>
+								<td class="text-center">
+									<a href='{{ APIUrl}}/swagger' target="_blank">{{ (APIUrl | emptyvalue)}}</a>
+								</td>
+							</tr>
+							<tr>
+								<td class="text-center">
+									Frontend Version
+								</td>
+								<td class="text-center">
+									{{ frontendVersion | emptyvalue }}
+								</td>
+							</tr>
 
-				<tr>
-					<td class="text-center">
-						API Server: API Call Test:/status
-					</td>
-					<td class="text-center">{{ StatusModel.up | emptyvalue }}</td>
-				</tr>
-				<tr>
-					<td class="text-center">
-						API Server DB:Client Details: Connection
-					</td>
-					<td class="text-center">
-						{{ StatusModel.database_client_details_string | emptyvalue }}
-					</td>
-				</tr>
-				<tr>
-					<td class="text-center">
-						API Server DB:Client Details: Query Test
-					</td>
-					<td class="text-center">
-						{{ StatusModel.database_client_details | emptyvalue }}
-					</td>
-				</tr>
+							<tr>
+								<td class="text-center">
+									Backend API Version
+								</td>
+								<td class="text-center">
+									{{ StatusModel.version | emptyvalue }}
+								</td>
+							</tr>
+							<tr>
+								<td class="text-center">
+									Assembly Version
+								</td>
+								<td class="text-center">
+									{{ StatusModel.assembly_version | emptyvalue }}
+								</td>
+							</tr>
 
-				<tr>
-					<td class="text-center">API Server DB:Main:Connection</td>
+							<tr>
+								<td class="text-center">
+									API Server: API Call Test:/status
+								</td>
+								<td class="text-center">{{ StatusModel.up | emptyvalue }}</td>
+							</tr>
+							<tr>
+								<td class="text-center">
+									API Server DB:Client Details: Connection
+								</td>
+								<td class="text-center">
+									{{ StatusModel.database_client_details_string | emptyvalue }}
+								</td>
+							</tr>
+							<tr>
+								<td class="text-center">
+									API Server DB:Client Details: Query Test
+								</td>
+								<td class="text-center">
+									{{ StatusModel.database_client_details | emptyvalue }}
+								</td>
+							</tr>
 
-					<td class="text-center">
-						{{ StatusModel.database_main_string | emptyvalue }}
-					</td>
-				</tr>
-				<tr>
-					<td class="text-center">API Server DB:Main:Query Test</td>
-					<td class="text-center">{{ StatusModel.database_main | emptyvalue }}</td>
-				</tr>
-			</tbody>
-		</table>
+							<tr>
+								<td class="text-center">API Server DB:Main:Connection</td>
+
+								<td class="text-center">
+									{{ StatusModel.database_main_string | emptyvalue }}
+								</td>
+							</tr>
+							<tr>
+								<td class="text-center">API Server DB:Main:Query Test</td>
+								<td class="text-center">{{ StatusModel.database_main | emptyvalue }}</td>
+							</tr>
+						</tbody>
+					</table>
+				</kt-portlet-body>
+			</kt-portlet>
+		</div>
 	</div>
 </div>
 <!-- <div class="overlay"> -->
