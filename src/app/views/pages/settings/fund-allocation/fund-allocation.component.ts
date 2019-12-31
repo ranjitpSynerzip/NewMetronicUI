@@ -45,7 +45,7 @@ export class FundAllocationComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.getFundAllocation();
-    if (this.fundemmiter.subsVar == undefined) {
+    if (this.fundemmiter.subsVar === undefined) {
       this.fundemmiter.subsVar = this.fundemmiter.invokeComponentFunction.subscribe((name: string) => {
         this.getFundAllocation();
       });
@@ -121,7 +121,7 @@ export class FundAllocationComponent implements OnInit, OnDestroy {
     this.service.updateseriesdetailamount(this.seriseAmount, this.seriseName, this.fundName, this.campusName).subscribe(
       success => {
         console.log('updateseriesdetailamount');
-       // this.getFundAllocation();
+       this.getFundAllocation();
         this.fundemmiter.onSaveOnUpdate();
       },
       error => { console.log('error'); }
