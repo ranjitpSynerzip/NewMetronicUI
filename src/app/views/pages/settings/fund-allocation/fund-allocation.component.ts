@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { FundAllocationService } from '../../../../shared/Services/fund-allocation.service';
 import * as AspNetData from "devextreme-aspnet-data-nojquery";
 import { HttpClient } from '@angular/common/http';
@@ -11,7 +11,8 @@ import { ThrowStmt } from '@angular/compiler';
 @Component({
   selector: 'kt-fund-allocation',
   templateUrl: './fund-allocation.component.html',
-  styleUrls: ['./fund-allocation.component.scss']
+  styleUrls: ['./fund-allocation.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class FundAllocationComponent implements OnInit, OnDestroy {
   private subscription: Subscription;

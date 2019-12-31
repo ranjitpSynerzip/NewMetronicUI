@@ -24,6 +24,31 @@
 .gridheading{
     font-size: 1.2rem;
     font-weight: 500;
-    color: #48465b;
+    color: #000;
     padding: 15px;
 }
+
+// .dx-widget {
+//     // color: #000 !important;
+//     // font-weight: 600 !important; 
+//     // font-size: 14px !important; 
+//     // font-family: "Poppins" !important;
+// }
+.dx-pivotgrid .dx-pivotgrid-area td{
+    color: #000 !important;
+}
+
+.dx-pivotgrid td.dx-total span{
+    color: #000 !important;
+}
+
+.dx-pivotgrid-horizontal-headers{
+    font-weight: 500;
+    color: #000;
+}
+
+.dx-pivotgrid .dx-pivotgrid-horizontal-headers td span{
+    font-weight: 500 !important;
+    color: #000 !important;
+}
+
