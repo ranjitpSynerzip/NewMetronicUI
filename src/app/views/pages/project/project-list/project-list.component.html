@@ -25,9 +25,10 @@
             [showInfo]="true">
         </dxo-pager> -->
         <!-- <dxo-scrolling mode="virtual"></dxo-scrolling> -->
-        <dxo-editing mode="cell"
+        <dxo-editing mode="popup"
                   [allowAdding]="true"
 				  [allowUpdating]="true"
+				  [useIcons]="true"
                   >
                   <dxo-texts  addRow="Add New Project"></dxo-texts>
         </dxo-editing>
@@ -36,15 +37,12 @@
 
 
         <dxi-column dataField="displayName" caption="Project Name" cellTemplate="linkCellTemplate">
-        </dxi-column>
+		</dxi-column>
 
-        <dxi-column dataField="statusId" caption="Status" alignment="left">
-                <dxo-lookup
-                [dataSource]="Statues"
-                valueExpr="statusId"
-                displayExpr="statusName">
-            </dxo-lookup>
-        </dxi-column>
+		<dxi-column dataField="projectNumber" caption="Project Number" alignment="left">
+			</dxi-column>
+
+
         <!-- <dxi-column dataField="statusId" caption="Status">
         </dxi-column> -->
         <dxi-column dataField="startDate" dataType="date" caption="Start Date">
@@ -59,29 +57,36 @@
                 valueExpr="id"
                 displayExpr="name">
             </dxo-lookup>
+		</dxi-column>
+		<dxi-column dataField="statusId" caption="Status" alignment="left">
+                <dxo-lookup
+                [dataSource]="Statues"
+                valueExpr="statusId"
+                displayExpr="statusName">
+            </dxo-lookup>
         </dxi-column>
-        <dxi-column dataField="gccontactId" caption="GC Contact" alignment="left">
+        <dxi-column dataField="gccontactId" caption="GC Contact" alignment="left" [visible]="false">
                 <dxo-lookup
                 [dataSource]="contacts"
                 valueExpr="contactId"
                 displayExpr="contactName">
             </dxo-lookup>
         </dxi-column>
-        <dxi-column dataField="gccompanyId" caption="GC Company" alignment="left">
+        <dxi-column dataField="gccompanyId" caption="GC Company" alignment="left" [visible]="false">
                 <dxo-lookup
                 [dataSource]="companies"
                 valueExpr="companyId"
                 displayExpr="companyName">
             </dxo-lookup>
         </dxi-column>
-        <dxi-column dataField="aorcontactId" caption="AOR Contact" alignment="left">
+        <dxi-column dataField="aorcontactId" caption="AOR Contact" alignment="left" [visible]="false">
                 <dxo-lookup
                 [dataSource]="contacts"
                 valueExpr="contactId"
                 displayExpr="contactName">
             </dxo-lookup>
         </dxi-column>
-        <dxi-column dataField="aorcompanyId" caption="AOR Company" alignment="left">
+        <dxi-column dataField="aorcompanyId" caption="AOR Company" alignment="left" [visible]="false">
                 <dxo-lookup
                 [dataSource]="companies"
                 valueExpr="companyId"
@@ -90,8 +95,8 @@
 		</dxi-column>
 
 		<!-- Hidden Fields -->
-		<dxi-column dataField="projectNumber" caption="Project Number" alignment="left" [visible]="false">
-			</dxi-column>
+		<!-- <dxi-column dataField="projectNumber" caption="Project Number" alignment="left">
+			</dxi-column> -->
 
 			<dxi-column dataField="notes" caption="Notes" alignment="left" [visible]="false">
 				</dxi-column>
