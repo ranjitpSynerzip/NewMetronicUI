@@ -1,7 +1,10 @@
 @media (min-width: 1025px) {
   .kt-header {
-    background-color: #ffffff;
-    border-bottom: 1px solid #eff0f6; }
+    /* background-color: #ffffff;
+    border-bottom: 1px solid #eff0f6; */
+    background-color: #003666;
+    border-bottom: 1px solid #003666;
+   }
     .kt-header--fixed:not(.kt-subheader--fixed) .kt-header {
       border-bottom: 0;
       -webkit-box-shadow: 0px 0px 40px 0px rgba(82, 63, 105, 0.1);

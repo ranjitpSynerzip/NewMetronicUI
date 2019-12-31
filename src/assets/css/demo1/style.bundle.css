@@ -35091,6 +35091,8 @@ body {
 
 @media (min-width: 1025px) {
   .kt-header {
+    background-color: #003666;
+    border-bottom: 1px solid #003666;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;

@@ -8,8 +8,11 @@
 
 @media (max-width: 1024px) {
   .kt-header-mobile {
-    background-color: #ffffff;
-    border-bottom: 1px solid #eff0f6; }
+    /* background-color: #ffffff;
+    border-bottom: 1px solid #eff0f6;  */
+    background-color: #003666;
+    border-bottom: 1px solid #003666;
+  }
     .kt-header-mobile--fixed.kt-header--minimize .kt-header-mobile {
       border-bottom: 0;
       -webkit-box-shadow: 0px 1px 9px -3px rgba(0, 0, 0, 0.1);
