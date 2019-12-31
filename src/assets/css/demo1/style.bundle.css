@@ -38100,3 +38100,15 @@ body {
     .kt-footer .kt-footer__menu .kt-footer__menu-link:first-child {
       padding-left: 0;
       margin-left: 0; } }
+
+
+      .dx-header-row > td[role="columnheader"]> div.dx-datagrid-text-content {
+        font-weight: 600 !important;
+        font-family: Poppins !important;
+        color: #000 !important;
+        font-size: 13px !important;
+      }
+
+      .kt-portlet .kt-portlet__head .kt-portlet__head-label .kt-portlet__head-title{
+        color:#000;
+      }
