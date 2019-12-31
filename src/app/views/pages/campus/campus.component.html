@@ -19,33 +19,32 @@
 		(onRowInserting)="OnRowInserting($event)"
 	>
 	<dxo-paging [pageSize]="10"></dxo-paging>
-    <dxo-pager 
+    <dxo-pager
         [showPageSizeSelector]="true"
         [allowedPageSizes]="[5, 10, 20]"
         [showInfo]="true">
 	</dxo-pager>
 
 		<dxo-editing mode="cell" [allowAdding]="true" [allowUpdating]="true">
-				<dxo-texts  addRow="Add New Campus"></dxo-texts>  
+				<dxo-texts  addRow="Add New Campus"></dxo-texts>
 		</dxo-editing>
 
 		<dxo-selection mode="multiple"></dxo-selection>
 
 		<dxi-column
 			dataField="campusName"
-			caption="Campus Name"
+			caption="Campus"
 			cellTemplate="linkCellTemplate"
 		>
 		</dxi-column>
 		<dxi-column
-			dataField="clientId"
-			caption="Client Id"
-			alignment="left"
+			dataField="clientName"
+			caption="Client"
 		>
 		</dxi-column>
 		<dxi-column
-			dataField="districtId"
-			caption="District Id"
+			dataField="districtName"
+			caption="District"
 			alignment="left"
 		>
 		</dxi-column>
@@ -65,14 +64,14 @@
 		>
 		</dxi-column> -->
 		<dxi-column
-			dataField="modifiedBy"
-			caption="Modified By"
+			dataField="createdByName"
+			caption="Created By"
 			alignment="left"
 		>
 		</dxi-column>
 		<dxi-column
-			dataField="modifiedDate"
-			caption="Modified Date"
+			dataField="createdDate"
+			caption="Created Date"
 			alignment="left"
 			dataType="date"
 		>
