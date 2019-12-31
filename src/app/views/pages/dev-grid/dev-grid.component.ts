@@ -29,7 +29,7 @@ export class DevGridComponent {
 	constructor(private httpClient: HttpClient) {
 		this.dataSource = new CustomStore({
 			load: function(loadOptions: any) {
-				let apiURL = environment.baseUrl + '/budgetdetails/93';
+				let apiURL = 'https://dev-newprompt-backend.azurewebsites.net' + '/budgetdetails/93';
 
 				return httpClient
 					.get(apiURL)
