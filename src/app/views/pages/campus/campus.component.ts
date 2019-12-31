@@ -25,7 +25,7 @@ export class CampusComponent implements OnInit {
 
 	ngOnInit() {
 		this.dataSource = [];
-		this.service.getCampus().subscribe(data => {
+		this.service.getCampuswithdetails().subscribe(data => {
 			this.dataSource = data;
 		});
 	}
@@ -65,11 +65,11 @@ export class CampusComponent implements OnInit {
 		this.campusObj.districtId = 2;
 		this.campusObj.accountCode = e.data.accountCode;
 		this.campusObj.displayOrder = 0;
-		this.campusObj.createdBy = 1;
+		this.campusObj.createdById = 1;
 		this.campusObj.createdDate = new Date();
-		this.campusObj.modifiedBy = 2;
+		this.campusObj.modifiedById = 2;
 		this.campusObj.modifiedDate = new Date();
-		this.campusObj.isDeleted = false;
+		this.campusObj.campusIsDeleted = false;
 
 		this.service.postCampus(this.campusObj).subscribe(
 			success => {

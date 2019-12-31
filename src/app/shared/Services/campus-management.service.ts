@@ -21,6 +21,10 @@ export class CampusManagementService {
 	// 	return campuses;
 	// }
 
+	getCampuswithdetails(): Observable<Campusmodel[]> {
+		return this.http.get<Campusmodel[]>(this.baseUrl + '/Campus/getcampswithdetails')
+	}
+
 	getCampus(): Observable<Campusmodel[]> {
 		return this.http.get<Campusmodel[]>(this.baseUrl + '/Campus')
 	}
