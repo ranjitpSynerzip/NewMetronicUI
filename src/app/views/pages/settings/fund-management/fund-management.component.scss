@@ -26,14 +26,15 @@
   position: absolute;
   z-index: 1;
   left: 50px;
-  // height: 36px;
   font-size: 1.2rem;
     font-weight: 500;
     color: #48465b;
 }
 .dx-header-row > td[role="columnheader"]> div.dx-datagrid-text-content {
-  // font-size: 17px;
-  font-weight: bold;
+  font-weight: 600 !important;
+  font-family: Poppins !important;
+  color: #000 !important;
+  font-size: 13px !important;
 }
 
 .fontbold{
@@ -47,6 +48,10 @@ i.dx-icon.dx-icon-trash{
 #Fundgrid {
   min-height: 500px;
 }
+
+
+
+
 
 
 

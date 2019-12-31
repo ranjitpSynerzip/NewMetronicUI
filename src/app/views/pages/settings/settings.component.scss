@@ -10,3 +10,10 @@ li{
     cursor: pointer;
     font-weight: normal;
 }
+
+.dx-header-row > td[role=columnheader] > div.dx-datagrid-text-content {
+    font-weight: 600 !important;
+    font-family: Poppins !important;
+    color: #000 !important;
+    font-size: 13px !important;
+}

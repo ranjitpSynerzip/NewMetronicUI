@@ -1,3 +1,18 @@
 .padb15{
 	padding-bottom: 15px;
 }
+
+.dx-header-row > td[role=columnheader] > div.dx-datagrid-text-content {
+    font-weight: 600 !important;
+    font-family: Poppins !important;
+    color: #000 !important;
+    font-size: 13px !important;
+}
+
+.dx-header-row
+{
+	font-weight: 600 !important;
+    font-family: Poppins !important;
+    color: #000 !important;
+    font-size: 13px !important;
+}
