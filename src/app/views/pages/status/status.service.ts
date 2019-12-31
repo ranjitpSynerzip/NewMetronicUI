@@ -12,7 +12,7 @@ export class StatusService {
   constructor(private http: HttpClient) { }
 
   getData(): Observable<Status> {
-    let apiURL = environment.baseUrl + "/status";
+    let apiURL = 'https://dev-newprompt-backend.azurewebsites.net/' + "/status";
     return this.http.get<Status>(apiURL);
   }
 

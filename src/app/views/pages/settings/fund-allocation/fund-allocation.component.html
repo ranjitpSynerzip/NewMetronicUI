@@ -9,9 +9,11 @@
             (onCellClick)="onCellClick($event)" 
             [height]="440"
             [allowExpandAll]="false"
+            (onCellPrepared)="onCellPrepared($event)"
             >
             <dxo-field-chooser [enabled]="false"></dxo-field-chooser>
             <dxo-load-panel [enabled]="true"></dxo-load-panel>
+
         </dx-pivot-grid>
     </div>
 

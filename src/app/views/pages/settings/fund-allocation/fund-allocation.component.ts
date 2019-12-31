@@ -8,6 +8,7 @@ import { FundemitterService } from '../../../../shared/Services/fundemitter.serv
 import { ThrowStmt } from '@angular/compiler';
 
 
+
 @Component({
   selector: 'kt-fund-allocation',
   templateUrl: './fund-allocation.component.html',
@@ -80,6 +81,7 @@ export class FundAllocationComponent implements OnInit, OnDestroy {
             format: "currency",
             summaryType: "sum",
             area: "data",
+
           }],
           store: this.serviceData,
         };
@@ -88,7 +90,7 @@ export class FundAllocationComponent implements OnInit, OnDestroy {
 
   onCellClick(e) {
     console.log('onCellClick', e)
-    if (e.area == "data" && e.cell.columnPath.length > 1 && e.cell.rowType !== 'GT') {
+    if (e.area === 'data' && e.cell.columnPath.length > 1 && e.cell.rowType !== 'GT') {
       var rowPathLength = e.cell.rowPath.length,
         rowPathName = e.cell.rowPath[rowPathLength - 1];
       this.campusName = rowPathName;
@@ -121,7 +123,7 @@ export class FundAllocationComponent implements OnInit, OnDestroy {
     this.service.updateseriesdetailamount(this.seriseAmount, this.seriseName, this.fundName, this.campusName).subscribe(
       success => {
         console.log('updateseriesdetailamount');
-       //this.getFundAllocation();
+        //this.getFundAllocation();
         this.fundemmiter.onSaveOnUpdate();
       },
       error => { console.log('error'); }
@@ -132,6 +134,17 @@ export class FundAllocationComponent implements OnInit, OnDestroy {
   // onContentFundAllocationReady(e) {
   //   e.component.option("loadPanel.enabled", true);
   // }
+
+  onCellPrepared(e) {
+      //if (e.area === 'data' && e.cell.columnPath.length > 1 && e.cell.rowType !== 'GT') {
+      // const label = document.createElement('div');
+      // label.innerHTML = '<a href="#">' + this.CellValue + '</a>';
+      //e.cellElement.appendChild(label);
+    //}
+    if (e.area === 'data' && e.cell.columnPath.length > 1 && e.cell.rowType !== 'GT') {
+      e.cellElement.classList.add("hRefLink");
+    }
+  }
 
 
 }
