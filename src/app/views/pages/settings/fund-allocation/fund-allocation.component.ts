@@ -8,6 +8,7 @@ import { FundemitterService } from '../../../../shared/Services/fundemitter.serv
 import { ThrowStmt } from '@angular/compiler';
 
 
+
 @Component({
   selector: 'kt-fund-allocation',
   templateUrl: './fund-allocation.component.html',
@@ -135,13 +136,15 @@ export class FundAllocationComponent implements OnInit, OnDestroy {
   // }
 
   onCellPrepared(e) {
-  //   this.CellValue = e.cell.value;
-  //   if (e.area === 'data' && e.cell.columnPath.length > 1 && e.cell.rowType !== 'GT') {
-  //   const label = document.createElement('div');
-  //   label.innerHTML = '<a href="#">' + this.CellValue + '</a>';
-  //   e.cellElement.appendChild(label);
-  // }
-}
+      //if (e.area === 'data' && e.cell.columnPath.length > 1 && e.cell.rowType !== 'GT') {
+      // const label = document.createElement('div');
+      // label.innerHTML = '<a href="#">' + this.CellValue + '</a>';
+      //e.cellElement.appendChild(label);
+    //}
+    if (e.area === 'data' && e.cell.columnPath.length > 1 && e.cell.rowType !== 'GT') {
+      e.cellElement.classList.add("hRefLink");
+    }
+  }
 
 
 }
