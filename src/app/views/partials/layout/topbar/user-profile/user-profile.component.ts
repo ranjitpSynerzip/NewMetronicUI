@@ -42,7 +42,8 @@ export class UserProfileComponent implements OnInit {
 	ngOnInit(): void {
 		this.user$ = this.store.pipe(select(currentUser));
 		this.userInfo = JSON.parse(localStorage.getItem("user"));
-		this.userObj.fullname = this.userInfo.displayName;
+		// this.userObj.fullname = this.userInfo.displayName;
+		this.userObj.fullname = 'Global Admin'
 		// this.user$ = this.userInfo;
 
 	}
