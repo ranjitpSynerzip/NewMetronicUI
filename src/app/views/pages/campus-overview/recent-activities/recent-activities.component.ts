@@ -24,13 +24,12 @@ export class RecentActivitiesComponent implements OnInit {
 			{
 				time: '10:00',
 				icon: 'fa fa-genderless kt-font-danger',
-				text: 'Lorem ipsum dolor sit amit,consectetur eiusmdd tempor\n' +
-					'incididunt ut labore et dolore magna',
+				text: 'Estimated budget for Anaheim Campus Lab Building.\n',
 			},
 			{
 				time: '12:45',
 				icon: 'fa fa-genderless kt-font-success',
-				text: 'AEOL Meeting With',
+				text: 'Received invoices for Anaheim Campus Lab Building.',
 				attachment: '\n' +
 					'<a href="$event.preventDefault();"><img src="./assets/media/users/100_4.jpg" title="" alt=""></a>' +
 					'<a href="$event.preventDefault();"><img src="./assets/media/users/100_13.jpg" title="" alt=""></a>' +
@@ -40,24 +39,22 @@ export class RecentActivitiesComponent implements OnInit {
 			{
 				time: '14:00',
 				icon: 'fa fa-genderless kt-font-brand',
-				text: 'Make Deposit <a href="$event.preventDefault();" class="kt-link kt-link--brand kt-font-bolder">USD 700</a> To ESL.',
+				text: 'Forwarded all invoices to Project Manager for review.',
 			},
 			{
 				time: '17:00',
 				icon: 'fa fa-genderless kt-font-info',
-				text: 'Placed a new order in <a href="$event.preventDefault();" class="kt-link kt-link--brand kt-font-bolder">SIGNATURE MOBILE</a> marketplace.',
+				text: 'Reviewed all the invoices received for Anaheim Campus Lab Building.',
 			},
 			{
 				time: '16:00',
 				icon: 'fa fa-genderless kt-font-brand',
-				text: 'Lorem ipsum dolor sit amit,consectetur eiusmdd tempor<br>' +
-					'incididunt ut labore et dolore magna elit enim at minim<br>' +
-					'veniam quis nostrud',
+				text: 'Selected invoice for Anaheim Campus Lab Building.',
 			},
 			{
 				time: '17:00',
 				icon: 'fa fa-genderless kt-font-danger',
-				text: 'Received a new feedback on <a href="$event.preventDefault();" class="kt-link kt-link--brand kt-font-bolder">FinancePro App</a> product.',
+				text: 'Material for building Anaheim Campus Lab is purchased.',
 			},
 		];
 	}
