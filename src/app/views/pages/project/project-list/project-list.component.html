@@ -75,6 +75,13 @@
                 valueExpr="statusId"
                 displayExpr="statusName">
             </dxo-lookup>
+		</dxi-column>
+		<dxi-column dataField="gccompanyId" caption="GC Company" alignment="left" [visible]="false">
+                <dxo-lookup
+                [dataSource]="companies"
+                valueExpr="companyId"
+                displayExpr="companyName">
+            </dxo-lookup>
         </dxi-column>
         <dxi-column dataField="gccontactId" caption="GC Contact" alignment="left" [visible]="false">
                 <dxo-lookup
@@ -82,28 +89,98 @@
                 valueExpr="contactId"
                 displayExpr="contactName">
             </dxo-lookup>
-        </dxi-column>
-        <dxi-column dataField="gccompanyId" caption="GC Company" alignment="left" [visible]="false">
-                <dxo-lookup
-                [dataSource]="companies"
-                valueExpr="companyId"
-                displayExpr="companyName">
-            </dxo-lookup>
-        </dxi-column>
-        <dxi-column dataField="aorcontactId" caption="AOR Contact" alignment="left" [visible]="false">
-                <dxo-lookup
-                [dataSource]="contacts"
-                valueExpr="contactId"
-                displayExpr="contactName">
-            </dxo-lookup>
-        </dxi-column>
-        <dxi-column dataField="aorcompanyId" caption="AOR Company" alignment="left" [visible]="false">
+		</dxi-column>
+		<dxi-column dataField="aorcompanyId" caption="AOR Company" alignment="left" [visible]="false">
                 <dxo-lookup
                 [dataSource]="companies"
                 valueExpr="companyId"
                 displayExpr="companyName">
             </dxo-lookup>
 		</dxi-column>
+
+        <dxi-column dataField="aorcontactId" caption="AOR Contact" alignment="left" [visible]="false">
+                <dxo-lookup
+                [dataSource]="contacts"
+                valueExpr="contactId"
+                displayExpr="contactName">
+            </dxo-lookup>
+		</dxi-column>
+		<dxi-column dataField="iorcompanyId" caption="IOR Company" alignment="left" [visible]="false">
+				<dxo-lookup
+				[dataSource]="companies"
+				valueExpr="companyId"
+				displayExpr="companyName">
+			</dxo-lookup>
+		</dxi-column>
+		<dxi-column dataField="iorcontactId" caption="IOR Contact" alignment="left" [visible]="false">
+				<dxo-lookup
+				[dataSource]="contacts"
+				valueExpr="contactId"
+				displayExpr="contactName">
+			</dxo-lookup>
+		</dxi-column>
+		<dxi-column dataField="cmcompanyId" caption="CM Company" alignment="left" [visible]="false">
+				<dxo-lookup
+				[dataSource]="companies"
+				valueExpr="companyId"
+				displayExpr="companyName">
+			</dxo-lookup>
+		</dxi-column>
+		<dxi-column dataField="cmcontactId" caption="CM Contact" alignment="left" [visible]="false">
+				<dxo-lookup
+				[dataSource]="contacts"
+				valueExpr="contactId"
+				displayExpr="contactName">
+			</dxo-lookup>
+		</dxi-column>
+		<dxi-column dataField="gcprojectNumber" caption="GC Project No" alignment="left" [visible]="false">
+			</dxi-column>
+			<dxi-column dataField="aorprojectNumber" caption="AOR Project No" alignment="left" [visible]="false">
+				</dxi-column>
+				<dxi-column dataField="iorprojectNumber" caption="IOR Project No" alignment="left" [visible]="false">
+					</dxi-column>
+					<dxi-column dataField="cmreferenceNumber" caption="CM Ref No" alignment="left" [visible]="false">
+						</dxi-column>
+						<dxi-column dataField="pmcontactId" caption="PM Contact" alignment="left" [visible]="false">
+								<dxo-lookup
+								[dataSource]="contacts"
+								valueExpr="contactId"
+								displayExpr="contactName">
+							</dxo-lookup>
+						</dxi-column>
+
+						<dxi-column dataField="doFcontactId" caption="DOF Contact" alignment="left" [visible]="false">
+								<dxo-lookup
+								[dataSource]="contacts"
+								valueExpr="contactId"
+								displayExpr="contactName">
+							</dxo-lookup>
+						</dxi-column>
+						<dxi-column dataField="fmcontactId" caption="FM Contact" alignment="left" [visible]="false">
+								<dxo-lookup
+								[dataSource]="contacts"
+								valueExpr="contactId"
+								displayExpr="contactName">
+							</dxo-lookup>
+						</dxi-column>
+
+						<dxi-column dataField="pgmgrcontactId" caption="Program Manager Contact" alignment="left" [visible]="false">
+								<dxo-lookup
+								[dataSource]="contacts"
+								valueExpr="contactId"
+								displayExpr="contactName">
+							</dxo-lookup>
+						</dxi-column>
+						<dxi-column dataField="dacontactId" caption="DA Contact" alignment="left" [visible]="false">
+								<dxo-lookup
+								[dataSource]="contacts"
+								valueExpr="contactId"
+								displayExpr="contactName">
+							</dxo-lookup>
+						</dxi-column>
+						<dxi-column dataField="subNumber" caption="Sub No" alignment="left" [visible]="false">
+							</dxi-column>
+
 
 		<!-- Hidden Fields -->
 		<!-- <dxi-column dataField="projectNumber" caption="Project Number" alignment="left">
@@ -112,92 +189,6 @@
 			<dxi-column dataField="notes" caption="Notes" alignment="left" [visible]="false">
 				</dxi-column>
 
-				<dxi-column dataField="gcprojectNumber" caption="GC Project No" alignment="left" [visible]="false">
-					</dxi-column>
-
-					<dxi-column dataField="aorprojectNumber" caption="AOR Project No" alignment="left" [visible]="false">
-						</dxi-column>
-
-						<dxi-column dataField="iorcompanyId" caption="IOR Company" alignment="left" [visible]="false">
-								<dxo-lookup
-								[dataSource]="companies"
-								valueExpr="companyId"
-								displayExpr="companyName">
-							</dxo-lookup>
-						</dxi-column>
-
-						<dxi-column dataField="iorcontactId" caption="IOR Contact" alignment="left" [visible]="false">
-								<dxo-lookup
-								[dataSource]="contacts"
-								valueExpr="contactId"
-								displayExpr="contactName">
-							</dxo-lookup>
-						</dxi-column>
-
-						<dxi-column dataField="iorprojectNumber" caption="IOR Project No" alignment="left" [visible]="false">
-							</dxi-column>
-
-							<dxi-column dataField="cmcompanyId" caption="CM Company" alignment="left" [visible]="false">
-									<dxo-lookup
-									[dataSource]="companies"
-									valueExpr="companyId"
-									displayExpr="companyName">
-								</dxo-lookup>
-							</dxi-column>
-
-							<dxi-column dataField="cmcontactId" caption="CM Contact" alignment="left" [visible]="false">
-									<dxo-lookup
-									[dataSource]="contacts"
-									valueExpr="contactId"
-									displayExpr="contactName">
-								</dxo-lookup>
-							</dxi-column>
-
-							<dxi-column dataField="cmreferenceNumber" caption="CM Ref No" alignment="left" [visible]="false">
-								</dxi-column>
-
-								<dxi-column dataField="pmcontactId" caption="PM Contact" alignment="left" [visible]="false">
-										<dxo-lookup
-										[dataSource]="contacts"
-										valueExpr="contactId"
-										displayExpr="contactName">
-									</dxo-lookup>
-								</dxi-column>
-
-								<dxi-column dataField="doFcontactId" caption="DOF Contact" alignment="left" [visible]="false">
-										<dxo-lookup
-										[dataSource]="contacts"
-										valueExpr="contactId"
-										displayExpr="contactName">
-									</dxo-lookup>
-								</dxi-column>
-
-								<dxi-column dataField="fmcontactId" caption="FM Contact" alignment="left" [visible]="false">
-										<dxo-lookup
-										[dataSource]="contacts"
-										valueExpr="contactId"
-										displayExpr="contactName">
-									</dxo-lookup>
-								</dxi-column>
-
-								<dxi-column dataField="pgmgrcontactId" caption="Program Manager Contact" alignment="left" [visible]="false">
-										<dxo-lookup
-										[dataSource]="contacts"
-										valueExpr="contactId"
-										displayExpr="contactName">
-									</dxo-lookup>
-								</dxi-column>
-
-								<dxi-column dataField="dacontactId" caption="DA Contact" alignment="left" [visible]="false">
-										<dxo-lookup
-										[dataSource]="contacts"
-										valueExpr="contactId"
-										displayExpr="contactName">
-									</dxo-lookup>
-								</dxi-column>
-
-								<dxi-column dataField="subNumber" caption="Sub No" alignment="left" [visible]="false">
-									</dxi-column>
 
 
 
