@@ -36,6 +36,7 @@
 			caption="Campus"
 			cellTemplate="linkCellTemplate"
 		>
+		<dxi-validation-rule type="required"></dxi-validation-rule>
 		</dxi-column>
 		<dxi-column
 			dataField="clientName"
@@ -81,6 +82,7 @@
 			caption="Account Code"
 			alignment="left"
 		>
+		<dxi-validation-rule type="required"></dxi-validation-rule>
 		</dxi-column>
 		<div *dxTemplate="let d of 'linkCellTemplate'">
 			<div>
