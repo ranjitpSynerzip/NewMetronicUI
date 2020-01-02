@@ -35,7 +35,56 @@
 				  [showTitle]="true"
 				  >
 			  </dxo-popup>
-                  <dxo-texts  addRow="Add New Project"></dxo-texts>
+				  <dxo-texts  addRow="Add New Project"></dxo-texts>
+
+				  <dxo-form>
+						<dxi-item itemType="group" caption="Project Details" [colCount]="2" [colSpan]="2">
+							<dxi-item dataField="displayName"></dxi-item>
+							<dxi-item dataField="projectNumber"></dxi-item>
+							<dxi-item dataField="startDate"></dxi-item>
+							<dxi-item dataField="estimatedCompletionDate"></dxi-item>
+							<dxi-item dataField="orgCodeId"></dxi-item>
+							<dxi-item dataField="statusId"></dxi-item>
+						</dxi-item>
+						<dxi-item itemType="group" caption="Project Team" [colCount]="3" [colSpan]="2">
+							<dxi-item dataField="gccompanyId"></dxi-item>
+							<dxi-item dataField="gccontactId"></dxi-item>
+							<dxi-item dataField="gcprojectNumber"></dxi-item>
+							<dxi-item dataField="aorcompanyId"></dxi-item>
+							<dxi-item dataField="aorcontactId"></dxi-item>
+							<dxi-item dataField="aorprojectNumber"></dxi-item>
+							<dxi-item dataField="iorcompanyId"></dxi-item>
+							<dxi-item dataField="iorcontactId"></dxi-item>
+							<dxi-item dataField="iorprojectNumber"></dxi-item>
+							<dxi-item dataField="cmcompanyId"></dxi-item>
+							<dxi-item dataField="cmcontactId"></dxi-item>
+							<dxi-item dataField="cmreferenceNumber"></dxi-item>
+						</dxi-item>
+						<dxi-item itemType="group" caption="Campus Team" [colCount]="2" [colSpan]="2">
+								<dxi-item dataField="pmcontactId"></dxi-item>
+								<dxi-item dataField="doFcontactId"></dxi-item>
+								<dxi-item dataField="fmcontactId"></dxi-item>
+								<dxi-item dataField="pgmgrcontactId"></dxi-item>
+								<dxi-item dataField="dacontactId"></dxi-item>
+								<dxi-item dataField="subNumber"></dxi-item>
+								<dxi-item
+								dataField="notes"
+								editorType="dxTextArea"
+								[colSpan]="2"
+								[editorOptions]="{ height: 70 }">
+							</dxi-item>
+						</dxi-item>
+
+
+
+
+						<!-- <dxi-item itemType="group" caption="Home Address" [colCount]="2" [colSpan]="2">
+							<dxi-item dataField="StateID"></dxi-item>
+							<dxi-item dataField="Address"></dxi-item>
+						</dxi-item> -->
+					</dxo-form>
+
+
 		</dxo-editing>
 		<!-- <dxo-popup
 				title="Employee Info"
