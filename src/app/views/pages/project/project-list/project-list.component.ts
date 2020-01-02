@@ -108,21 +108,21 @@ export class ProjectListComponent implements OnInit {
     this.updateprojectObj.gccompanyId = e.newData.gccompanyId ? e.newData.gccompanyId : e.oldData.gccompanyId;
 	this.updateprojectObj.orgCodeId = e.newData.orgCodeId ? e.newData.orgCodeId : e.oldData.orgCodeId;
 	//hidden fields
-	// this.updateprojectObj.projectNumber = e.newData.projectNumber ? e.newData.projectNumber : e.oldData.projectNumber;
-	// this.updateprojectObj.notes = e.newData.notes ? e.newData.notes : e.oldData.notes;
-	// // this.updateprojectObj.gcprojectnumber = e.newData.gcprojectnumber ? e.newData.gcprojectnumber : e.oldData.gcprojectnumber;
-	// // this.updateprojectObj.aorprojectnumber = e.newData.aorprojectnumber ? e.newData.aorprojectnumber : e.oldData.aorprojectnumber;
-	// this.updateprojectObj.iorcompanyId = e.newData.iorcompanyId ? e.newData.iorcompanyId : e.oldData.iorcompanyId;
-	// this.updateprojectObj.iorcontactId = e.newData.iorcontactId ? e.newData.iorcontactId : e.oldData.iorcontactId;
-	// // this.updateprojectObj.iorprojectNumber = e.newData.iorprojectNumber ? e.newData.iorprojectNumber : e.oldData.iorprojectNumber;
-	// this.updateprojectObj.cmcontactId = e.newData.cmcontactId ? e.newData.cmcontactId : e.oldData.cmcontactId;
-	// // this.updateprojectObj.cmreferenceNumber = e.newData.cmreferenceNumber ? e.newData.cmreferenceNumber : e.oldData.cmreferenceNumber;
-	// this.updateprojectObj.pmcontactId = e.newData.pmcontactId ? e.newData.pmcontactId : e.oldData.pmcontactId;
-	// this.updateprojectObj.doFcontactId = e.newData.doFcontactId ? e.newData.doFcontactId : e.oldData.doFcontactId;
-	// this.updateprojectObj.fmcontactId = e.newData.fmcontactId ? e.newData.fmcontactId : e.oldData.fmcontactId;
-	// this.updateprojectObj.pgmgrcontactId = e.newData.pgmgrcontactId ? e.newData.pgmgrcontactId : e.oldData.pgmgrcontactId;
-	// this.updateprojectObj.dacontactId = e.newData.dacontactId ? e.newData.dacontactId : e.oldData.dacontactId;
-	// this.updateprojectObj.subNumber = e.newData.subNumber ? e.newData.subNumber : e.oldData.subNumber;
+	this.updateprojectObj.projectNumber = e.newData.projectNumber ? e.newData.projectNumber : e.oldData.projectNumber;
+	this.updateprojectObj.notes = e.newData.notes ? e.newData.notes : e.oldData.notes;
+	this.updateprojectObj.gcprojectNumber = e.newData.gcprojectNumber ? e.newData.gcprojectNumber : e.oldData.gcprojectNumber;
+	this.updateprojectObj.aorprojectNumber = e.newData.aorprojectNumber ? e.newData.aorprojectNumber : e.oldData.aorprojectNumber;
+	this.updateprojectObj.iorcompanyId = e.newData.iorcompanyId ? e.newData.iorcompanyId : e.oldData.iorcompanyId;
+	this.updateprojectObj.iorcontactId = e.newData.iorcontactId ? e.newData.iorcontactId : e.oldData.iorcontactId;
+	this.updateprojectObj.iorprojectNumber = e.newData.iorprojectNumber ? e.newData.iorprojectNumber : e.oldData.iorprojectNumber;
+	this.updateprojectObj.cmcontactId = e.newData.cmcontactId ? e.newData.cmcontactId : e.oldData.cmcontactId;
+	this.updateprojectObj.cmreferenceNumber = e.newData.cmreferenceNumber ? e.newData.cmreferenceNumber : e.oldData.cmreferenceNumber;
+	this.updateprojectObj.pmcontactId = e.newData.pmcontactId ? e.newData.pmcontactId : e.oldData.pmcontactId;
+	this.updateprojectObj.doFcontactId = e.newData.doFcontactId ? e.newData.doFcontactId : e.oldData.doFcontactId;
+	this.updateprojectObj.fmcontactId = e.newData.fmcontactId ? e.newData.fmcontactId : e.oldData.fmcontactId;
+	this.updateprojectObj.pgmgrcontactId = e.newData.pgmgrcontactId ? e.newData.pgmgrcontactId : e.oldData.pgmgrcontactId;
+	this.updateprojectObj.dacontactId = e.newData.dacontactId ? e.newData.dacontactId : e.oldData.dacontactId;
+	this.updateprojectObj.subNumber = e.newData.subNumber ? e.newData.subNumber : e.oldData.subNumber;
 
     console.log('onRowUpdating', this.updateprojectObj);
 
