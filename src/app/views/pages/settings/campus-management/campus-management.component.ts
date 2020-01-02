@@ -115,11 +115,11 @@ export class CampusManagementComponent implements OnInit {
     this.campusObj.districtId = 2;
     this.campusObj.accountCode = e.data.accountCode;
     this.campusObj.displayOrder = 0;
-    this.campusObj.createdById = 1;
+    this.campusObj.createdBy = 1;
     this.campusObj.createdDate = new Date();
-    this.campusObj.modifiedById = 2;
+    this.campusObj.modifiedBy = 2;
     this.campusObj.modifiedDate = new Date();
-    this.campusObj.campusIsDeleted = false;
+    this.campusObj.isDeleted = false;
 
     this.service.postCampus(this.campusObj).subscribe(
       success => {
@@ -141,11 +141,11 @@ export class CampusManagementComponent implements OnInit {
     this.updatecampusObj.clientId = 2;
     this.updatecampusObj.districtId = 2;
     this.updatecampusObj.displayOrder =  e.newData.displayOrder ? e.newData.displayOrder : e.oldData.displayOrder;
-    this.updatecampusObj.createdById = 1;
+    this.updatecampusObj.createdBy = 1;
     this.updatecampusObj.createdDate = new Date();
-    this.updatecampusObj.modifiedById = 2;
+    this.updatecampusObj.modifiedBy = 2;
     this.updatecampusObj.modifiedDate = new Date();
-    this.updatecampusObj.campusIsDeleted = false;
+    this.updatecampusObj.isDeleted = false;
 
     console.log('onRowUpdatingData', this.updatecampusObj);
     this.service.putCampus(this.updatecampusObj, e.oldData.campusId)

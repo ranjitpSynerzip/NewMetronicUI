@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { Campusmodel } from './../models/campusmodel';
+import { Campusmodel, Campusgridmodel} from './../models/campusmodel';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 
@@ -21,8 +21,8 @@ export class CampusManagementService {
 	// 	return campuses;
 	// }
 
-	getCampuswithdetails(): Observable<Campusmodel[]> {
-		return this.http.get<Campusmodel[]>(this.baseUrl + '/Campus/getcampswithdetails')
+	getCampuswithdetails(): Observable<Campusgridmodel[]> {
+		return this.http.get<Campusgridmodel[]>(this.baseUrl + '/Campus/getcampswithdetails')
 	}
 
 	getCampus(): Observable<Campusmodel[]> {

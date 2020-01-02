@@ -1,4 +1,4 @@
-import { Campusmodel } from "./../../../shared/models/campusmodel";
+import { Campusgridmodel, Campusmodel } from "./../../../shared/models/campusmodel";
 import { CampusManagementService } from "./../../../shared/Services/campus-management.service";
 import { Component, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
@@ -12,7 +12,7 @@ import { HeaderTitleService } from '../../../shared/Services/header-title.servic
 	styleUrls: ["./campus.component.scss"]
 })
 export class CampusComponent implements OnInit {
-	dataSource: Campusmodel[];
+	dataSource: Campusgridmodel[];
 	campusObj = new Campusmodel();
 	private deleteCampuses: Subscription;
 
@@ -70,11 +70,11 @@ export class CampusComponent implements OnInit {
 		this.campusObj.districtId = 2;
 		this.campusObj.accountCode = e.data.accountCode;
 		this.campusObj.displayOrder = 0;
-		this.campusObj.createdById = 1;
+		this.campusObj.createdBy = 1;
 		this.campusObj.createdDate = new Date();
-		this.campusObj.modifiedById = 2;
+		this.campusObj.modifiedBy = 2;
 		this.campusObj.modifiedDate = new Date();
-		this.campusObj.campusIsDeleted = false;
+		this.campusObj.isDeleted = false;
 
 		this.service.postCampus(this.campusObj).subscribe(
 			success => {

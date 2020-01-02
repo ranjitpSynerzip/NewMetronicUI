@@ -1,4 +1,4 @@
-export class Campusmodel {
+export class Campusgridmodel {
 	public campusId: number;
 	public clientId: number;
 	public campusName: string;
@@ -16,3 +16,18 @@ export class Campusmodel {
 
 }
 
+
+export class Campusmodel {
+	public campusId: number;
+	public clientId: number;
+	public campusName: string;
+	public districtId: number;
+	public displayOrder: number;
+	public createdBy: number;
+	public createdDate: Date;
+	public modifiedBy: number;
+	public modifiedDate: Date;
+	public isDeleted: boolean;
+	public accountCode: number;
+
+}
