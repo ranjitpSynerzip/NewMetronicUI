@@ -5,6 +5,7 @@ import {
 import { StatusService, Status } from "./status.service";
 import { environment } from "../../../../environments/environment";
 import { HttpClient } from '@angular/common/http';
+import { HeaderTitleService } from '../../../shared/Services/header-title.service';
 
 
 
@@ -25,7 +26,7 @@ export class StatusComponent implements OnInit {
 
 
 	loader = true;
-	constructor(private service: StatusService, private http: HttpClient) { }
+	constructor(private service: StatusService, private http: HttpClient, private headerTitleService: HeaderTitleService) { }
 
 	ngOnInit() {
 		this.http.get('/assets/VERSION.txt', { responseType: 'text' }).subscribe(data => {
@@ -36,6 +37,8 @@ export class StatusComponent implements OnInit {
 			this.StatusModel = data;
 			this.loader = false;
 		});
+
+		this.headerTitleService.updatetitle('Status');
 	}
 }
 

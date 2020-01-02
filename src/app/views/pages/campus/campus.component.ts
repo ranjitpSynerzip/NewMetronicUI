@@ -4,6 +4,7 @@ import { Component, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { confirm } from "devextreme/ui/dialog";
 import { Subscription } from "rxjs";
+import { HeaderTitleService } from '../../../shared/Services/header-title.service';
 
 @Component({
 	selector: "kt-campus",
@@ -20,7 +21,9 @@ export class CampusComponent implements OnInit {
 
 	constructor(
 		private httpClient: HttpClient,
-		private service: CampusManagementService
+		private service: CampusManagementService,
+		private headerTitleService: HeaderTitleService,
+
 	) {}
 
 	ngOnInit() {
@@ -28,6 +31,8 @@ export class CampusComponent implements OnInit {
 		this.service.getCampuswithdetails().subscribe(data => {
 			this.dataSource = data;
 		});
+
+		this.headerTitleService.updatetitle('Campuses');
 	}
 
 	selectionChanged(data: any) {

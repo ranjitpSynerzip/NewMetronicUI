@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HeaderTitleService } from '../../../shared/Services/header-title.service';
 
 @Component({
   selector: 'kt-campus-overview',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CampusOverviewComponent implements OnInit {
 
-  constructor() { }
+  constructor(private headerTitleService: HeaderTitleService) { }
 
   ngOnInit() {
+    this.headerTitleService.updatetitle('Campus Overview');
   }
 
 }
