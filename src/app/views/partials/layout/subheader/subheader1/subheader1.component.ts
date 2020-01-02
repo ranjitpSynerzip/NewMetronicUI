@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 // Layout
 import { SubheaderService } from '../../../../../core/_base/layout';
 import { Breadcrumb } from '../../../../../core/_base/layout/services/subheader.service';
+import { HeaderTitleService } from '../../../../../shared/Services/header-title.service';
 
 @Component({
 	selector: 'kt-subheader1',
@@ -29,7 +30,7 @@ export class Subheader1Component implements OnInit, OnDestroy, AfterViewInit {
 	 *
 	 * @param subheaderService: SubheaderService
 	 */
-	constructor(public subheaderService: SubheaderService) {
+	constructor(public subheaderService: SubheaderService, private headerTitleService : HeaderTitleService) {
 	}
 
 	/**
@@ -40,6 +41,8 @@ export class Subheader1Component implements OnInit, OnDestroy, AfterViewInit {
 	 * On init
 	 */
 	ngOnInit() {
+
+		
 	}
 
 	/**
@@ -61,6 +64,12 @@ export class Subheader1Component implements OnInit, OnDestroy, AfterViewInit {
 				this.breadcrumbs = bc;
 			});
 		}));
+
+
+		this.headerTitleService.data.subscribe(data => {
+			this.title = data;
+			console.log('headerTitleService', data);
+		  })
 	}
 
 	/**

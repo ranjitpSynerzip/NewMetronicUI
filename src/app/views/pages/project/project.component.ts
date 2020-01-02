@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { HeaderTitleService } from '../../../shared/Services/header-title.service';
 
 
 
@@ -10,9 +11,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 export class ProjectComponent implements OnInit {
 
 
-  constructor() { }
+  constructor(private headerTitleService : HeaderTitleService) { }
   ngOnInit() {
-
+    this.headerTitleService.updatetitle('Projects');
   }
 
 }

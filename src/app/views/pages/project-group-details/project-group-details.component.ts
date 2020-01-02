@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectModel } from "../../../shared/models/project-model.module";
 import { ProjectService } from "../../../shared/Services/project.service";
+import { HeaderTitleService } from '../../../shared/Services/header-title.service';
 
 @Component({
   selector: 'kt-project-group-details',
@@ -13,13 +14,15 @@ export class ProjectGroupDetailsComponent implements OnInit {
 	projectId: number;
 	IsHidden = true;
 
-	constructor(private service: ProjectService) {}
+	constructor(private service: ProjectService, private headerTitleService: HeaderTitleService) {}
 
 	ngOnInit() {
 		this.service.getProjectbyID(7).subscribe(data => {
 			this.projectObj = data;
 			console.log("getProject", this.projectObj);
 		});
+
+		this.headerTitleService.updatetitle('Project Group Details');
 	}
 
 	onSelect() {
