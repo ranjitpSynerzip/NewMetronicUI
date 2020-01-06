@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation, HostListener, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DxDataGridComponent } from 'devextreme-angular';
-import * as AspNetData from "devextreme-aspnet-data-nojquery";
 import { FundManagementService, Funds } from '../../../../shared/Services/fund-management.service';
 import { FundsourceModel } from '../../../../shared/models/fund-source.model';
 import { environment } from '../../../../../environments/environment';
@@ -9,7 +8,6 @@ import { FundSeriesModel } from '../../../../shared/models/fund-series.model';
 import { User } from '../../../../core/auth';
 import { confirm } from 'devextreme/ui/dialog';
 import { Subscription } from 'rxjs';
-import { DxoMasterDetailComponent } from 'devextreme-angular/ui/nested';
 import { FundemitterService } from '../../../../shared/Services/fundemitter.service';
 
 
@@ -17,14 +15,14 @@ import { FundemitterService } from '../../../../shared/Services/fundemitter.serv
   selector: 'kt-fund-management',
   templateUrl: './fund-management.component.html',
   styleUrls: ['./fund-management.component.scss'],
- encapsulation: ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.Default,
 })
 
 export class FundManagementComponent implements OnInit {
   @ViewChild('Fundgrid', { static: false }) dataGrid: DxDataGridComponent;
-   @ViewChild('fundSeries', { static: false }) fundSeriesGrid: DxDataGridComponent;
- 
+  @ViewChild('fundSeries', { static: false }) fundSeriesGrid: DxDataGridComponent;
+
   dataSource: Funds[];
   fundSeriseDataSource: FundSeriesModel[];
   fundSourceObj = new FundsourceModel();
@@ -45,7 +43,7 @@ export class FundManagementComponent implements OnInit {
   private deletefundsourceSubs: Subscription;
 
   constructor(private httpClient: HttpClient, private service: FundManagementService, private fundemitter: FundemitterService) {
-  
+
   }
 
 
@@ -122,8 +120,10 @@ export class FundManagementComponent implements OnInit {
       } else {
         this.deletefundsourceSubs = this.service.deletefundsource(item.fundId).subscribe(success => {
           console.log('deletefundsource', true);
+          this.dataGrid.instance.repaint();
+          this.dataGrid.instance.collapseAll(-1);
           this.refreshgrid();
-          this.dataGrid.instance.refresh();
+          // this.dataGrid.instance.refresh();
           this.fundemitter.onSaveOnUpdate();
         },
           error => {
@@ -158,8 +158,8 @@ export class FundManagementComponent implements OnInit {
       console.log('fund Source Added', true);
       this.dataGrid.instance.refresh();
       this.refreshgrid();
-    
-     
+
+
     },
       error => {
         console.log('fund Source Added', false);
@@ -242,8 +242,8 @@ export class FundManagementComponent implements OnInit {
 
     this.service.putfundSeries(this.updatefundSeriseObj, e.key.seriesId).subscribe(success => {
       console.log('fund Source Updated', true);
-     // this.dataGrid.instance.refresh();
-     this.loadfundSerise();
+      // this.dataGrid.instance.refresh();
+      this.loadfundSerise();
       this.fundSeriesGrid.instance.refresh();
       this.fundemitter.onSaveOnUpdate();
     },
@@ -253,11 +253,11 @@ export class FundManagementComponent implements OnInit {
   }
 
   onRowExpanding(e) {
-   e.component.collapseAll(-1);  //NP-789
+    this.dataGrid.instance.refresh();
+    e.component.collapseAll(-1);  //NP-789
     // e.component.expandRow(this.selectedItemKeys[0]);
     this.fundSourceid = e.key.fundId;
     console.log('onRowExpanding', this.fundSourceid);
-    this.dataGrid.instance.refresh();
     // this.service.getfundSeriesByfundId(e.key.fundId).subscribe(
     //   data => (this.fundSeriseDataSource = data,
     //     console.log(this.fundSeriseDataSource))
@@ -282,8 +282,8 @@ export class FundManagementComponent implements OnInit {
     this.fundSeriseDataSource = [];
     this.service.getfundSeriesByfundId(this.fundSourceid).subscribe(
       data => {
-      this.fundSeriseDataSource = data;
-      this.fundSeriesGrid.instance.refresh();
+        this.fundSeriseDataSource = data;
+        this.fundSeriesGrid.instance.refresh();
       }
     );
   }
