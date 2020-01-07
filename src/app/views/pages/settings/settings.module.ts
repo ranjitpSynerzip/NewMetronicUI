@@ -22,6 +22,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CampusUpdateComponent } from './campus-management/campus-update/campus-update.component';
 import { UpdateFundAllocationComponent } from './update-fund-allocation/update-fund-allocation.component';
 import { FormsModule } from '@angular/forms';
+import { BarChartComponent } from './bar-chart/bar-chart.component';
+import { DoughnutChartComponent } from './doughnut-chart/doughnut-chart.component';
+import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 
 
 
@@ -47,8 +50,20 @@ const routes: Routes = [
       {
         path: 'updateallocations',
         component: UpdateFundAllocationComponent,
+	  },
+	  {
+        path: 'barchart',
+        component: BarChartComponent,
+	  },
+	  {
+        path: 'doughnutchart',
+        component: DoughnutChartComponent,
+	  },
+	  {
+        path: 'progressbar',
+        component: ProgressBarComponent,
       },
-   
+
     ]
   }
 ];
@@ -83,6 +98,9 @@ const routes: Routes = [
     FundAllocationComponent,
     CampusUpdateComponent,
     UpdateFundAllocationComponent,
+    BarChartComponent,
+    DoughnutChartComponent,
+    ProgressBarComponent,
   ],
   entryComponents: [
     CampusUpdateComponent
