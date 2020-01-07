@@ -14,6 +14,7 @@ export class MenuConfig {
 					title: 'Navigator',
 					root: true,
 					alignment: 'left',
+					page: '/collegedashboard',
 					//toggle: 'click',
 					// submenu: [
 					// 	{

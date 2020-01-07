@@ -14,7 +14,7 @@
 				(onRowExpanding)=onRowExpanding($event)
 				[masterDetail]="{ enabled: true, template: 'fundSeries' }"
 				(onContentReady)="onContentReady($event)"
-				dateSerializationFormat="dd/MM/yyyy"
+				dateSerializationFormat="MM/dd/yyyy"
 				>
 				<dxo-selection mode="multiple"></dxo-selection>
 				<!-- <dxo-scrolling mode="standard"></dxo-scrolling> -->
@@ -46,7 +46,7 @@
 					[showColumnHeaders]="false"
 					(onContentReady)="onMasterdetailReady($event)"
 					class="masterdetail"
-					dateSerializationFormat="dd/MM/yyyy"
+					dateSerializationFormat="MM/dd/yyyy"
 					>
 					<dxo-load-panel [enabled]="true"></dxo-load-panel>
 					<!-- <dxo-scrolling mode="standard"></dxo-scrolling> -->
