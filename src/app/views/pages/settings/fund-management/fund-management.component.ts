@@ -253,6 +253,7 @@ export class FundManagementComponent implements OnInit {
   }
 
   onRowExpanding(e) {
+    this.dataGrid.instance.repaint();
     this.dataGrid.instance.refresh();
     e.component.collapseAll(-1);  //NP-789
     // e.component.expandRow(this.selectedItemKeys[0]);
