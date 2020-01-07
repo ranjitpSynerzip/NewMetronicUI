@@ -57,6 +57,10 @@ const routes: Routes = [
 				path: 'projectgroupdetails',
 				loadChildren: () => import('app/views/pages/project-group-details/project-group-details.module').then(m => m.ProjectGroupDetailsModule)
 			},
+			{
+				path: 'collegedashboard',
+				loadChildren: () => import('app/views/pages/college-dashboard/college-dashboard.module').then(m => m.CollegeDashboardModule)
+			},
 
 
 

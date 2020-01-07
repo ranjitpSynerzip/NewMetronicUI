@@ -13,13 +13,11 @@ import { FundManagementComponent } from './fund-management/fund-management.compo
 import { AdminSettingsComponent } from './admin-settings/admin-settings.component';
 import {
   DxTreeListModule, DxButtonModule, DxCheckBoxModule, DxDataGridModule, DxPivotGridModule,
-  DxTemplateModule,
   DxPopupModule,
   DxContextMenuModule
 } from 'devextreme-angular';
 import { CampusManagementComponent } from './campus-management/campus-management.component';
 import { FundAllocationComponent } from './fund-allocation/fund-allocation.component';
-import { BrowserModule } from '@angular/platform-browser';
 import { CampusUpdateComponent } from './campus-management/campus-update/campus-update.component';
 import { UpdateFundAllocationComponent } from './update-fund-allocation/update-fund-allocation.component';
 import { FormsModule } from '@angular/forms';
@@ -94,8 +92,6 @@ const routes: Routes = [
     DxPopupModule,
     FormsModule,
     DxContextMenuModule,
-    // DxTemplateModule,
-
   ],
   exports: [RouterModule],
   declarations: [
