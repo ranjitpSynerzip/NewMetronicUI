@@ -1,6 +1,8 @@
 <div class="row">
     <div class="col-sm-12 col-md-4 col-lg-4 padb15">
-        <kt-portlet [class]="'kt-portlet--height-fluid'">
+
+			<kt-barchart-widget [title]="Campus" [desc]="Test" [data]={{ barchartData }}></kt-barchart-widget>
+        <!-- <kt-portlet [class]="'kt-portlet--height-fluid'">
             <div class="kt-portlet__head">
                 <div class="kt-portlet__head-label">
                     <h3 class="kt-portlet__head-title">
@@ -16,7 +18,7 @@
             <kt-portlet-body>
 
             </kt-portlet-body>
-        </kt-portlet>
+        </kt-portlet> -->
     </div>
     <div class="col-sm-12 col-md-4 col-lg-4 padb15">
             <kt-portlet [class]="'kt-portlet--height-fluid'">
@@ -27,13 +29,13 @@
                                     <i class="fas fa-sliders-h"></i> </span>
                             </h3>
                         </div>
-        
+
                         <div class="kt-portlet__head-label">
                             <i class="fas fa-ellipsis-h"></i>
                         </div>
                     </div>
                     <kt-portlet-body>
-        
+
                     </kt-portlet-body>
                 </kt-portlet>
     </div>
@@ -46,13 +48,13 @@
                                     <i class="fas fa-sliders-h"></i> </span>
                             </h3>
                         </div>
-        
+
                         <div class="kt-portlet__head-label">
                             <i class="fas fa-ellipsis-h"></i>
                         </div>
                     </div>
                     <kt-portlet-body>
-        
+
                     </kt-portlet-body>
                 </kt-portlet>
     </div>
@@ -68,7 +70,7 @@
                                     <i class="fas fa-sliders-h"></i> </span>
                             </h3>
                         </div>
-        
+
                         <div class="kt-portlet__head-label">
                             <i class="fas fa-ellipsis-h"></i>
                         </div>
@@ -77,6 +79,6 @@
                             <kt-college-budget-summary></kt-college-budget-summary>
                     </kt-portlet-body>
                 </kt-portlet>
-  
+
     </div>
 </div>
