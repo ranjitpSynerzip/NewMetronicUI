@@ -1,77 +1,81 @@
 // Angular
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from "@angular/core";
 // Layout
 // import { LayoutConfigService } from '../../../../../core/_base/layout';
 
 // import { LayoutConfigService} from './core/_base/layout';
 
 // Charts
-import { Chart } from 'chart.js/dist/Chart.min.js';
+import { Chart } from "chart.js/dist/Chart.min.js";
 // import { LayoutConfigService } from 'src/app/core/_base/layout';
-import { LayoutConfigService } from '../../../../core/_base/layout/services/layout-config.service';
-
+import { LayoutConfigService } from "../../../../core/_base/layout/services/layout-config.service";
+import { CampusManagementService } from "./../../../../shared/Services/campus-management.service";
+import { Campusmodel } from "./../../../../shared/models/campusmodel";
 
 @Component({
-  selector: 'kt-bar-chart',
-  templateUrl: './bar-chart.component.html',
-  styleUrls: ['./bar-chart.component.scss']
+	selector: "kt-bar-chart",
+	templateUrl: "./bar-chart.component.html",
+	styleUrls: ["./bar-chart.component.scss"]
 })
 export class BarChartComponent implements OnInit {
 	// Public properties
 	@Input() title: string;
 	@Input() desc: string;
 	@Input() data: { labels: string[]; datasets: any[] };
-	@ViewChild('chart', {static: true}) chart: ElementRef;
+	@ViewChild("chart", { static: true }) chart: ElementRef;
+	dataSource: Campusmodel[];
+	campusnames: any = [];
+	campusacccodes: any = [];
 
-	/**
-	 * Component constructor
-	 *
-	 * @param layoutConfigService: LayoutConfigService
-	 */
-	constructor(private layoutConfigService: LayoutConfigService) {
-	}
+	constructor(
+		private layoutConfigService: LayoutConfigService,
+		private service: CampusManagementService
+	) {}
 
 	ngOnInit() {
-		if (!this.data) {
-			this.data = {
-				labels: ['Label 1', 'Label 2', 'Label 3', 'Label 4', 'Label 5', 'Label 6', 'Label 7', 'Label 8', 'Label 9', 'Label 10', 'Label 11', 'Label 12', 'Label 13', 'Label 14', 'Label 15', 'Label 16'],
-				datasets: [
-					{
-						// label: 'dataset 1',
-						backgroundColor: this.layoutConfigService.getConfig('colors.state.success'),
-						data: [
-							15, 20, 25, 30, 25, 20, 15, 20, 25, 30, 25, 20, 15, 10, 15, 20
-						]
-					}, {
-						// label: 'dataset 2',
-						backgroundColor: '#f3f3fb',
-						data: [
-							30, 20, 25, 30, 25, 20, 15, 20, 25, 30, 25, 20, 15, 10, 15, 20
-						]
-					}
-				]
-			};
-		}
+		this.service.getCampus().subscribe(data => {
+			this.dataSource = data;
+			console.log(this.dataSource);
 
-		this.initChartJS();
+			this.campusnames = this.dataSource.map(
+				({ campusName }) => campusName
+			);
+
+			this.campusacccodes = this.dataSource.map(
+				({ accountCode }) => accountCode
+			);
+
+			if (!this.data) {
+				this.data = {
+					labels: this.campusnames,
+					datasets: [
+						{
+							// label: 'dataset 1',
+							backgroundColor: this.layoutConfigService.getConfig(
+								"colors.state.success"
+							),
+							data: this.campusacccodes,
+						}
+					]
+				};
+			}
+
+			this.initChartJS();
+		});
 	}
-
 
 	/** Init chart */
 	initChartJS() {
-		// For more information about the chartjs, visit this link
-		// https://www.chartjs.org/docs/latest/getting-started/usage.html
-
 		const chart = new Chart(this.chart.nativeElement, {
-			type: 'bar',
+			type: "bar",
 			data: this.data,
 			options: {
 				title: {
-					display: false,
+					display: false
 				},
 				tooltips: {
 					intersect: false,
-					mode: 'nearest',
+					mode: "nearest",
 					xPadding: 10,
 					yPadding: 10,
 					caretPadding: 10
@@ -83,16 +87,20 @@ export class BarChartComponent implements OnInit {
 				maintainAspectRatio: false,
 				barRadius: 4,
 				scales: {
-					xAxes: [{
-						display: false,
-						gridLines: false,
-						stacked: true
-					}],
-					yAxes: [{
-						display: false,
-						stacked: true,
-						gridLines: false
-					}]
+					xAxes: [
+						{
+							display: false,
+							gridLines: false,
+							stacked: true
+						}
+					],
+					yAxes: [
+						{
+							display: false,
+							stacked: true,
+							gridLines: false
+						}
+					]
 				},
 				layout: {
 					padding: {
@@ -105,5 +113,4 @@ export class BarChartComponent implements OnInit {
 			}
 		});
 	}
-
 }
