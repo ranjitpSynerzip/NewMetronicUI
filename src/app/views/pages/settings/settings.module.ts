@@ -14,7 +14,8 @@ import { AdminSettingsComponent } from './admin-settings/admin-settings.componen
 import {
   DxTreeListModule, DxButtonModule, DxCheckBoxModule, DxDataGridModule, DxPivotGridModule,
   DxTemplateModule,
-  DxPopupModule
+  DxPopupModule,
+  DxContextMenuModule
 } from 'devextreme-angular';
 import { CampusManagementComponent } from './campus-management/campus-management.component';
 import { FundAllocationComponent } from './fund-allocation/fund-allocation.component';
@@ -25,6 +26,7 @@ import { FormsModule } from '@angular/forms';
 import { BarChartComponent } from './bar-chart/bar-chart.component';
 import { DoughnutChartComponent } from './doughnut-chart/doughnut-chart.component';
 import { ProgressBarComponent } from './progress-bar/progress-bar.component';
+import { CampusOverviewTestComponent } from './campus-overview-test/campus-overview-test.component';
 
 
 
@@ -63,6 +65,11 @@ const routes: Routes = [
         path: 'progressbar',
         component: ProgressBarComponent,
       },
+      {
+        path: 'testOverview',
+        component: CampusOverviewTestComponent,
+      },
+
 
     ]
   }
@@ -86,6 +93,7 @@ const routes: Routes = [
     DxPivotGridModule,
     DxPopupModule,
     FormsModule,
+    DxContextMenuModule,
     // DxTemplateModule,
 
   ],
@@ -101,6 +109,7 @@ const routes: Routes = [
     BarChartComponent,
     DoughnutChartComponent,
     ProgressBarComponent,
+    CampusOverviewTestComponent,
   ],
   entryComponents: [
     CampusUpdateComponent
