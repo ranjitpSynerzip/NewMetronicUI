@@ -50,6 +50,7 @@ export class CampusOverviewTestComponent implements OnInit {
       ];
     }
     if (e.row.data.ProjectId !== 0) {
+      this.menuItems = [];
       this.menuItems = [
         { text: this.ContextMenuItems.Add_Note },
         { text: this.ContextMenuItems.New_Minutes },

@@ -10,32 +10,32 @@ import { DxDataGridModule, DxButtonModule } from 'devextreme-angular';
 
 const routes: Routes = [
 	{
-	  path: '',
-	  component: CampusComponent,
-	  children: [
-		{
-		  path: 'campus',
-		  component: CampusComponent,
-		}
-	  ]
+		path: '',
+		component: CampusComponent,
+		children: [
+			{
+				path: 'campus',
+				component: CampusComponent,
+			}
+		]
 	}
-  ];
+];
 
 
 @NgModule({
-  imports: [
-	CommonModule,
-	PartialsModule,
-    NgbModule,
-    CoreModule,
-    HttpClientModule,
-    RouterModule.forChild(routes),
-	DxDataGridModule,
-	DxButtonModule
-  ],
-  exports: [RouterModule],
-  declarations: [
-	CampusComponent,
-  ]
+	imports: [
+		CommonModule,
+		PartialsModule,
+		NgbModule,
+		CoreModule,
+		HttpClientModule,
+		RouterModule.forChild(routes),
+		DxDataGridModule,
+		DxButtonModule
+	],
+	exports: [RouterModule],
+	declarations: [
+		CampusComponent,
+	]
 })
 export class CampusModule { }

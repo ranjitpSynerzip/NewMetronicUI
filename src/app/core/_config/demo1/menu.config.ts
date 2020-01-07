@@ -320,15 +320,19 @@ export class MenuConfig {
 					submenu: [
 						{
 							title: 'Campuses',
-							page: 'campus/campus'
+							page: '/campuses/campus'
 						},
 						{
 							title: 'Project Groups',
-							page: 'error/error-v1'
+							page: '/projectgroupdetails'
 						},
 						{
 							title: 'Projects',
-							page: 'projects'
+							page: '/projects/projectlist'
+						},
+						{
+							title: 'Projects Details',
+							page: '/projectdetails/projectdetails'
 						},
 						{
 							title: 'Commitments',

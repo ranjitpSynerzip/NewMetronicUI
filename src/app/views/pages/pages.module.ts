@@ -15,7 +15,7 @@ import { ProjectModule } from './project/project.module';
 import { CampusModule } from './campus/campus.module';
 import { CampusOverviewModule } from './campus-overview/campus-overview.module';
 import { ProjectDetailsModule } from './project-details/project-details.module';
-ProjectGroupDetailsModule
+
 
 @NgModule({
 	declarations: [],
