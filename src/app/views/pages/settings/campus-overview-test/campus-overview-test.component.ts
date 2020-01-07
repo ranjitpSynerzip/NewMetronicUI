@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CampusManagementService, BudgetSummary } from '../../../../shared/Services/campus-management.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'kt-campus-overview-test',
@@ -8,39 +9,51 @@ import { CampusManagementService, BudgetSummary } from '../../../../shared/Servi
 })
 export class CampusOverviewTestComponent implements OnInit {
   budgetSummary: BudgetSummary[];
-  items1: any;
-  constructor(service: CampusManagementService) {
+  menuItems: any;
+  campusId: number;
+  projectId: number;
+
+
+  ContextMenuItems = {
+    New_Project: 'New Project',
+    Add_Note: 'Add Note',
+    New_Minutes: 'New Minutes',
+    Edit_Campus: 'Edit Campus',
+    Delete_Campus: 'Delete Campus',
+  };
+
+  constructor(service: CampusManagementService, private router: Router, private route: ActivatedRoute) {
     this.budgetSummary = service.getBudgetSummary();
 
-    this.items1 = [{
-      text: 'New Project',
-  },
-  { text: 'Add Note' },
-  { text: 'New Minutes' },
-  { text: 'Edit Campus' },
-  { text: 'Delete Campus' }
-];
+    this.menuItems = [{
+      text: this.ContextMenuItems.New_Project
+    },
+    { text: this.ContextMenuItems.Add_Note },
+    { text: this.ContextMenuItems.New_Minutes },
+    { text: this.ContextMenuItems.Edit_Campus },
+    { text: this.ContextMenuItems.Delete_Campus }
+    ];
   }
 
   ngOnInit() {
   }
 
   addMenuItems(e) {
-    console.log('addMenuItems', e)
-    if( e.row.data.campusId !== 0 ){
-      this.items1 = [];
-      this.items1 = [
-        { text: 'New Project' },
-        { text: 'Edit Campus' },
-        { text: 'Delete Campus' },
-    ];
+    console.log('addMenuItems', e);
+    this.menuItems = [];
+    if (e.row.data.campusId !== 0) {
+      this.campusId = e.row.data.campusId;
+      this.menuItems = [
+        { text: this.ContextMenuItems.New_Project, campusId: this.campusId },
+        { text: this.ContextMenuItems.Edit_Campus },
+        { text: this.ContextMenuItems.Delete_Campus },
+      ];
     }
-    if( e.row.data.ProjectId !== 0 ){
-      this.items1 = [];
-      this.items1 = [
-        { text: 'Add Note' },
-        { text: 'New Minutes' },
-    ];
+    if (e.row.data.ProjectId !== 0) {
+      this.menuItems = [
+        { text: this.ContextMenuItems.Add_Note },
+        { text: this.ContextMenuItems.New_Minutes },
+      ];
     }
     // if(e.rowType ==='data'){
     //   console.log('on data');
@@ -70,8 +83,31 @@ export class CampusOverviewTestComponent implements OnInit {
 
 
   itemClick(e) {
+    console.log('itemClick', e);
     if (!e.itemData.items) {
-        alert("The \"" + e.itemData.text + "\" item was clicked");
+      // alert("The \"" + e.itemData.text + "\" item was clicked");
+
+      switch (e.itemData.text) {
+        case this.ContextMenuItems.New_Project:
+          this.router.navigate(['projects/addproject']);
+          // this.router.navigate([url, id])
+          // router.navigate(['team', 33, 'user', 11], {relativeTo: route});
+          break;
+        case this.ContextMenuItems.Add_Note:
+          this.router.navigateByUrl('devgrid');
+          break;
+        case this.ContextMenuItems.Edit_Campus:
+          this.router.navigateByUrl('devgrid');
+          break;
+        case this.ContextMenuItems.Delete_Campus:
+          this.router.navigateByUrl('devgrid');
+          break;
+        case this.ContextMenuItems.New_Minutes:
+
+          break;
+        default:
+
+      }
     }
   }
 
