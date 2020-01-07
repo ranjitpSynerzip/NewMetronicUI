@@ -1,0 +1,26 @@
+<dx-tree-list
+    id="employees"
+    [dataSource]="budgetSummary"
+    itemsExpr="items"
+    dataStructure="tree"
+    [showRowLines]="true"
+    [showBorders]="true"
+    [columnAutoWidth]="true"
+    (onContextMenuPreparing)="addMenuItems($event)"
+    >
+    <dxi-column dataField="Title" ></dxi-column>
+    <dxi-column dataField="TotalBudget"  caption="TotalBudget"></dxi-column>
+    <dxi-column dataField="TotalContracts"  caption="Total Contracts"></dxi-column>
+    <dxi-column dataField="TotalTransaction"  caption="Total Transaction"></dxi-column>
+    <dxi-column dataField="PassthroughExpense"  caption="Passthrough Expense"></dxi-column>
+    <dxi-column dataField="UnencumbredProjectBalance"  caption="Unencumbred Project Balance"></dxi-column>
+    <dxi-column dataField="LeadgerAccountAdjustments"  caption="Leadger Account Adjustments"></dxi-column>
+</dx-tree-list>
+
+
+<dx-context-menu 
+    [dataSource]="items1" 
+    [width]="200" 
+    target=".dx-treelist-cell-expandable"  
+    (onItemClick)="itemClick($event)">
+</dx-context-menu>

@@ -1,11 +1,88 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, BehaviorSubject } from 'rxjs';
-import { Campusmodel, Campusgridmodel} from './../models/campusmodel';
+import { Observable } from 'rxjs';
+import { Campusmodel, Campusgridmodel } from './../models/campusmodel';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 
+export class BudgetSummary {
+	Title: string;
+	TotalBudget: number;
+	TotalContracts: number;
+	TotalTransaction: number;
+	PassthroughExpense: number;
+	UnencumbredProjectBalance: number;
+	LeadgerAccountAdjustments: number;
+	campusId: number;
+	ProjectId: number;
+	items?: BudgetSummary[];
+}
 
+
+var budgetsummary: BudgetSummary[] = [{
+	"Title": "Client",
+	"TotalBudget": 1000000,
+	"TotalContracts": 100,
+	"TotalTransaction": 150,
+	"PassthroughExpense": 10,
+	"UnencumbredProjectBalance": 20,
+	"LeadgerAccountAdjustments": 50,
+	"campusId": 0,
+	"ProjectId": 0,
+	"items": [{
+		"Title": "Campus 1",
+		"campusId": 5,
+		"ProjectId": 0,
+		"TotalBudget": 2000000,
+		"TotalContracts": 200,
+		"TotalTransaction": 200,
+		"PassthroughExpense": 20,
+		"UnencumbredProjectBalance": 40,
+		"LeadgerAccountAdjustments": 100,
+		"items": [{
+			"campusId": 5,
+			"ProjectId": 0,
+			"Title": "Project Group 1",
+			"TotalBudget": 2000000,
+			"TotalContracts": 200,
+			"TotalTransaction": 200,
+			"PassthroughExpense": 20,
+			"UnencumbredProjectBalance": 40,
+			"LeadgerAccountAdjustments": 100,
+			"items": [{
+				"campusId": 5,
+				"ProjectId": 1,
+				"Title": "Project 1",
+				"TotalBudget": 2000000,
+				"TotalContracts": 200,
+				"TotalTransaction": 200,
+				"PassthroughExpense": 20,
+				"UnencumbredProjectBalance": 40,
+				"LeadgerAccountAdjustments": 100,
+			}, {
+				"campusId": 5,
+				"ProjectId": 2,
+				"Title": "Project 2",
+				"TotalBudget": 2000000,
+				"TotalContracts": 200,
+				"TotalTransaction": 200,
+				"PassthroughExpense": 20,
+				"UnencumbredProjectBalance": 40,
+				"LeadgerAccountAdjustments": 100,
+			}, {
+				"campusId": 5,
+				"ProjectId": 3,
+				"Title": "Project 3",
+				"TotalBudget": 2000000,
+				"TotalContracts": 200,
+				"TotalTransaction": 200,
+				"PassthroughExpense": 20,
+				"UnencumbredProjectBalance": 40,
+				"LeadgerAccountAdjustments": 100,
+			}]
+		}]
+	}]
+}];
 
 @Injectable({
 	providedIn: 'root',
@@ -59,5 +136,9 @@ export class CampusManagementService {
 	getcampsforgrid(): Observable<any[]> {
 		return this.http.get<any[]>(this.baseUrl + '/Campus/getcampsforgrid');
 	}
+
+	getBudgetSummary(): BudgetSummary[] {
+        return budgetsummary;
+    }
 
 }
