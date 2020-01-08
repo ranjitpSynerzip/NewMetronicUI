@@ -1,7 +1,6 @@
 
 import { Component, OnInit, AfterViewInit } from "@angular/core";
 import { CampusManagementService } from "./../../../shared/Services/campus-management.service";
-import { ActivatedRoute } from '@angular/router';
 
 
 export class campusTest {
@@ -21,12 +20,10 @@ export class CollegeDashboardComponent implements OnInit, AfterViewInit {
 	barchartData = new campusTest();
 	dataSource: any[];
 
-	constructor(private service: CampusManagementService, private route: ActivatedRoute) {
+	constructor(private service: CampusManagementService) {
 	}
 
 	ngOnInit() {
-		this.dataSource = this.route.snapshot.data.barchartData;
-		console.log('routed data', this.dataSource);
 		// this.barchartData.labels = this.dataSource.map(
 		// 	({ campusName }) => campusName
 		// );
@@ -34,11 +31,11 @@ export class CollegeDashboardComponent implements OnInit, AfterViewInit {
 		// this.barchartData.datasets = this.dataSource.map(
 		// 	({ accountCode }) => accountCode
 		// );
-	
+
 	}
 
 	ngAfterViewInit() {
-		
+
 	}
 
 

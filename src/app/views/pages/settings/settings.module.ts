@@ -12,7 +12,11 @@ import { PartialsModule } from '../../partials/partials.module';
 import { FundManagementComponent } from './fund-management/fund-management.component';
 import { AdminSettingsComponent } from './admin-settings/admin-settings.component';
 import {
-  DxTreeListModule, DxButtonModule, DxCheckBoxModule, DxDataGridModule, DxPivotGridModule,
+  DxTreeListModule,
+  DxButtonModule,
+  DxCheckBoxModule,
+  DxDataGridModule,
+  DxPivotGridModule,
   DxPopupModule,
   DxContextMenuModule
 } from 'devextreme-angular';
@@ -21,8 +25,6 @@ import { FundAllocationComponent } from './fund-allocation/fund-allocation.compo
 import { CampusUpdateComponent } from './campus-management/campus-update/campus-update.component';
 import { UpdateFundAllocationComponent } from './update-fund-allocation/update-fund-allocation.component';
 import { FormsModule } from '@angular/forms';
-import { DoughnutChartComponent } from './doughnut-chart/doughnut-chart.component';
-import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 import { CampusOverviewTestComponent } from './campus-overview-test/campus-overview-test.component';
 
 
@@ -49,14 +51,6 @@ const routes: Routes = [
       {
         path: 'updateallocations',
         component: UpdateFundAllocationComponent,
-      },
-      {
-        path: 'doughnutchart',
-        component: DoughnutChartComponent,
-      },
-      {
-        path: 'progressbar',
-        component: ProgressBarComponent,
       },
       {
         path: 'testOverview',
@@ -95,8 +89,6 @@ const routes: Routes = [
     FundAllocationComponent,
     CampusUpdateComponent,
     UpdateFundAllocationComponent,
-    DoughnutChartComponent,
-    ProgressBarComponent,
     CampusOverviewTestComponent,
   ],
   entryComponents: [
