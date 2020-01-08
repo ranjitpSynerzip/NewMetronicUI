@@ -4,11 +4,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { DxTreeListModule, DxContextMenuModule } from 'devextreme-angular';
-
 import { CollegeDashboardComponent } from './college-dashboard.component';
 import { PartialsModule } from '../../partials/partials.module';
 import { CoreModule } from '../../../core/core.module';
 import { CollegeBudgetSummaryComponent } from './college-budget-summary/college-budget-summary.component';
+import { BarChartComponent } from './bar-chart/bar-chart.component';
 
 
 
@@ -24,6 +24,10 @@ const routes: Routes = [
       {
         path: 'collegeBudgetSummary',
         component: CollegeBudgetSummaryComponent,
+      },
+      {
+        path: 'barchart',
+        component: BarChartComponent,
       },
     ]
   }
@@ -43,7 +47,8 @@ const routes: Routes = [
   exports: [RouterModule],
   declarations: [
     CollegeDashboardComponent,
-    CollegeBudgetSummaryComponent
+    CollegeBudgetSummaryComponent,
+    BarChartComponent,
   ],
   entryComponents: []
 })

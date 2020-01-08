@@ -1,21 +1,25 @@
-import { Component, OnInit, ElementRef, Input, ViewChild } from "@angular/core";
-import { LayoutConfigService } from "../../../../core/_base/layout/services/layout-config.service";
+import { Component, OnInit, ElementRef, Input, ViewChild } from '@angular/core';
+import { LayoutConfigService } from '../../../../core/_base/layout/services/layout-config.service';
 
 
 @Component({
-	selector: "kt-barchart-widget",
-	templateUrl: "./barchart-widget.component.html",
-	styleUrls: ["./barchart-widget.component.scss"]
+	selector: 'kt-barchart-widget',
+	templateUrl: './barchart-widget.component.html',
+	styleUrls: ['./barchart-widget.component.scss']
 })
 export class BarchartWidgetComponent implements OnInit {
 	@Input() title: string;
 	@Input() desc: string;
 	@Input() data: { labels: string[]; datasets: any[] };
-	@ViewChild("chart", { static: true }) chart: ElementRef;
+	@ViewChild('chart', { static: true }) chart: ElementRef;
 
-	constructor(private layoutConfigService: LayoutConfigService) {}
+	constructor(private layoutConfigService: LayoutConfigService) { }
 
 	ngOnInit() {
+		console.log('title', this.title);
+		console.log('desc', this.desc);
+		console.log('data', this.data);
+		debugger;
 		if (!this.data) {
 			this.data = {
 				labels: this.data.labels,
@@ -23,7 +27,7 @@ export class BarchartWidgetComponent implements OnInit {
 					{
 						// label: 'dataset 1',
 						backgroundColor: this.layoutConfigService.getConfig(
-							"colors.state.success"
+							'colors.state.success'
 						),
 						data: this.data.datasets
 					}
@@ -37,7 +41,7 @@ export class BarchartWidgetComponent implements OnInit {
 	/** Init chart */
 	initChartJS() {
 		const chart = new Chart(this.chart.nativeElement, {
-			type: "bar",
+			type: 'bar',
 			data: this.data,
 			options: {
 				title: {
@@ -45,7 +49,7 @@ export class BarchartWidgetComponent implements OnInit {
 				},
 				tooltips: {
 					intersect: false,
-					mode: "nearest",
+					mode: 'nearest',
 					xPadding: 10,
 					yPadding: 10,
 					caretPadding: 10
