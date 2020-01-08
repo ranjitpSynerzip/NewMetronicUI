@@ -25,7 +25,6 @@ import { FundAllocationComponent } from './fund-allocation/fund-allocation.compo
 import { CampusUpdateComponent } from './campus-management/campus-update/campus-update.component';
 import { UpdateFundAllocationComponent } from './update-fund-allocation/update-fund-allocation.component';
 import { FormsModule } from '@angular/forms';
-import { CampusOverviewTestComponent } from './campus-overview-test/campus-overview-test.component';
 
 
 
@@ -51,10 +50,6 @@ const routes: Routes = [
       {
         path: 'updateallocations',
         component: UpdateFundAllocationComponent,
-      },
-      {
-        path: 'testOverview',
-        component: CampusOverviewTestComponent,
       },
     ]
   }
@@ -89,7 +84,6 @@ const routes: Routes = [
     FundAllocationComponent,
     CampusUpdateComponent,
     UpdateFundAllocationComponent,
-    CampusOverviewTestComponent,
   ],
   entryComponents: [
     CampusUpdateComponent
