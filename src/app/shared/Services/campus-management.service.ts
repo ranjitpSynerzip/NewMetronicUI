@@ -103,11 +103,16 @@ export class CampusManagementService {
 	}
 
 	getCampus(): Observable<Campusmodel[]> {
-		return this.http.get<Campusmodel[]>(this.baseUrl + '/Campus')
+		return this.http.get<Campusmodel[]>(this.baseUrl + '/Campus');
+	}
+
+	
+	getCampusTest() {
+		return this.http.get<any[]>(this.baseUrl + '/Campus').toPromise();
 	}
 
 	getCampusById(id: number): Observable<any> {
-		return this.http.get<any>(this.baseUrl + '/Campus' + '/' + id)
+		return this.http.get<any>(this.baseUrl + '/Campus' + '/' + id);
 	}
 
 	putCampus(campusModel: Campusmodel, id: number): Observable<any> {

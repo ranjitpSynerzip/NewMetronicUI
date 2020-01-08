@@ -5,7 +5,6 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class HeaderTitleService {
-  temp: any;
   private Headertitle = new BehaviorSubject<any>(null);
   data = this.Headertitle.asObservable();
 

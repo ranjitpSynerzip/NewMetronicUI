@@ -1,13 +1,6 @@
 // Angular
 import { Component, ElementRef, Input, OnInit, ViewChild } from "@angular/core";
-// Layout
-// import { LayoutConfigService } from '../../../../../core/_base/layout';
-
-// import { LayoutConfigService} from './core/_base/layout';
-
-// Charts
 import { Chart } from "chart.js/dist/Chart.min.js";
-// import { LayoutConfigService } from 'src/app/core/_base/layout';
 import { LayoutConfigService } from "../../../../core/_base/layout/services/layout-config.service";
 import { CampusManagementService } from "./../../../../shared/Services/campus-management.service";
 import { Campusmodel } from "./../../../../shared/models/campusmodel";
