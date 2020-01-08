@@ -13,9 +13,9 @@
     </div>
     <kt-portlet-body>
         <dx-tree-list id="employees" [dataSource]="budgetSummary" itemsExpr="items" dataStructure="tree"
-            [showRowLines]="true" [showBorders]="true" [columnAutoWidth]="true"
+            [showRowLines]="true" [showBorders]="false" [showColumnLines]="false" [columnAutoWidth]="true"
             (onContextMenuPreparing)="addMenuItems($event)">
-            <dxi-column dataField="Title"  cellTemplate="linkCellTemplate"></dxi-column>
+            <dxi-column dataField="Title"  cellTemplate="linkCellTemplate" [width]="150"></dxi-column>
             <dxi-column dataField="TotalBudget" caption="TotalBudget"></dxi-column>
             <dxi-column dataField="TotalContracts" caption="Total Contracts"></dxi-column>
             <dxi-column dataField="TotalTransaction" caption="Total Transaction"></dxi-column>
