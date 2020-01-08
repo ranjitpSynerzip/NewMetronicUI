@@ -12,6 +12,7 @@ import { ProjectgroupModel } from '../models/projectgroup-model';
 export class ProjectGroupService {
 
 	baseUrl = environment.baseUrl;
+	dapperUrl = environment.dapperUrl;
 	projectGroupObj: ProjectgroupModel[];
 	constructor(private http: HttpClient) { }
 
@@ -48,7 +49,7 @@ export class ProjectGroupService {
 
 	postProjectGroup(projectgroupModel: ProjectgroupModel): Observable<any> {
 		const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-		return this.http.post<ProjectgroupModel>(this.baseUrl + '/ProjectGroup', projectgroupModel, httpOptions)
+		return this.http.post<ProjectgroupModel>(this.dapperUrl + '/ProjectGroup', projectgroupModel, httpOptions)
 			.pipe(
 				map((res: ProjectgroupModel) => {
 					return res;

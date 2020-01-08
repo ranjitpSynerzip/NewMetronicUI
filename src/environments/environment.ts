@@ -10,5 +10,6 @@ export const environment = {
 	// versionfile: $ENV.VERSION_PATH,
 	//baseUrl:'https://dev-newprompt-backend.azurewebsites.net/',
 	baseUrl:'http://172.25.29.38:88/api',
-    versionfile: '',
+	versionfile: '',
+	dapperUrl:'http://172.25.23.38:92/api',
 };
