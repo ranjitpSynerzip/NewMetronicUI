@@ -12,11 +12,11 @@ import { DevgridModule } from './dev-grid/devgrid.module';
 import { StatusModule } from './status/status.module';
 import { SettingsModule } from './settings/settings.module';
 import { ProjectModule } from './project/project.module';
+import { ProjectGroupModule } from './project-group/project-group.module';
 import { CampusModule } from './campus/campus.module';
 import { CampusOverviewModule } from './campus-overview/campus-overview.module';
 import { ProjectDetailsModule } from './project-details/project-details.module';
 import { CollegeDashboardModule } from './college-dashboard/college-dashboard.module';
-
 
 @NgModule({
 	declarations: [],
@@ -32,6 +32,7 @@ import { CollegeDashboardModule } from './college-dashboard/college-dashboard.mo
 		StatusModule,
 		SettingsModule,
 		ProjectModule,
+		ProjectGroupModule,
 		CampusModule,
 		CampusOverviewModule,
 		ProjectDetailsModule,

@@ -42,6 +42,10 @@ const routes: Routes = [
 				loadChildren: () => import('app/views/pages/project/project.module').then(m => m.ProjectModule)
 			},
 			{
+				path: 'projectgroups',
+				loadChildren: () => import('app/views/pages/project-group/project-group.module').then(m => m.ProjectGroupModule)
+			},
+			{
 				path: 'campuses',
 				loadChildren: () => import('app/views/pages/campus/campus.module').then(m => m.CampusModule)
 			},

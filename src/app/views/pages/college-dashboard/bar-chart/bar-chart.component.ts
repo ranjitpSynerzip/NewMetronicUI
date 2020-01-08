@@ -84,7 +84,9 @@ export class BarChartComponent implements OnInit {
 						{
 							display: false,
 							gridLines: false,
-							stacked: true
+							stacked: true,
+							barPercentage: 0.6,
+  							categoryPercentage: 0.9
 						}
 					],
 					yAxes: [
