@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef, Input, ViewChild } from '@angular/core';
-import { LayoutConfigService } from '../../../../core/_base/layout/services/layout-config.service';
+import { LayoutConfigService } from '../../../../../core/_base/layout/services/layout-config.service';
 
 
 @Component({
