@@ -294,20 +294,43 @@ export class FundManagementComponent implements OnInit {
     e.isValid = e.newData.endDate > e.newData.startDate;
     if (!e.isValid) {
       e.errorText = 'End date should be greater than start date';
-      console.log('Incorrect dates');
     }
 
+    const isSeriesNameExist = this.fundSeriseDataSource.find(({ seriesName }) => seriesName === e.newData.seriesName);
+    if (isSeriesNameExist) {
+      e.isValid = false;
+      e.errorText = 'Series Name must be unique';
+    }
   }
 
-  //   refreshDataGrid() {
-  //     this.dataGrid.instance.refresh()
-  //         .then(function() {
-  //           this.refreshgrid();
-  //         })
-  //         .catch(function(error) {
-  //             // ...
-  //         });
-  // }
 
+
+  onFundgridValidating(e) {
+    debugger;
+    const isFundExist = this.dataSource.find(({ fundName }) => fundName === e.newData.fundName);
+    if (isFundExist) {
+      e.isValid = false;
+      e.errorText = 'Fund Name must be unique';
+    }
+  }
+
+
+  onFundgridEditorPreparing(e) {
+    if (e.dataField === 'fundName') {
+      e.editorOptions.maxLength = 20;
+    }
+    if (e.dataField === 'fundCode') {
+      e.editorOptions.maxLength = 10;
+    }
+  }
+
+  onfundSeriesEditorPreparing(e) {
+    if (e.dataField === 'seriesName') {
+      e.editorOptions.maxLength = 20;
+    }
+    if (e.dataField === 'accountCode') {
+      e.editorOptions.maxLength = 10;
+    }
+  }
 
 }
