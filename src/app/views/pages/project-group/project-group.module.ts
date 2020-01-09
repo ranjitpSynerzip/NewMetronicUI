@@ -8,6 +8,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ProjectGroupComponent } from './project-group.component';
 import { DxDataGridModule, DxButtonModule, DxDateBoxModule } from 'devextreme-angular';
+import { AddProjectgroupComponent } from './add-projectgroup/add-projectgroup.component';
+import { ProjectgroupListComponent } from './projectgroup-list/projectgroup-list.component';
 
 
 
@@ -15,19 +17,19 @@ const routes: Routes = [
 	{
 	  path: '',
 	  component: ProjectGroupComponent,
-	//   children: [
-	// 	{
-	// 	  path: 'addproject',
-	// 	  component: AddProjectComponent,
-	// 	},
-	// 	{
-	// 	  path: 'projectlist',
-	// 	  component: ProjectListComponent,
-	// 	}, {
-	// 	  path: '',
-	// 	  component: ProjectListComponent,
-	// 	}
-	//   ]
+	  children: [
+		{
+		  path: 'addprojectgroup',
+		  component: AddProjectgroupComponent,
+		},
+		{
+		  path: 'projectgrouplist',
+		  component: ProjectgroupListComponent,
+		}, {
+		  path: '',
+		  component: ProjectgroupListComponent,
+		}
+	  ]
 	}
   ];
 
@@ -47,6 +49,8 @@ const routes: Routes = [
   exports: [RouterModule],
   declarations: [
     ProjectGroupComponent,
+    AddProjectgroupComponent,
+    ProjectgroupListComponent,
   ]
 })
 export class ProjectGroupModule { }

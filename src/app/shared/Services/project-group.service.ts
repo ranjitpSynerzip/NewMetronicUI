@@ -22,7 +22,7 @@ export class ProjectGroupService {
 
 	deleteProjectGroup(id: number): Observable<any> {
 		const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-		return this.http.delete<any>(this.baseUrl + '/ProjectGroup' + '/' + id, httpOptions);
+		return this.http.delete<any>(this.dapperUrl + '/ProjectGroup' + '/' + id, httpOptions);
 	}
 
 	getProjectGroupbyID(id: number): Observable<any> {
@@ -31,8 +31,9 @@ export class ProjectGroupService {
 	}
 
 	putProjectGroup(projectgroupModel: ProjectgroupModel, id: number): Observable<any> {
+		debugger;
 		const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-		return this.http.put<any>(this.baseUrl + '/ProjectGroup' + '/' + id, projectgroupModel, httpOptions);
+		return this.http.put<any>(this.dapperUrl + '/ProjectGroup' + '/' + id, projectgroupModel, httpOptions);
 	}
 
 	getStatus(): Observable<any[]> {

@@ -1,0 +1,215 @@
+<div class="container">
+
+	<kt-portlet [class]="'kt-portlet--height-fluid'">
+		<div class="kt-portlet__head">
+			<div class="kt-portlet__head-label">
+				<h3 class="kt-portlet__head-title"><span class="kt-portlet__head-icon">
+						<i class="fas fa-address-book"></i>
+					</span>Project Group</h3>
+			</div>
+
+		</div>
+		<kt-portlet-body>
+
+			<form name="form" (ngSubmit)="onSaveButton(); f.reset()" #f="ngForm">
+				<!-- <h4>Project Details</h4> -->
+				<div class="row">
+					<div class="col-md-2">
+						<div class="form-group">
+							<label for="txtDisplayName">Display Name:</label>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="form-group">
+							<input type="text" class="form-control" name="displayName" id="displayName" #displayName=ngModel [(ngModel)]='projectObj.displayName'
+								placeholder="Enter Display Name" />
+						</div>
+					</div>
+
+					<div class="col-md-2">
+						<div class="form-group">
+							<label for="txtProjectNumber">Group Number:</label>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="form-group">
+
+							<input type="number" class="form-control" name="groupNumber" id="groupNumber" #groupNumber=ngModel [(ngModel)]='projectObj.groupNumber'
+								placeholder="Enter Group Number" />
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-2">
+						<div class="form-group">
+							<label for="txtStartDate">Start Date:</label>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="form-group">
+								<dx-date-box name="startDate" id="startDate" #startDate=ngModel
+								[(ngModel)]='projectObj.startDate' type="date">
+									</dx-date-box>
+						</div>
+					</div>
+
+					<div class="col-md-2">
+						<div class="form-group">
+							<label for="txtEstimationCompletionDate">End Date:</label>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="form-group">
+							<dx-date-box name="endDate" id="endDate" #endDate=ngModel
+							[(ngModel)]='projectObj.endDate'type="date">
+							</dx-date-box>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+						<div class="col-md-2">
+							<div class="form-group">
+								<label for="txtGeneralContractor">Architect:</label>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<select name="architect" class="form-control" #aorId="ngModel" [(ngModel)]="selectedArchitect"  placeholder="Architect">
+									<option *ngFor="let c of companies" [selected]="c.companyId === selectedArchitect"
+										[ngValue]="c.companyId">{{ c.companyName }}</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="col-md-2">
+								<div class="form-group">
+									<label for="txtGeneralContractor">Project Manager:</label>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<select name="ProjectManager" class="form-control" #pmId="ngModel" [(ngModel)]="selectedProManager"  placeholder="Project Manager">
+										<option *ngFor="let c of contacts" [selected]="c.contactId === selectedProManager"
+											[ngValue]="c.contactId">{{ c.contactName }}</option>
+									</select>
+								</div>
+							</div>
+
+
+					</div>
+
+					<!-- <div class="row">
+							<div class="col-md-2">
+								<div class="form-group">
+									<label for="txtGeneralContractor">Included Projects:</label>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+										<input type="checkbox" id="txtExempt" name="txtExempt" style="margin-left: 5%;"/>
+										<label for="txtExempt"> Project 1</label>
+								</div>
+							</div>
+
+								<div class="col-md-3">
+									<div class="form-group">
+											<input type="checkbox" id="txtExempt" name="txtExempt" style="margin-left: 5%;"/>
+											<label for="txtExempt"> Project 2</label>
+									</div>
+								</div>
+
+								<div class="col-md-3">
+										<div class="form-group">
+												<input type="checkbox" id="txtExempt" name="txtExempt" style="margin-left: 5%;"/>
+												<label for="txtExempt"> Project 3</label>
+										</div>
+									</div>
+
+
+						</div> -->
+
+				<div class="row">
+					<div class="col-md-2">
+						<div class="form-group">
+							<label for="txtNotes">Notes:</label>
+						</div>
+					</div>
+					<div class="col-md-10">
+						<div class="form-group">
+							<!-- <label for="inputName">Description:</label> -->
+							<textarea rows="3" name="notes" class="form-control" cols="70" id="notes" #notes=ngModel
+							[(ngModel)]='projectObj.notes'  maxlength="50"></textarea>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+
+					<div class="col-md-6">
+						<div class="form-group">
+							<a (click)="onSelect()"><u>More...</u></a>
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<input type="submit" id="save" value="Save" class="btn btn-primary btn-elevate"
+							style="width: 200px; height: 35px;">
+					</div>
+				</div>
+				<div [hidden]="IsHidden">
+				<hr>
+				<!-- <div class="row">
+						<div class="col-md-2">
+							<div class="form-group">
+								<label for="txtGeneralContractor">CM/DM Estimate at Complete Status:</label>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<select name="EACStatus" class="form-control" [(ngModel)]="selectedEACStatus"  placeholder="CM/DM Estimate at Complete Status">
+									<option *ngFor="let c of Statues" [selected]="c.statusId === selectedEACStatus"
+										[ngValue]="c.statusId">{{ c.statusName }}</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="col-md-2">
+								<div class="form-group">
+									<label for="txtGeneralContractor">CM/DM Project Budget Status:</label>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<select name="PBStatus" class="form-control" [(ngModel)]="selectedPBStatus"  placeholder="CM/DM Project Budget Status">
+										<option *ngFor="let c of Statues" [selected]="c.statusId === selectedPBStatus"
+											[ngValue]="c.statusId">{{ c.statusName }}</option>
+									</select>
+								</div>
+							</div>
+
+
+					</div> -->
+
+					<!-- <div class="row">
+							<div class="col-md-2">
+								<div class="form-group">
+									<label for="txtGeneralContractor">CM/DM Report Status:</label>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<select name="RStatus" class="form-control" [(ngModel)]="selectedRStatus"  placeholder="CM/DM Report Status">
+										<option *ngFor="let c of Statues" [selected]="c.statusId === selectedRStatus"
+											[ngValue]="c.statusId">{{ c.statusName }}</option>
+									</select>
+								</div>
+							</div>
+						</div> -->
+						</div>
+			</form>
+		</kt-portlet-body>
+	</kt-portlet>
+
+
+</div>
