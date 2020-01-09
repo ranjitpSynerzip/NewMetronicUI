@@ -75,8 +75,7 @@ import { WidgetModule } from './content/widgets/widget.module';
 // SVG inline
 import { InlineSVGModule } from 'ng-inline-svg';
 import { CartComponent } from './layout/topbar/cart/cart.component';
-import { BarchartWidgetComponent } from './content/barchart-widget/barchart-widget.component';
-import { DoughnutchartWidgetComponent } from './content/doughnutchart-widget/doughnutchart-widget.component';
+
 
 @NgModule({
 	declarations: [
@@ -114,8 +113,6 @@ import { DoughnutchartWidgetComponent } from './content/doughnutchart-widget/dou
 		CartComponent,
         StickyToolbarComponent,
 		ErrorComponent,
-		BarchartWidgetComponent,
-		DoughnutchartWidgetComponent,
 
 	],
 	exports: [
@@ -156,8 +153,7 @@ import { DoughnutchartWidgetComponent } from './content/doughnutchart-widget/dou
 		CartComponent,
         StickyToolbarComponent,
 		ErrorComponent,
-		BarchartWidgetComponent,
-		DoughnutchartWidgetComponent
+
 	],
 	imports: [
 		CommonModule,

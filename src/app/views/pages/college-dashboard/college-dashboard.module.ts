@@ -9,6 +9,8 @@ import { PartialsModule } from '../../partials/partials.module';
 import { CoreModule } from '../../../core/core.module';
 import { CollegeBudgetSummaryComponent } from './college-budget-summary/college-budget-summary.component';
 import { BarChartComponent } from './bar-chart/bar-chart.component';
+import { DoughnutChartComponent } from './doughnut-chart/doughnut-chart.component';
+import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 
 
 
@@ -28,6 +30,14 @@ const routes: Routes = [
       {
         path: 'barchart',
         component: BarChartComponent,
+      },
+      {
+        path: 'doughnutchart',
+        component: DoughnutChartComponent,
+      },
+      {
+        path: 'progressbar',
+        component: ProgressBarComponent,
       },
     ]
   }
@@ -49,6 +59,8 @@ const routes: Routes = [
     CollegeDashboardComponent,
     CollegeBudgetSummaryComponent,
     BarChartComponent,
+    DoughnutChartComponent,
+    ProgressBarComponent,
   ],
   entryComponents: []
 })

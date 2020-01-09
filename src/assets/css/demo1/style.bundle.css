@@ -21469,7 +21469,9 @@ strong {
       .kt-portlet .kt-portlet__head .kt-portlet__head-label .kt-portlet__head-icon {
         padding-right: 0.75rem;
         font-size: 1.3rem;
-        color: #74788d; }
+        /* color: #74788d;  */
+        color: #000;
+      }
     .kt-portlet .kt-portlet__head .kt-portlet__head-toolbar {
       display: -webkit-box;
       display: -ms-flexbox;

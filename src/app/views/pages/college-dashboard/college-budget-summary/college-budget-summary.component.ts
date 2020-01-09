@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { CampusManagementService, BudgetSummary } from '../../../../shared/Services/campus-management.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'kt-college-budget-summary',
   templateUrl: './college-budget-summary.component.html',
-  styleUrls: ['./college-budget-summary.component.scss']
+  styleUrls: ['./college-budget-summary.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class CollegeBudgetSummaryComponent implements OnInit {
   budgetSummary: BudgetSummary[];

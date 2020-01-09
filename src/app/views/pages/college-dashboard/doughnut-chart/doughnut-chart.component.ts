@@ -39,7 +39,6 @@ export class DoughnutChartComponent implements OnInit {
 
 		this.service.getCampus().subscribe(data => {
 			this.dataSource = data;
-			console.log(this.dataSource);
 
 			this.campusnames = this.dataSource.map(
 				({ campusName }) => campusName
