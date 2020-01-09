@@ -49,7 +49,7 @@ export class FundManagementComponent implements OnInit {
 
   ngOnInit() {
     this.refreshgrid();
-    this.userInfo = JSON.parse(localStorage.getItem("user"));
+    this.userInfo = JSON.parse(localStorage.getItem('user'));
     this.userObj.fullname = this.userInfo.displayName;
     this.userObj.id = this.userInfo.id;
   }
@@ -96,7 +96,7 @@ export class FundManagementComponent implements OnInit {
 
 
   deleteRecords() {
-    var result = confirm("Are you sure you want to delete?", "Confirm");
+    var result = confirm('Are you sure you want to delete?', 'Confirm');
     result.then((dialogResult) => {
       if (dialogResult) {
         this.ConfirmDelete();
@@ -268,11 +268,11 @@ export class FundManagementComponent implements OnInit {
   }
 
   onContentReady(e) {
-    e.component.option("loadPanel.enabled", true);
+    e.component.option('loadPanel.enabled', true);
   }
 
   onMasterdetailReady(e) {
-    e.component.option("loadPanel.enabled", true);
+    e.component.option('loadPanel.enabled', true);
   }
 
 
@@ -287,6 +287,16 @@ export class FundManagementComponent implements OnInit {
         this.fundSeriesGrid.instance.refresh();
       }
     );
+  }
+
+
+  onRowValidating(e) {
+    e.isValid = e.newData.endDate > e.newData.startDate;
+    if (!e.isValid) {
+      e.errorText = 'End date should be greater than start date';
+      console.log('Incorrect dates');
+    }
+
   }
 
   //   refreshDataGrid() {

@@ -35,7 +35,7 @@
 
 				<div *dxTemplate="let series of 'fundSeries'" class="masterdetail">
 					
-					<dx-data-grid #fundSeries [dataSource]="fundSeriseDataSource" 
+					<dx-data-grid id="fundSeries" #fundSeries [dataSource]="fundSeriseDataSource" 
 					[showBorders]="true"
 					[showRowLines]="true"
 					[showColumnLines]="false"
@@ -47,17 +47,19 @@
 					(onContentReady)="onMasterdetailReady($event)"
 					class="masterdetail"
 					dateSerializationFormat="MM/dd/yyyy"
+					(onRowValidating)= "onRowValidating($event)"
 					>
 					<dxo-load-panel [enabled]="true"></dxo-load-panel>
 					<!-- <dxo-scrolling mode="standard"></dxo-scrolling> -->
 						<dxo-editing mode="cell" [allowUpdating]="true" [allowAdding]="true">
 								<dxo-texts  addRow="Add New Series"></dxo-texts>  
 						</dxo-editing>
-						<dxo-selection mode="multiple"></dxo-selection>
+						<dxo-selection mode="multiple"  ></dxo-selection>\
+                    
 						<dxi-column dataField="seriesName" >
 								<dxi-validation-rule type="required"></dxi-validation-rule>
 						</dxi-column>
-						<dxi-column dataField="startDate"  dataType="date">
+						<dxi-column dataField="startDate"   dataType="date">
 								<dxi-validation-rule type="required"></dxi-validation-rule>
 						</dxi-column>
 						<dxi-column dataField="endDate"   dataType="date" >
