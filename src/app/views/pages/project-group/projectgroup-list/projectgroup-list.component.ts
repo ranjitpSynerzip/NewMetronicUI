@@ -1,13 +1,12 @@
-import { ProjectGroupService } from './../../../../shared/Services/project-group.service';
-import { ProjectgroupModel } from './../../../../shared/models/projectgroup-model';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ProjectService } from '../../../../shared/Services/project.service';
-import { ProjectModel } from '../../../../shared/models/project-model.module';
 import { confirm } from 'devextreme/ui/dialog';
 import { Subscription } from 'rxjs';
 import { DxDataGridComponent } from 'devextreme-angular';
+
 import { environment } from '../../../../../environments/environment';
+import { ProjectGroupService } from './../../../../shared/Services/project-group.service';
+import { ProjectgroupModel } from './../../../../shared/models/projectgroup-model';
 
 @Component({
   selector: 'kt-projectgroup-list',
@@ -16,15 +15,13 @@ import { environment } from '../../../../../environments/environment';
 })
 export class ProjectgroupListComponent implements OnInit {
 
-	@ViewChild('projects', { static: false }) dataGrid: DxDataGridComponent;
+  @ViewChild('projects', { static: false }) dataGrid: DxDataGridComponent;
   dataSource: any[];
   baseUrl = environment.baseUrl;
   dapperUrl = environment.dapperUrl;
-  // baseUrl = 'http://172.25.29.38:88/api';
   selectedItemKeys: any[] = [];
   SelectedRowsData: any[] = [];
   private deleteProjects: Subscription;
-  //updateprojectObj = new ProjectModel();
   updateprojectObj = new ProjectgroupModel();
   Statues = [];
   contacts = [];
@@ -97,15 +94,16 @@ export class ProjectgroupListComponent implements OnInit {
   }
 
   onRowUpdating(e) {
-	//   debugger;
-    this.updateprojectObj = e.oldData;
-	this.updateprojectObj.displayName = e.newData.displayName ? e.newData.displayName : e.oldData.displayName;
-	this.updateprojectObj.groupNumber = e.newData.groupNumber ? e.newData.groupNumber : e.oldData.groupNumber;
-	this.updateprojectObj.startDate = e.newData.startDate ? e.newData.startDate : e.oldData.startDate;
-	this.updateprojectObj.endDate = e.newData.endDate ? e.newData.endDate : e.oldData.endDate;
-	this.updateprojectObj.notes = e.newData.notes ? e.newData.notes : e.oldData.notes;
-
-
+    this.updateprojectObj.projectGroupId = e.oldData.projectGroupId;
+    this.updateprojectObj.displayName = e.newData.displayName ? e.newData.displayName : e.oldData.displayName;
+    this.updateprojectObj.groupNumber = e.newData.groupNumber ? e.newData.groupNumber : e.oldData.groupNumber;
+    this.updateprojectObj.startDate = e.newData.startDate ? e.newData.startDate : e.oldData.startDate;
+    this.updateprojectObj.endDate = e.newData.endDate ? e.newData.endDate : e.oldData.endDate;
+    this.updateprojectObj.aorId = e.newData.aorId ? e.newData.aorId : e.oldData.aorId;
+    this.updateprojectObj.pmId = e.newData.pmId ? e.newData.pmId : e.oldData.pmId;
+    this.updateprojectObj.notes = e.newData.notes ? e.newData.notes : e.oldData.notes;
+    this.updateprojectObj.createdBy = e.oldData.createdBy;
+    this.updateprojectObj.isDeleted = false;
     console.log('onRowUpdating', this.updateprojectObj);
 
     this.service.putProjectGroup(this.updateprojectObj, e.oldData.projectGroupId)
