@@ -1,7 +1,7 @@
 <div class="dx-viewport demo-container">
 	<span id="gridHeaderTitle" >Projects Groups</span>
 <dx-button id="gridDeleteSelected" icon="trash" [disabled]="!selectedItemKeys.length" style="color:red" (onClick)="deleteRecords()"></dx-button>
-<dx-button id="gridAddSelected" routerLink="./addprojectgroup" tooltip="Add New Project" >
+<dx-button id="gridAddSelected" routerLink="/projectgroups/addprojectgroup" tooltip="Add New Project" >
 	<i class="fa fa-plus" aria-hidden="true"></i></dx-button>
 
 <dx-data-grid [dataSource]="dataSource"  #projects
