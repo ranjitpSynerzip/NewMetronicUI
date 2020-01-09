@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation, HostListener, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DxDataGridComponent } from 'devextreme-angular';
+import { DatePipe } from '@angular/common';
 import { FundManagementService, Funds } from '../../../../shared/Services/fund-management.service';
 import { FundsourceModel } from '../../../../shared/models/fund-source.model';
 import { environment } from '../../../../../environments/environment';
@@ -17,6 +18,7 @@ import { FundemitterService } from '../../../../shared/Services/fundemitter.serv
   styleUrls: ['./fund-management.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.Default,
+  providers: [DatePipe]
 })
 
 export class FundManagementComponent implements OnInit {
@@ -42,7 +44,7 @@ export class FundManagementComponent implements OnInit {
   private deletefundSeriesSubs: Subscription;
   private deletefundsourceSubs: Subscription;
 
-  constructor(private httpClient: HttpClient, private service: FundManagementService, private fundemitter: FundemitterService) {
+  constructor(private httpClient: HttpClient, private service: FundManagementService, private fundemitter: FundemitterService, public datepipe: DatePipe) {
 
   }
 
@@ -168,7 +170,7 @@ export class FundManagementComponent implements OnInit {
 
   onRowUpdating(e) {
     console.log('onRowUpdating', e);
-    this.updatefundSourceObj = e.oldData;
+    // this.updatefundSourceObj = e.oldData;
     this.updatefundSourceObj.fundName = e.newData.fundName ? e.newData.fundName : e.oldData.fundName;
     this.updatefundSourceObj.fundCode = e.newData.fundCode ? e.newData.fundCode : e.oldData.fundCode;
     this.updatefundSourceObj.districtId = 2;
@@ -291,7 +293,26 @@ export class FundManagementComponent implements OnInit {
 
 
   onRowValidating(e) {
-    e.isValid = e.newData.endDate > e.newData.startDate;
+    console.log('onload', e);
+    if (e.oldData) {
+      console.log('onRowValidating', e.oldData);
+
+      if (e.newData.startDate) {
+        e.isValid = this.dateFormat(e.oldData.endDate) > this.dateFormat(e.newData.startDate);
+      }
+
+      if (e.newData.endDate) {
+        e.isValid = this.dateFormat(e.newData.endDate) > this.dateFormat(e.oldData.startDate);
+        // e.isValid = this.datepipe.transform(, 'MM/dd/yyyy') > this.datepipe.transform(e.oldData.startDate, 'MM/dd/yyyy');
+      }
+
+    } else {
+      // console.log('endDate', this.datepipe.transform(e.newData.endDate, 'MM/dd/yyyy'));
+      // console.log('startDate', this.datepipe.transform(e.newData.startDate, 'MM/dd/yyyy'));
+      e.isValid = this.dateFormat(e.newData.endDate) > this.dateFormat(e.newData.startDate);
+      // e.isValid = this.datepipe.transform(e.newData.endDate, 'MM/dd/yyyy') > this.datepipe.transform(e.newData.startDate, 'MM/dd/yyyy');
+    }
+
     if (!e.isValid) {
       e.errorText = 'End date should be greater than start date';
     }
@@ -303,10 +324,13 @@ export class FundManagementComponent implements OnInit {
     }
   }
 
+  dateFormat(datetoFormat) {
+    return this.datepipe.transform(datetoFormat, 'MM/dd/yyyy');
+  }
+
 
 
   onFundgridValidating(e) {
-    debugger;
     const isFundExist = this.dataSource.find(({ fundName }) => fundName === e.newData.fundName);
     if (isFundExist) {
       e.isValid = false;
