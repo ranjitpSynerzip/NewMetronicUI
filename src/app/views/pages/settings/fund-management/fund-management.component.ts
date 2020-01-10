@@ -293,17 +293,17 @@ export class FundManagementComponent implements OnInit {
 
 
   onRowValidating(e) {
-   // console.log('onload', e);
+    console.log('onload', e);
     if (e.oldData) {
-     // console.log('onRowValidating', e.oldData);
+      // console.log('onRowValidating', e.oldData);
 
       if (e.newData.startDate) {
-       // console.log('New startDate', this.dateFormat(e.newData.startDate), this.dateFormat(e.oldData.endDate) );
+        // console.log('New startDate', this.dateFormat(e.newData.startDate), this.dateFormat(e.oldData.endDate) );
         e.isValid = this.dateFormat(e.oldData.endDate) > this.dateFormat(e.newData.startDate);
       }
 
       if (e.newData.endDate) {
-       // console.log('New endDate', this.dateFormat(e.oldData.startDate), this.dateFormat(e.newData.endDate));
+        // console.log('New endDate', this.dateFormat(e.oldData.startDate), this.dateFormat(e.newData.endDate));
         e.isValid = this.dateFormat(e.newData.endDate) > this.dateFormat(e.oldData.startDate);
       }
 
@@ -315,10 +315,17 @@ export class FundManagementComponent implements OnInit {
       e.errorText = 'End date should be greater than start date';
     }
 
-    const isSeriesNameExist = this.fundSeriseDataSource.find(({ seriesName }) => seriesName === e.newData.seriesName);
-    if (isSeriesNameExist) {
-      e.isValid = false;
-      e.errorText = 'Series Name must be unique';
+    if (this.fundSeriseDataSource) {
+      const isSeriesNameExist = this.fundSeriseDataSource.find(({ seriesName }) => seriesName === e.newData.seriesName);
+      if (isSeriesNameExist) {
+        if (isSeriesNameExist.seriesId === e.oldData.seriesId && isSeriesNameExist.seriesName === e.newData.seriesName) {
+          e.isValid = true;
+        } else {
+          e.isValid = false;
+          e.errorText = 'Series Name must be unique';
+        }
+
+      }
     }
   }
 
