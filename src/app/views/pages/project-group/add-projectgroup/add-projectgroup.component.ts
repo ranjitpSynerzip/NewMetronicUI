@@ -30,17 +30,14 @@ export class AddProjectgroupComponent implements OnInit {
   ngOnInit() {
 	this.service.getStatus().subscribe(data => {
 		this.Statues = data;
-		console.log(this.Statues);
 	  });
 
 	  this.service.getContacts().subscribe(data => {
 		this.contacts = data;
-		console.log(this.contacts);
 	  });
 
 	  this.service.getCompanies().subscribe(data => {
 		this.companies = data;
-		console.log(this.companies);
 	  });
 
   }
@@ -50,13 +47,12 @@ export class AddProjectgroupComponent implements OnInit {
 }
 
   onSaveButton() {
-	  debugger;
-	//this.projectObj.projectGroupId = 0;
 	this.projectObj.createdDate = new Date();
 	this.projectObj.createdBy = 1;
 	this.projectObj.pmId = this.selectedProManager;
 	this.projectObj.aorId = this.selectedArchitect;
 	this.projectObj.isDeleted = false;
+
 
     this.service.postProjectGroup(this.projectObj).subscribe(
       success => {

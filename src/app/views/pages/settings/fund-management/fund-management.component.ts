@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation, HostListener, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DxDataGridComponent } from 'devextreme-angular';
+import { DatePipe } from '@angular/common';
 import { FundManagementService, Funds } from '../../../../shared/Services/fund-management.service';
 import { FundsourceModel } from '../../../../shared/models/fund-source.model';
 import { environment } from '../../../../../environments/environment';
@@ -17,6 +18,7 @@ import { FundemitterService } from '../../../../shared/Services/fundemitter.serv
   styleUrls: ['./fund-management.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.Default,
+  providers: [DatePipe]
 })
 
 export class FundManagementComponent implements OnInit {
@@ -42,7 +44,7 @@ export class FundManagementComponent implements OnInit {
   private deletefundSeriesSubs: Subscription;
   private deletefundsourceSubs: Subscription;
 
-  constructor(private httpClient: HttpClient, private service: FundManagementService, private fundemitter: FundemitterService) {
+  constructor(private httpClient: HttpClient, private service: FundManagementService, private fundemitter: FundemitterService, public datepipe: DatePipe) {
 
   }
 
@@ -168,7 +170,7 @@ export class FundManagementComponent implements OnInit {
 
   onRowUpdating(e) {
     console.log('onRowUpdating', e);
-    this.updatefundSourceObj = e.oldData;
+    // this.updatefundSourceObj = e.oldData;
     this.updatefundSourceObj.fundName = e.newData.fundName ? e.newData.fundName : e.oldData.fundName;
     this.updatefundSourceObj.fundCode = e.newData.fundCode ? e.newData.fundCode : e.oldData.fundCode;
     this.updatefundSourceObj.districtId = 2;
@@ -291,23 +293,72 @@ export class FundManagementComponent implements OnInit {
 
 
   onRowValidating(e) {
-    e.isValid = e.newData.endDate > e.newData.startDate;
-    if (!e.isValid) {
-      e.errorText = 'End date should be greater than start date';
-      console.log('Incorrect dates');
+    console.log('onload', e);
+    if (e.oldData) {
+      // console.log('onRowValidating', e.oldData);
+
+      if (e.newData.startDate) {
+        // console.log('New startDate', this.dateFormat(e.newData.startDate), this.dateFormat(e.oldData.endDate) );
+        e.isValid = this.dateFormat(e.oldData.endDate) > this.dateFormat(e.newData.startDate);
+      }
+
+      if (e.newData.endDate) {
+        // console.log('New endDate', this.dateFormat(e.oldData.startDate), this.dateFormat(e.newData.endDate));
+        e.isValid = this.dateFormat(e.newData.endDate) > this.dateFormat(e.oldData.startDate);
+      }
+
+    } else {
+      e.isValid = this.dateFormat(e.newData.endDate) > this.dateFormat(e.newData.startDate);
     }
 
+    if (!e.isValid) {
+      e.errorText = 'End date should be greater than start date';
+    }
+
+    if (this.fundSeriseDataSource) {
+      const isSeriesNameExist = this.fundSeriseDataSource.find(({ seriesName }) => seriesName === e.newData.seriesName);
+      if (isSeriesNameExist) {
+        if (isSeriesNameExist.seriesId === e.oldData.seriesId && isSeriesNameExist.seriesName === e.newData.seriesName) {
+          e.isValid = true;
+        } else {
+          e.isValid = false;
+          e.errorText = 'Series Name must be unique';
+        }
+
+      }
+    }
   }
 
-  //   refreshDataGrid() {
-  //     this.dataGrid.instance.refresh()
-  //         .then(function() {
-  //           this.refreshgrid();
-  //         })
-  //         .catch(function(error) {
-  //             // ...
-  //         });
-  // }
+  dateFormat(datetoFormat) {
+    return new Date(datetoFormat);
+  }
 
+
+  onFundgridValidating(e) {
+    const isFundExist = this.dataSource.find(({ fundName }) => fundName === e.newData.fundName);
+    if (isFundExist) {
+      e.isValid = false;
+      e.errorText = 'Fund Name must be unique';
+    }
+  }
+
+
+  onFundgridEditorPreparing(e) {
+    if (e.dataField === 'fundName') {
+      e.editorOptions.maxLength = 20;
+    }
+    if (e.dataField === 'fundCode') {
+      e.editorOptions.maxLength = 10;
+    }
+  }
+
+  onfundSeriesEditorPreparing(e) {
+    if (e.dataField === 'seriesName') {
+      e.editorOptions.maxLength = 20;
+    }
+    if (e.dataField === 'accountCode') {
+      e.editorOptions.maxLength = 10;
+    }
+  }
 
 }

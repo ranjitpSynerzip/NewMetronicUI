@@ -31,9 +31,8 @@ export class ProjectGroupService {
 	}
 
 	putProjectGroup(projectgroupModel: ProjectgroupModel, id: number): Observable<any> {
-		debugger;
 		const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-		return this.http.put<any>(this.dapperUrl + '/ProjectGroup' + '/' + id, projectgroupModel, httpOptions);
+		return this.http.put<any>(this.dapperUrl + '/ProjectGroup' + '?id=' + id, projectgroupModel, httpOptions);
 	}
 
 	getStatus(): Observable<any[]> {
