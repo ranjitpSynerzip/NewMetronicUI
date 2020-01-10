@@ -15,6 +15,7 @@ import { Widget26Component } from './widget26/widget26.component';
 import { Timeline2Component } from './timeline2/timeline2.component';
 import { DoughnutChartWidgetComponent } from './doughnut-chart-widget/doughnut-chart-widget.component';
 import { BarchartWidgetComponent } from '../widgets/barchart-widget/barchart-widget.component';
+import { PortletModule } from '../general/portlet/portlet.module';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import { BarchartWidgetComponent } from '../widgets/barchart-widget/barchart-wid
 		MatProgressSpinnerModule,
 		MatPaginatorModule,
 		MatSortModule,
+		PortletModule,
 	]
 })
 export class WidgetModule {
