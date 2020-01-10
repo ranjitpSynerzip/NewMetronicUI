@@ -17,6 +17,7 @@ import { CampusModule } from './campus/campus.module';
 import { CampusOverviewModule } from './campus-overview/campus-overview.module';
 import { ProjectDetailsModule } from './project-details/project-details.module';
 import { CollegeDashboardModule } from './college-dashboard/college-dashboard.module';
+import { ProjectDashboardModule } from './project-dashboard/project-dashboard.module';
 
 @NgModule({
 	declarations: [],
@@ -38,7 +39,7 @@ import { CollegeDashboardModule } from './college-dashboard/college-dashboard.mo
 		ProjectDetailsModule,
 		ProjectGroupDetailsModule,
 		CollegeDashboardModule,
-
+		ProjectDashboardModule
 	],
 	providers: []
 })

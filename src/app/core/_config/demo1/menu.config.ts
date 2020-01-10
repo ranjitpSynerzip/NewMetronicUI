@@ -338,7 +338,13 @@ export class MenuConfig {
 						{
 							title: 'Commitments',
 							page: 'error/error-v1'
-						}]
+						},
+						{
+							title: 'Project Dashboard',
+							page: '/projectdashboard'
+						}
+						
+					]
 					// 	{
 					// 		title: 'Error Pages',
 					// 		bullet: 'dot',
