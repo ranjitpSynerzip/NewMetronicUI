@@ -33,5 +33,6 @@ export class ProjectModel {
   public campusId: number;
   public districtId: number;
   public isDeleted: boolean;
+  public projectGroupId: number;
 }
 

@@ -12,6 +12,7 @@ import { catchError, map } from 'rxjs/operators';
 export class ProjectService {
 
 	baseUrl = environment.baseUrl;
+	dapperUrl = environment.dapperUrl;
 	projectObj: ProjectModel[];
 	constructor(private http: HttpClient) { }
 
@@ -49,6 +50,10 @@ export class ProjectService {
 
 	getActivities(): Observable<any[]> {
 		return this.http.get<any>(this.baseUrl + '/Activities')
+	}
+
+	getProjectGroup(): Observable<any[]> {
+		return this.http.get<any[]>(this.dapperUrl + '/ProjectGroup');
 	}
 
 	postProject(projectModel: ProjectModel): Observable<any> {

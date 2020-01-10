@@ -461,6 +461,20 @@
                                 #subNumber="ngModel" [(ngModel)]="projectObj.subNumber"
                                 placeholder="Enter Sub Number" />
                         </div>
+					</div>
+					<div class="col-md-2">
+                        <div class="form-group">
+                            <label for="txtStatus">Project Groups:</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <select name="projectgroups" #projectGroupId="ngModel" class="form-control"
+                                [(ngModel)]="selectedProjectGroups">
+                                <option *ngFor="let c of projectgroups" [selected]="c.projectGroupId === selectedProjectGroups"
+                                    [ngValue]="c.projectGroupId">{{ c.displayName }}</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </form>

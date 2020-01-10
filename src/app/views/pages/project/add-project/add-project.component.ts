@@ -22,11 +22,13 @@ export class AddProjectComponent implements OnInit {
   companies = [];
   contacts = [];
   activities = [];
+  projectgroups = [];
   projectObj = new ProjectModel();
   selectedStatus = null;
   selectedCompany = null;
   selectedContact = null;
   selectedActivity = null;
+  selectedProjectGroups = null;
   selectedBondSeries = null;
   selectedFundLocation = null;
   selectedOrgCode = null;
@@ -99,7 +101,12 @@ export class AddProjectComponent implements OnInit {
     this.service.getActivities().subscribe(data => {
       this.activities = data;
       console.log(this.activities);
-    });
+	});
+
+	this.service.getProjectGroup().subscribe(data => {
+		this.projectgroups = data;
+		console.log(this.projectgroups);
+	  });
   }
 
   onSaveButton() {
@@ -127,9 +134,8 @@ export class AddProjectComponent implements OnInit {
     this.projectObj.bondFundCategoryId = this.selectedBondFundCategory;
     this.projectObj.orgCodeId = this.selectedOrgCode;
     this.projectObj.fundLocationId = this.selectedFundLocation;
-    this.projectObj.bondSeriesId = this.selectedBondSeries;
-
-
+	this.projectObj.bondSeriesId = this.selectedBondSeries;
+	this.projectObj.projectGroupId = this.selectedProjectGroups;
 
     this.service.postProject(this.projectObj).subscribe(
       success => {
