@@ -85,27 +85,22 @@ export class AddProjectComponent implements OnInit {
   ngOnInit() {
     this.service.getStatus().subscribe(data => {
       this.Statues = data;
-      console.log(this.Statues);
     });
 
     this.service.getCompanies().subscribe(data => {
       this.companies = data;
-      console.log(this.companies);
     });
 
     this.service.getContacts().subscribe(data => {
       this.contacts = data;
-      console.log(this.contacts);
     });
 
     this.service.getActivities().subscribe(data => {
       this.activities = data;
-      console.log(this.activities);
 	});
 
 	this.service.getProjectGroup().subscribe(data => {
 		this.projectgroups = data;
-		console.log(this.projectgroups);
 	  });
   }
 
@@ -135,6 +130,7 @@ export class AddProjectComponent implements OnInit {
     this.projectObj.orgCodeId = this.selectedOrgCode;
     this.projectObj.fundLocationId = this.selectedFundLocation;
 	this.projectObj.bondSeriesId = this.selectedBondSeries;
+	debugger;
 	this.projectObj.projectGroupId = this.selectedProjectGroups;
 
     this.service.postProject(this.projectObj).subscribe(
