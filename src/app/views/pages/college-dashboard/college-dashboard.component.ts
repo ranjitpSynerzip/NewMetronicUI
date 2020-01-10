@@ -1,6 +1,7 @@
 
 import { Component, OnInit, AfterViewInit } from "@angular/core";
 import { CampusManagementService } from "./../../../shared/Services/campus-management.service";
+import { HeaderTitleService } from '../../../shared/Services/header-title.service';
 
 
 export class campusTest {
@@ -20,7 +21,7 @@ export class CollegeDashboardComponent implements OnInit, AfterViewInit {
 	barchartData = new campusTest();
 	dataSource: any[];
 
-	constructor(private service: CampusManagementService) {
+	constructor(private service: CampusManagementService, private headerTitleService: HeaderTitleService) {
 	}
 
 	ngOnInit() {
@@ -31,6 +32,7 @@ export class CollegeDashboardComponent implements OnInit, AfterViewInit {
 		// this.barchartData.datasets = this.dataSource.map(
 		// 	({ accountCode }) => accountCode
 		// );
+		this.headerTitleService.updatetitle('College Of the Desert');
 
 	}
 
@@ -42,7 +44,6 @@ export class CollegeDashboardComponent implements OnInit, AfterViewInit {
 	async getCampus() {
 		return await this.service.getCampusTest().then(data => {
 			this.dataSource = JSON.parse(JSON.stringify(data));
-			console.log('datadsadasbar', this.dataSource);
 			this.barchartData.labels = this.dataSource.map(
 				({ campusName }) => campusName
 			);
