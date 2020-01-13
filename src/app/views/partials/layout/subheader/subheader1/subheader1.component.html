@@ -1,7 +1,45 @@
 <!-- begin:: Content Head -->
-<div class="kt-subheader kt-grid__item" [ngClass]="{'kt-container--clear': clear}" [hidden]="subheaderService.disabled$ | async" id="kt_subheader">
+<div class="kt-subheader kt-grid__item" [ngClass]="{'kt-container--clear': clear}"
+	[hidden]="subheaderService.disabled$ | async" id="kt_subheader">
 	<div class="kt-container" [ngClass]="{'kt-container--fluid': fluid}">
-		<div class="kt-subheader__main" style="padding: 15px;" >
+
+		<div class="kt-subheader__main" style="padding: 15px;">
+			<div ngbDropdown [placement]="'bottom-left'" class="dropdown dropdown-inline" ngbTooltip="Quick actions">
+				<a ngbDropdownToggle href="javascript:;" class="btn btn-icon">
+					<i class="fas fa-bars"></i>
+				</a>
+				<div ngbDropdownMenu class="dropdown-menu dropdown-menu-fit dropdown-menu-md">
+					<!--begin::Nav-->
+					<ul class="nav-item dropdown">
+						<li class="kt-nav__head">
+							College Of the Desert
+							<ul class="kt-nav">
+								<li class="kt-nav__item" >
+									Anaheim
+									<ul class="kt-nav">
+										<li class="kt-nav__item" >
+											Library Renovations
+										</li>
+										<li class="kt-nav__item">
+											Student Study Rooms
+										</li>
+									</ul>
+								</li>
+								<li class="kt-nav__item">
+									Huntington
+								</li>
+								<li class="kt-nav__item">
+									Diamondbar
+								</li>
+								<li class="kt-nav__item">
+									Newport Beach
+								</li>
+							</ul>
+						</li>
+					</ul>
+					<!--end::Nav-->
+				</div>
+			</div>
 			<!-- <h3  class="kt-subheader__title">{{title}}</h3> -->
 			<h3 *ngIf="title" class="kt-subheader__title" style="color:#fff">{{title}}</h3>
 			<!-- <span class="kt-subheader__separator kt-subheader__separator--v"></span> -->
@@ -11,6 +49,7 @@
 				Add New
 			</a> -->
 		</div>
+
 		<div class="kt-subheader__toolbar">
 			<div class="kt-subheader__wrapper">
 				<!--<a href="javascript:;" class="btn kt-subheader__btn-secondary">Today</a>-->
@@ -28,7 +67,7 @@
 				</a> -->
 
 				<!-- <div ngbDropdown [placement]="'bottom-right'"  class="dropdown dropdown-inline" ngbTooltip="Quick actions"> -->
-					<!-- <a ngbDropdownToggle href="javascript:;" class="btn btn-icon">
+				<!-- <a ngbDropdownToggle href="javascript:;" class="btn btn-icon">
 						<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon kt-svg-icon--success kt-svg-icon--md">
 							<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 								<polygon id="Shape" points="0 0 24 0 24 24 0 24"></polygon>
@@ -37,9 +76,9 @@
 							</g>
 						</svg>
 					</a> -->
-					<!-- <div ngbDropdownMenu class="dropdown-menu dropdown-menu-fit dropdown-menu-md"> -->
-						<!--begin::Nav-->
-						<!-- <ul class="kt-nav">
+				<!-- <div ngbDropdownMenu class="dropdown-menu dropdown-menu-fit dropdown-menu-md"> -->
+				<!--begin::Nav-->
+				<!-- <ul class="kt-nav">
 							<li class="kt-nav__head">
 								Add anything or jump to:
 								<i class="flaticon2-information" data-placement="left" ngbTooltip="Click to learn more..."></i>
@@ -78,8 +117,8 @@
 								<a class="btn btn-clean btn-bold btn-sm" href="javascript:;" data-placement="left" ngbTooltip="Click to learn more...">Learn more</a>
 							</li>
 						</ul> -->
-						<!--end::Nav-->
-					<!-- </div> -->
+				<!--end::Nav-->
+				<!-- </div> -->
 				<!-- </div> -->
 			</div>
 		</div>
