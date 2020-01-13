@@ -295,39 +295,43 @@ export class FundManagementComponent implements OnInit {
   onRowValidating(e) {
     console.log('onload', e);
     if (e.oldData) {
-      console.log('onRowValidating', e.oldData);
+      // console.log('onRowValidating', e.oldData);
 
       if (e.newData.startDate) {
+        // console.log('New startDate', this.dateFormat(e.newData.startDate), this.dateFormat(e.oldData.endDate) );
         e.isValid = this.dateFormat(e.oldData.endDate) > this.dateFormat(e.newData.startDate);
       }
 
       if (e.newData.endDate) {
+        // console.log('New endDate', this.dateFormat(e.oldData.startDate), this.dateFormat(e.newData.endDate));
         e.isValid = this.dateFormat(e.newData.endDate) > this.dateFormat(e.oldData.startDate);
-        // e.isValid = this.datepipe.transform(, 'MM/dd/yyyy') > this.datepipe.transform(e.oldData.startDate, 'MM/dd/yyyy');
       }
 
     } else {
-      // console.log('endDate', this.datepipe.transform(e.newData.endDate, 'MM/dd/yyyy'));
-      // console.log('startDate', this.datepipe.transform(e.newData.startDate, 'MM/dd/yyyy'));
       e.isValid = this.dateFormat(e.newData.endDate) > this.dateFormat(e.newData.startDate);
-      // e.isValid = this.datepipe.transform(e.newData.endDate, 'MM/dd/yyyy') > this.datepipe.transform(e.newData.startDate, 'MM/dd/yyyy');
     }
 
     if (!e.isValid) {
       e.errorText = 'End date should be greater than start date';
     }
 
-    const isSeriesNameExist = this.fundSeriseDataSource.find(({ seriesName }) => seriesName === e.newData.seriesName);
-    if (isSeriesNameExist) {
-      e.isValid = false;
-      e.errorText = 'Series Name must be unique';
+    if (this.fundSeriseDataSource) {
+      const isSeriesNameExist = this.fundSeriseDataSource.find(({ seriesName }) => seriesName === e.newData.seriesName);
+      if (isSeriesNameExist) {
+        if (isSeriesNameExist.seriesId === e.oldData.seriesId && isSeriesNameExist.seriesName === e.newData.seriesName) {
+          e.isValid = true;
+        } else {
+          e.isValid = false;
+          e.errorText = 'Series Name must be unique';
+        }
+
+      }
     }
   }
 
   dateFormat(datetoFormat) {
-    return this.datepipe.transform(datetoFormat, 'MM/dd/yyyy');
+    return new Date(datetoFormat);
   }
-
 
 
   onFundgridValidating(e) {
