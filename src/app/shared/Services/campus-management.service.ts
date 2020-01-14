@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Campusmodel, Campusgridmodel } from './../models/campusmodel';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
+import { ChartModel } from '../models/chart.model';
 
 export class BudgetSummary {
 	Title: string;
@@ -144,6 +145,12 @@ export class CampusManagementService {
 
 	getBudgetSummary(): BudgetSummary[] {
         return budgetsummary;
-    }
+	}
+	
+
+	getCampusNew(): Observable<ChartModel[]> {
+		return this.http.get<ChartModel[]>(this.baseUrl + '/Campus');
+	}
+
 
 }

@@ -11,13 +11,14 @@ import { CollegeBudgetSummaryComponent } from './college-budget-summary/college-
 import { BarChartComponent } from './bar-chart/bar-chart.component';
 import { DoughnutChartComponent } from './doughnut-chart/doughnut-chart.component';
 import { ProgressBarComponent } from './progress-bar/progress-bar.component';
-
+import { CollegeDashboardResolver } from './college-dashboard-resolver';
 
 
 const routes: Routes = [
   {
     path: '',
     component: CollegeDashboardComponent,
+    resolve: { chartModel: CollegeDashboardResolver },
     children: [
       {
         path: '',
@@ -39,8 +40,11 @@ const routes: Routes = [
         path: 'progressbar',
         component: ProgressBarComponent,
       },
+
     ]
   }
+
+
 ];
 
 @NgModule({
@@ -62,6 +66,7 @@ const routes: Routes = [
     DoughnutChartComponent,
     ProgressBarComponent,
   ],
-  entryComponents: []
+  entryComponents: [],
+  providers: [CollegeDashboardResolver],
 })
 export class CollegeDashboardModule { }
